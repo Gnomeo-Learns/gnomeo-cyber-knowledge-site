@@ -1,0 +1,78 @@
+---
+---
+<div class="search-wrap">
+  <input type="text" id="search-input" placeholder="Search lessons, terms, concepts…" autocomplete="off" />
+  <span class="search-count" id="search-count"></span>
+  <button class="btn-clear" id="btn-clear">✕ clear</button>
+</div>
+
+<script>
+  const searchInput = document.getElementById('search-input');
+  const searchCount = document.getElementById('search-count');
+  const btnClear = document.getElementById('btn-clear');
+
+  function clearSearch() {
+    if (!searchInput || !btnClear || !searchCount) return;
+    searchInput.value = '';
+    btnClear.style.display = 'none';
+    searchCount.innerHTML = '';
+    document.querySelectorAll('.lesson').forEach(l => {
+      l.classList.remove('hidden', 'search-match');
+    });
+    document.querySelectorAll('.topic').forEach(t => t.classList.remove('hidden'));
+    document.querySelectorAll('mark.hl').forEach(m => {
+      const parent = m.parentNode;
+      if (parent) {
+        parent.replaceChild(document.createTextNode(m.textContent || ''), m);
+        parent.normalize();
+      }
+    });
+  }
+
+  if (searchInput && searchCount && btnClear) {
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.trim().toLowerCase();
+      btnClear.style.display = q ? 'inline' : 'none';
+
+      if (!q) {
+        clearSearch();
+        return;
+      }
+
+      const lessons = document.querySelectorAll('.lesson');
+      let matchCount = 0;
+
+      document.querySelectorAll('mark.hl').forEach(m => {
+        const parent = m.parentNode;
+        if (parent) {
+          parent.replaceChild(document.createTextNode(m.textContent || ''), m);
+          parent.normalize();
+        }
+      });
+
+      lessons.forEach(lesson => {
+        const text = lesson.textContent?.toLowerCase() || '';
+        const data = (lesson.getAttribute('data-text') || '').toLowerCase();
+        if (text.includes(q) || data.includes(q)) {
+          lesson.classList.add('search-match');
+          lesson.classList.remove('hidden');
+          matchCount++;
+        } else {
+          lesson.classList.remove('search-match');
+          lesson.classList.add('hidden');
+        }
+      });
+
+      document.querySelectorAll('.topic').forEach(topic => {
+        const hasVisible = [...topic.querySelectorAll('.lesson')].some(l => !l.classList.contains('hidden'));
+        topic.classList.toggle('hidden', !hasVisible);
+      });
+
+      searchCount.innerHTML = matchCount
+        ? `<strong>${matchCount}</strong> lesson${matchCount !== 1 ? 's' : ''} matched`
+        : '<strong>0</strong> matches';
+    });
+
+    btnClear.addEventListener('click', clearSearch);
+  }
+</script>

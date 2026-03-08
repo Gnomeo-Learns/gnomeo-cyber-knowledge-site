@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LessonCard from '../../components/LessonCard.astro';
+import Callout from '../../components/Callout.astro';
+---
+<BaseLayout title="T4: Talent Management — CS8803 Reference" currentPath="/m1-strategy/t4-talent-management">
+
+<section class="topic">
+  <div class="topic-header">
+    <div class="topic-num">T4</div>
+    <h3>Talent Management</h3>
+  </div>
+
+  <LessonCard code="Mod 1 · Topic 4 · Lesson 1" title="The Hiring Problem in Cybersecurity" tags={[{label:"Hiring",type:"tip"},{label:"Market Reality",type:"def"}]} searchData="supply demand hiring screening certification vendor bias conceptual interview home lab">
+    <p>The cybersecurity talent market is characterized by a large supply-demand gap — officially hundreds of thousands of unfilled positions globally — yet hiring quality remains poor in many organizations. The root cause: <strong>certification and vendor bias in screening processes</strong>.</p>
+    <ul class="bullet">
+      <li>Many job descriptions list 10–15 vendor certifications as requirements — filtering for people who passed exams, not people who can think adversarially</li>
+      <li>The best candidates are often self-taught practitioners who've built home labs, contributed to open-source tools, or competed in CTF challenges — none of which appear on typical screening rubrics</li>
+      <li>"A players hire A players; B players hire C players" — the interview process itself signals organizational quality to strong candidates</li>
+      <li>Fix: conduct <strong>vendor-agnostic conceptual interviews</strong> — ask candidates to reason through a problem, not recite a certification body's answer</li>
+    </ul>
+    <Callout variant="green">Home lab experience and open-source contributions are "diamonds in the rough" indicators of genuine passion. Ask candidates what they've built, broken, or automated on their own time.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 1 · Topic 4 · Lesson 2" title="The Three Retention Pillars" tags={[{label:"Model: Three Pillars",type:"fw"},{label:"Management",type:"tip"}]} searchData="mission empowerment compensation three pillars retention culture salary bonus equity">
+    <p>Retaining top cybersecurity talent requires delivering on at least two of three pillars. Compensation alone rarely retains great people if the other two are absent:</p>
+
+    <div class="def-row"><div class="def-term">1. Mission</div><div class="def-body">Spans a spectrum: altruistic ("protecting critical infrastructure") → brand name employer prestige → departmental practitioner reputation ("this team is respected and does real work"). Even practitioners who don't care about the brand name will care if the security team is well-regarded within the firm.</div></div>
+    <div class="def-row"><div class="def-term">2. Empowerment</div><div class="def-body">Culture, tone at the top, freedom to fail, absence of classism (engineers aren't second-class to business). People stay when they have agency over their work and feel trusted. This is the hardest pillar to build and the fastest to destroy.</div></div>
+    <div class="def-row"><div class="def-term">3. Compensation</div><div class="def-body">Structured as salary bands with clear progression: Junior → Mid (~33% increase over 3–5 years), Mid → Senior (~50% increase). Mix of base + bonus + equity/vesting. COLA adjustments don't retain talent — merit-based band progression does. Signing bonuses are often easier to approve than base salary increases because they're one-time costs.</div></div>
+
+    <Callout variant="orange">Management tip: Annual COLA raises of 2–3% communicate stagnation to top performers who can get 20% bumps by changing jobs. If you can't offer competitive compensation, Mission and Empowerment must compensate — and they sometimes genuinely can.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 1 · Topic 4 · Lesson 3" title="Internal Recruiting and Pipeline Building" tags={[{label:"Recruiting",type:"tip"}]} searchData="internal recruiting career paths software engineer AppSec systems network cloud architecture IT SOC audit GRC IAM conferences ISAC">
+    <div class="section-label">Internal career transition paths (high success rate)</div>
+    <ul class="bullet">
+      <li><strong>Software Engineers → AppSec:</strong> Understand code at a deep level; need threat modeling training</li>
+      <li><strong>Systems/Network/Cloud Engineers → Security Architecture:</strong> Understand infrastructure; need adversarial mindset development</li>
+      <li><strong>IT/Desktop/Helpdesk → SOC/IR:</strong> Know the environment; need detection logic and triage training</li>
+      <li><strong>Audit/Risk/Compliance → GRC/IAM:</strong> Understand risk frameworks; need security-specific vocabulary</li>
+    </ul>
+
+    <div class="section-label">Building external credibility for recruiting</div>
+    <ul class="bullet">
+      <li>Speak at industry conferences (DEF CON, BSides, Black Hat, RSA) — the quality of your team's work becomes a recruiting signal</li>
+      <li>Participate in ISACs and information sharing groups — relationships translate into referral pipelines</li>
+      <li>Guest lecture at universities — student pipelines with 1–2 year lead time</li>
+      <li>Only report exploitable, validated findings internally — building a reputation for accuracy rather than volume earns trust across the organization</li>
+    </ul>
+  </LessonCard>
+
+  <LessonCard code="Mod 1 · Topic 4 · Lesson 4" title="Outsourcing and Offshoring Decisions" tags={[{label:"Strategy",type:"tip"}]} searchData="outsourcing insourcing offshoring managed service MSSP pros cons requirements">
+    <div class="section-label">Outsourcing pros</div>
+    <ul class="bullet">
+      <li>Rapid capability acquisition — you can have a functional MSSP SOC in 90 days vs. 18 months to hire and build internally</li>
+      <li>Operational flexibility — scale up/down without permanent headcount commitment</li>
+      <li>Specialized expertise on demand (forensics firms, niche pen-testing)</li>
+    </ul>
+
+    <div class="section-label">Outsourcing cons</div>
+    <ul class="bullet">
+      <li>Emotional distance from mission — contractors don't lose sleep over your breaches</li>
+      <li>Transactional relationship — they deliver what's in the SOW, not what the situation requires</li>
+      <li>Critical insight: an outsourced function is <strong>only as good as your requirements specification</strong>. If you can't define what good looks like, you can't assess whether you're getting it.</li>
+    </ul>
+
+    <div class="section-label">Offshoring</div>
+    <p>Economically valid. Set identical intellectual expectations regardless of location — never frame offshoring as "three engineers for the price of one." That framing produces exactly three times the mediocrity. Offshore teams that feel respected and intellectually challenged perform at the same level as onshore counterparts.</p>
+  </LessonCard>
+
+  <LessonCard code="Mod 1 · Topic 4 · Lesson 5" title="Talent Management Metrics" tags={[{label:"Metrics",type:"def"}]} searchData="talent metrics headcount donut average tenure anonymous survey manager empowerment">
+    <ul class="bullet">
+      <li><strong>Headcount donut chart:</strong> Visual breakdown showing allocation across first/second-line functions plus open requisitions. Tells the story of where you're investing and where you're understaffed — a single chart for governance reporting.</li>
+      <li><strong>Average tenure:</strong> A lagging indicator of institutional knowledge health. Declining tenure signals cultural problems before they appear in exit interviews.</li>
+      <li><strong>Anonymous volume-weighted manager survey:</strong> Focus on empowerment questions (not just satisfaction). Benchmark individual managers against each other anonymously — surfaces management problems that never appear in direct reports. Weight responses by team size to prevent small-team distortion.</li>
+    </ul>
+  </LessonCard>
+
+</section>
+</BaseLayout>

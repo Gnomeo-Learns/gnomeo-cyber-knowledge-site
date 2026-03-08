@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LessonCard from '../../components/LessonCard.astro';
+import Callout from '../../components/Callout.astro';
+---
+<BaseLayout title="T2: Threat Objectives — CS8803 Reference" currentPath="/m1-strategy/t2-threat-objectives">
+
+<section class="topic">
+  <div class="topic-header">
+    <div class="topic-num">T2</div>
+    <h3>Threat Objectives</h3>
+  </div>
+
+  <LessonCard code="Mod 1 · Topic 2 · Lesson 1" title="Vocabulary and Taxonomy Foundation" tags={[{label:"Core Definitions",type:"def"}]} searchData="vocabulary taxonomy adversarial risk management threat condition risk control event incident MECE">
+    <p>Shared vocabulary is the foundation of effective cybersecurity communication. Without precise definitions, teams talk past each other, reporting becomes inconsistent, and threat intelligence loses accuracy. <em>Adversarial Risk Management</em> distinguishes cyber from other risk disciplines — your adversary is <strong>sentient and adaptive</strong>, actively trying to defeat your controls.</p>
+
+    <div class="section-label">Hierarchy (superset → subset)</div>
+    <div class="def-row"><div class="def-term">Threat</div><div class="def-body">A situation that could jeopardize an organizational mission. Broad and directional (e.g., "ransomware could take us offline").</div></div>
+    <div class="def-row"><div class="def-term">Condition</div><div class="def-body">A configuration, environment, or arrangement of facts that may or may not amount to a risk. Could be benign or dangerous depending on context.</div></div>
+    <div class="def-row"><div class="def-term">Risk</div><div class="def-body">An atomic condition that could lead to a threat materializing. More specific than a threat; goes on the risk register.</div></div>
+    <div class="def-row"><div class="def-term">Control</div><div class="def-body">A mechanism or process providing protection, detection, or mitigation against a risk materializing. Can be preventive, detective, or corrective.</div></div>
+    <div class="def-row"><div class="def-term">Event</div><div class="def-body">An observed occurrence that may or may not constitute an incident. Most events are noise.</div></div>
+    <div class="def-row"><div class="def-term">Incident</div><div class="def-body">An event that led to the materialization of a threat. Requires a CINC record and formal response process.</div></div>
+
+    <Callout variant="green">Value of vocabulary: it enables consistent news reporting ("that incident maps to Data Theft"), facilitates benchmarking across teams, organizes priorities, and creates a common language for board and executive presentations.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 1 · Topic 2 · Lesson 2" title="Why Common Taxonomies Fail: The MECE Problem" tags={[{label:"MECE Principle",type:"def"},{label:"Framework",type:"fw"}]} searchData="MECE taxonomy why threat vector actor kill chain ttp mutually exclusive collectively exhaustive">
+    <p>Most threat taxonomies — organized by vector, actor, asset type, or TTPs — fail the MECE test: <strong>Mutually Exclusive, Collectively Exhaustive</strong>. They're not mutually exclusive because a single breach can simultaneously involve malware, phishing, and botnet activity. Organizing by "What" or "How" forces analysts to pick one category when multiple apply.</p>
+
+    <div class="section-label">Common flawed taxonomies</div>
+    <ul class="bullet">
+      <li><strong>By vector (What/How):</strong> Phishing, malware, SQL injection — these overlap in any real attack. A ransomware attack arrives via phish, installs via malware, moves laterally via credential stuffing.</li>
+      <li><strong>By actor (Who):</strong> Nation-state, cybercriminal, insider — a single incident can involve multiple actors, or attribution is genuinely unknown.</li>
+      <li><strong>By asset (Where):</strong> Endpoint, network, application — a breach typically spans multiple asset classes simultaneously.</li>
+      <li><strong>By TTPs (How):</strong> Useful operationally but too granular for strategic reporting; MITRE ATT&CK has 500+ techniques.</li>
+    </ul>
+
+    <Callout>The solution: organize by <em>adversary motivation (Why)</em> — Threat Objectives. Every adversarial action in any attack scenario traces to exactly one primary motivation, making the taxonomy genuinely MECE.</Callout>
+    <div class="lesson-refs">
+      <span class="refs-label">See also</span>
+      <a class="ref-link" href="https://attack.mitre.org" target="_blank">MITRE ATT&CK</a>
+      <a class="ref-link" href="https://www.lockheedmartin.com/en-us/capabilities/cyber/cyber-kill-chain.html" target="_blank">Lockheed Kill Chain</a>
+    </div>
+  </LessonCard>
+
+  <LessonCard code="Mod 1 · Topic 2 · Lesson 3" title="The Threat Objective Model" tags={[{label:"Model: Threat Objectives",type:"fw"},{label:"6 Objectives",type:"def"}]} searchData="threat objective model extortion sabotage financial fraud data theft resource hijacking watering hole heat map likelihood impact">
+    <p>Organize threats by <strong>adversary motivation (Why)</strong>. Six objectives cover virtually all adversarial activity in enterprise environments:</p>
+
+    <div class="section-label">The Six Threat Objectives</div>
+    <div class="def-row"><div class="def-term">EX — Extortion</div><div class="def-body">Adversary threatens to damage operations, disclose data, or maintain access unless paid. Includes: ransomware (encrypt + pay), DDoS-for-Bitcoin, and data blackmail (steal + threaten to publish). Persistent access and documentation mining are key tradecraft indicators.</div></div>
+    <div class="def-row"><div class="def-term">SA — Sabotage</div><div class="def-body">Adversary seeks to destroy, disrupt, or deface without a financial motive. Includes: DDoS (availability), wiper malware, website defacement. Common in nation-state and hacktivist scenarios. Lateral movement and deep infrastructure access are prerequisites.</div></div>
+    <div class="def-row"><div class="def-term">FF — Financial Fraud</div><div class="def-body">Direct monetization of access. Includes: account takeover (ATO), ACH fraud, payment card interception, crypto wallet theft or transaction substitution, credential stuffing. Transaction-focused; often opportunistic via modular malware toolkits. SIM swapping increasingly common.</div></div>
+    <div class="def-row"><div class="def-term">DD — Data Disclosure</div><div class="def-body">Theft of sensitive data for intelligence, competitive, or future use. Subcategories: PII/PHI personal data, customer/transactional data, intellectual property (IP), MNPI (insider trading). Controls: DLP, access control (DAC/MAC/RBAC/PAM), encryption, tokenization, HSMs. Attack vectors include SQLi, bucket attacks (misconfigured cloud storage), and network-level exfiltration.</div></div>
+    <div class="def-row"><div class="def-term">RH — Resource Hijacking</div><div class="def-body">Compromise to exploit compute, network, or bandwidth resources. Includes: botnet enrollment, cryptojacking, spam relay, Tor-style anonymizer nodes, DDoS source nodes, UDP reflection flood generators, scanner infrastructure, geo-fooling. Typically opportunistic, automated infection via drive-by malware or random phish spray.</div></div>
+    <div class="def-row"><div class="def-term">WH — Watering Hole</div><div class="def-body">Compromise your environment specifically to target a downstream third party — your customers, partners, or suppliers. Includes supply-chain attacks (e.g., SolarWinds). Can be opportunistic or highly targeted. The compromise of <em>your</em> organization is not the end goal — you're the vector.</div></div>
+
+    <div class="section-label">Heat Map Visualization</div>
+    <p>Plot each threat objective on a 2D heat map: X-axis = Likelihood, Y-axis = Impact. Use <strong>dark icons for inherent risk</strong> (no controls in place) and <strong>light/faded icons for residual risk</strong> (after controls). Draw a diagonal line representing your <strong>risk appetite</strong> — objectives above the line require action.</p>
+
+    <Callout variant="orange">At board presentations, this heat map tells the entire story in one visual: where you started, what controls cost, and what risk remains. Executives don't need spreadsheets — they need this diagram.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 1 · Topic 2 · Lesson 4" title="Scoring: Inherent vs. Residual Risk" tags={[{label:"Risk Scoring",type:"def"},{label:"Practical",type:"tip"}]} searchData="scoring inherent residual risk likelihood impact red team cti threat intel board tradecraft">
+    <div class="section-label">Scoring inputs</div>
+    <ul class="bullet">
+      <li><strong>Inherent Likelihood:</strong> Derived from CTI — how actively are adversaries pursuing this objective against organizations like yours? Sourced from threat intelligence feeds, ISAC reporting, and dark/deep web monitoring.</li>
+      <li><strong>Inherent Impact:</strong> Assessed collaboratively with business leadership (CFO/COO/GC). The CFO knows what a week of downtime costs; the GC knows the regulatory exposure for a data breach. Security alone should not score impact — this gives the CISO cover and improves accuracy.</li>
+      <li><strong>Residual Likelihood:</strong> Derived from red team testing. If your red team can achieve the objective, likelihood is high regardless of what your controls documentation says. Real adversaries don't follow your assumed attack paths.</li>
+      <li><strong>Residual Impact:</strong> Rarely decreases from inherent impact <em>unless</em> segmentation controls genuinely limit blast radius (e.g., the Dublin office wiper doesn't reach headquarters because of network segmentation).</li>
+    </ul>
+
+    <Callout variant="green">Red team testing gives you the most honest residual likelihood score available — you know exactly when the test started, which path they took, and whether containment was real. Real incidents often lack that precision.</Callout>
+    <Callout variant="orange">Career tip: Never let the CISO alone determine business impact. Collaborate with CFO/COO/GC to assign impact scores. When scores are jointly owned, budget requests tied to those risks become easier to approve — the business already agreed on the stakes.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 1 · Topic 2 · Lesson 5" title="Threat Objective Usage and Applications" tags={[{label:"Applications",type:"tip"}]} searchData="threat objective usage CTI risk register CINC red team board budgeting key control TPRM">
+    <p>Once defined and scored, the Threat Objective model becomes a unifying language across every security function:</p>
+    <ul class="bullet">
+      <li><strong>CTI collection priorities:</strong> Tell your threat intel team which objectives are above your risk appetite — they focus collection on those adversaries and TTPs.</li>
+      <li><strong>Risk register:</strong> Tag every risk register entry with a threat objective — instantly shows which areas have the most open risk items.</li>
+      <li><strong>CINC tagging:</strong> Tag every security incident with an objective — over time, actual incident distribution validates (or challenges) your heat map.</li>
+      <li><strong>Red team scheduling:</strong> Prioritize testing scenarios by the objectives with the highest residual likelihood. Red team against your weakest spots first.</li>
+      <li><strong>Board and risk appetite frameworks:</strong> The heat map becomes the board's primary cybersecurity reporting artifact. Objective-level notifications can be pre-defined (e.g., "notify board if EX residual likelihood rises to high").</li>
+      <li><strong>Budgeting:</strong> Tie budget requests directly to moving specific objectives from high to low residual risk — makes ROI explicit and defensible.</li>
+      <li><strong>TPRM vendor filtering:</strong> Third-party vendors are only assessed against objectives that are actually relevant to their access and data. Don't send a 200-question questionnaire to a vendor that only provides office supplies.</li>
+    </ul>
+  </LessonCard>
+
+  <LessonCard code="Mod 1 · Topic 2 · Lesson 6" title="Residual Challenges" tags={[{label:"Edge Cases",type:"def"}]} searchData="residual challenges subsidiary heat map qualitative quantitative high watermark">
+    <ul class="bullet">
+      <li><strong>Multi-subsidiary heat maps:</strong> Only maintain separate subsidiary heat maps when you have fewer than ~5 materially distinct business segments <em>and</em> each has sufficiently independent leadership to assess impact. Otherwise, one enterprise-level map suffices.</li>
+      <li><strong>Qualitative vs. quantitative scoring:</strong> Keep impact descriptive (High/Medium/Low with narrative) rather than converting to dollar figures. Dollar estimates for cyber risk are notoriously unreliable, and the CISO assigning dollar values to a risk they also manage creates a conflict-of-interest optics problem.</li>
+      <li><strong>High-watermark problem:</strong> If you bundle EX (Extortion) subtypes together (ransomware + DDoS-for-ransom + data blackmail), the composite score will be artificially inflated — you inherit the highest likelihood AND highest impact from all sub-types. Break them out individually. A High × Low and a Low × High should not both roll up to High × High.</li>
+    </ul>
+  </LessonCard>
+
+</section>
+</BaseLayout>

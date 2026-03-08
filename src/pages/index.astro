@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<BaseLayout title="CS8803 — Enterprise Cybersecurity Management Reference" currentPath="/">
+
+<div class="legend-bar">
+  <div class="legend-title">Guide Key</div>
+  <div class="legend-items">
+    <div class="legend-item def"><div class="legend-swatch def"></div>Definition / Key Term</div>
+    <div class="legend-item fw"><div class="legend-swatch fw"></div>Framework / Model</div>
+    <div class="legend-item tip"><div class="legend-swatch tip"></div>Practical / Career Tip</div>
+    <div class="legend-item new"><div class="legend-swatch new"></div>2024+ Update / New Content</div>
+  </div>
+  <div class="legend-note">
+    <div class="acro-hint">Acronym tooltips: hover over <span class="acro-demo">underlined acronyms</span> to see definitions inline — no separate window needed.</div>
+    <div style="margin-left:auto; color: var(--text-dim);"><a href={`${base}/glossary`} style="color:var(--accent1); text-decoration:none; font-family:'DM Mono',monospace; font-size:10px;">Full Glossary →</a></div>
+  </div>
+</div>
+
+<div class="module-header" style="margin-top:2rem;">
+  <div class="module-num">Overview</div>
+  <h2>Course Modules</h2>
+</div>
+
+<p style="margin-bottom:1.5rem;">Personal reference guide for Georgia Tech CS8803 / CS6239 — Enterprise Cybersecurity Management, taught by Prof. Jerry Perullo (former CISO, ICE/NYSE). Content covers strategy, cybersecurity operations, threat objectives, incident response, architecture, CTI, and more.</p>
+
+<div class="overview-grid">
+  <a href={`${base}/m1-strategy`} class="overview-card">
+    <div class="card-code">Module 01</div>
+    <div class="card-title">Strategy</div>
+    <div class="card-desc">Strategy composition, threat objectives, departmental organization, talent management, and cyber threat intelligence.</div>
+  </a>
+  <a href={`${base}/m2-operations`} class="overview-card">
+    <div class="card-code">Module 02</div>
+    <div class="card-title">Cybersecurity Operations</div>
+    <div class="card-desc">Security architecture and automation, cyber incident response procedures (CIRP), and incident walkthrough examples.</div>
+  </a>
+</div>
+
+<div style="margin-top:2rem;">
+  <div class="module-num" style="margin-bottom:0.8rem;">Topics</div>
+  <div class="toc">
+    <div class="toc-title">Contents</div>
+    <div class="toc-grid">
+      <div>
+        <div class="module-label">Module 1 — Strategy</div>
+        <a href={`${base}/m1-strategy/t1-composition`}>T1 · Strategy Composition</a>
+        <a href={`${base}/m1-strategy/t2-threat-objectives`}>T2 · Threat Objectives</a>
+        <a href={`${base}/m1-strategy/t3-departmental-org`}>T3 · Departmental Organization</a>
+        <a href={`${base}/m1-strategy/t4-talent-management`}>T4 · Talent Management</a>
+        <a href={`${base}/m1-strategy/t5-cti`}>T5 · Cyber Threat Intelligence</a>
+      </div>
+      <div>
+        <div class="module-label">Module 2 — Cybersecurity Operations</div>
+        <a href={`${base}/m2-operations/t1-architecture`}>T1 · Architecture and Automation</a>
+        <a href={`${base}/m2-operations/t2-cirp`}>T2 · Cyber Incident Response Procedures</a>
+        <a href={`${base}/m2-operations/t3-cirp-examples`}>T3 · CIRP Examples (9 Walkthroughs)</a>
+      </div>
+      <div>
+        <div class="module-label">References</div>
+        <a href={`${base}/glossary`}>Glossary / Acronym Dictionary</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</BaseLayout>

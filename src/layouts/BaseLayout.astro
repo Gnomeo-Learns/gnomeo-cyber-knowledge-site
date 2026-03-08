@@ -1,0 +1,75 @@
+---
+import SideNav from '../components/SideNav.astro';
+import SearchBar from '../components/SearchBar.astro';
+import AcronymTooltip from '../components/AcronymTooltip.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  currentPath: string;
+}
+
+const { title, description = 'Personal reference guide for Georgia Tech CS8803 Enterprise Cybersecurity Management', currentPath } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <title>{title}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <link rel="icon" href={`${base}/favicon.svg`} type="image/svg+xml" />
+</head>
+<body>
+  <AcronymTooltip />
+
+  <header>
+    <div class="course-label">Georgia Tech · CS8803 · Prof. Jerry Perullo · Former CISO, ICE/NYSE</div>
+    <h1>Enterprise Cybersecurity<br /><span>Management</span> Reference</h1>
+    <div class="meta">Modules 1–2 <span>·</span> Strategy &amp; Cybersecurity Operations <span>·</span> Updated March 2026</div>
+  </header>
+
+  <SearchBar />
+
+  <div class="site-layout">
+    <SideNav currentPath={currentPath} />
+    <main class="main-content">
+      <slot />
+    </main>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-section-title">Source Material</div>
+          Georgia Tech CS8803 / CS6239<br />
+          Enterprise Cybersecurity Management<br />
+          Prof. Jerry Perullo<br />
+          Modules 1–2 · 40 Lessons + PPTX Slides
+        </div>
+        <div>
+          <div class="footer-section-title">Key Frameworks Referenced</div>
+          <a href="https://nist.gov/cyberframework" target="_blank">NIST CSF 2.0</a><br />
+          <a href="https://attack.mitre.org" target="_blank">MITRE ATT&CK</a><br />
+          <a href="https://www.first.org/tlp/" target="_blank">FIRST TLP</a><br />
+          <a href="https://cyberdefensematrix.com" target="_blank">Cyber Defense Matrix</a><br />
+          <a href="https://www.theiia.org/en/standards/three-lines-model/" target="_blank">IIA Three Lines Model</a>
+        </div>
+        <div>
+          <div class="footer-section-title">Website Notes</div>
+          Built with Astro · Deployed via GitHub Pages<br />
+          Print-friendly (use Ctrl+P / Cmd+P)<br />
+          <span style="color:var(--accent3);">Last updated: March 2026</span>
+        </div>
+      </div>
+      <div style="border-top:1px solid var(--border); padding-top:1.2rem; color: var(--text-dim);">
+        Personal reference guide — not for distribution. All frameworks and tradenames belong to their respective owners.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<BaseLayout title="Module 2: Cybersecurity Operations — CS8803 Reference" currentPath="/m2-operations">
+
+<div class="module-header">
+  <div class="module-num">Module 02</div>
+  <h2>Cybersecurity Operations</h2>
+</div>
+
+<p style="margin-bottom:1.5rem;">Module 2 covers the operational foundations of enterprise cybersecurity: security architecture and automation philosophy, cyber incident response procedures (CIRP), and real-world incident analysis walkthroughs.</p>
+
+<div class="overview-grid">
+  <a href={`${base}/m2-operations/t1-architecture`} class="overview-card">
+    <div class="card-code">Topic 1 · 8 Lessons</div>
+    <div class="card-title">Architecture and Automation</div>
+    <div class="card-desc">Security architecture, build vs. buy, defense in depth, zero trust, tool roles, Cyber Defense Matrix, network egress/ingress, automation.</div>
+  </a>
+  <a href={`${base}/m2-operations/t2-cirp`} class="overview-card">
+    <div class="card-code">Topic 2 · 6 Lessons</div>
+    <div class="card-title">Incident Response (CIRP)</div>
+    <div class="card-desc">IR terminology, CIRP structure, CINC fields, severity levels, SIEM definition, log pipelines.</div>
+  </a>
+  <a href={`${base}/m2-operations/t3-cirp-examples`} class="overview-card">
+    <div class="card-code">Topic 3 · 9 Incidents</div>
+    <div class="card-title">CIRP Examples</div>
+    <div class="card-desc">Nine hypothetical incident walkthroughs applying the CINC field framework to realistic scenarios.</div>
+  </a>
+</div>
+
+</BaseLayout>

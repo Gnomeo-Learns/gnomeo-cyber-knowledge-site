@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LessonCard from '../../components/LessonCard.astro';
+import Callout from '../../components/Callout.astro';
+---
+<BaseLayout title="T3: CIRP Examples — CS8803 Reference" currentPath="/m2-operations/t3-cirp-examples">
+
+<section class="topic">
+  <div class="topic-header">
+    <div class="topic-num">T3</div>
+    <h3>CIRP Examples — 9 Incident Walkthroughs</h3>
+  </div>
+
+  <LessonCard code="Mod 2 · Topic 3 · Lesson 1" title="Hypothetical Incident Analysis" tags={[{label:"Applied Framework",type:"tip"}]} searchData="CIRP examples incidents walkthroughs severity phishing BEC BES ransomware DDoS extortion data exfiltration steganography red team active directory S3 bucket eBay wiper malware crypto wallet mimikatz">
+    <p>Each scenario applies the CINC field framework to a realistic incident. The goal: practice classifying severity, identifying detection source, triggering DPO review, and determining risk register referral before the event occurs.</p>
+
+    <div class="incident">
+      <div class="incident-id">Incident 1 — False Positive Spam</div>
+      <h5>Staff reports a gift-card survey email as a phish</h5>
+      <p><strong>Classification:</strong> Sev 5 → likely Sev 4 on triage (UCE/unsolicited commercial email, not targeted). <strong>Reported by:</strong> Staff. <strong>Data Disclosure?</strong> No. <strong>Risk Register?</strong> No.</p>
+      <p><strong>Lesson:</strong> Not all gift card emails are phishing. This is a great use case for automation — rule-based triage that checks sender reputation, header analysis, and URL scanning can close the majority of Sev 5 phish reports without analyst involvement. True positive phish campaigns should be escalated; commercial spam should auto-close.</p>
+    </div>
+
+    <div class="incident">
+      <div class="incident-id">Incident 2 — Narrative Phish (BES, not BEC)</div>
+      <h5>"CFO Nancy Pierce" asks accounts payable for something urgent</h5>
+      <p><strong>Classification:</strong> Sev 3 (targeted intent — targeted at accounts payable, impersonating a specific executive). Escalates to Sev 2 if a wire transfer was sent. <strong>Reported by:</strong> Staff or email gateway detection logic. <strong>Data Disclosure?</strong> Potentially. <strong>Risk Register?</strong> Yes — VIP spoof detection gap.</p>
+      <p><strong>Distinction:</strong> <strong>BES (Business Email Spoofing)</strong> = spoofing the "From" display name without controlling the actual sending domain. <strong>BEC (Business Email Compromise)</strong> = attacker has actually compromised a legitimate corporate email account. BEC is significantly more dangerous — the email originates from a trusted domain and bypasses most filters. <strong>VEC (Vendor Email Compromise)</strong> = BEC targeting a trusted vendor's account to redirect payments.</p>
+    </div>
+
+    <div class="incident">
+      <div class="incident-id">Incident 3 — Red Team Finds Prior Compromise in AD</div>
+      <h5>Red team assessing a recent acquisition discovers Active Directory is exposed from a Holiday Inn — and they aren't the first visitors</h5>
+      <p><strong>Classification:</strong> Sev 2 (targeted intent + operational impact — a prior attacker had access). <strong>Reported by:</strong> Red team. <strong>Data Disclosure?</strong> Probable — assess immediately. <strong>Risk Register?</strong> Yes — M&amp;A security assessment gap.</p>
+      <p><strong>Lesson:</strong> Red team testing is faster and cheaper than a traditional compromise assessment. You get a real-time answer to "can they get in?" rather than a 60-day report. Every acquisition should have a standard M&amp;A security playbook that includes a red team assessment before full network integration.</p>
+    </div>
+
+    <div class="incident">
+      <div class="incident-id">Incident 4 — Unsecured S3 Bucket</div>
+      <h5>External researcher finds 100GB of company data on the internet and emails in</h5>
+      <p><strong>Classification:</strong> Sev 2 (immediately — data is confirmed exposed). <strong>Reported by:</strong> Public (external researcher). <strong>Data Disclosure?</strong> Yes — DPO immediately. <strong>Risk Register?</strong> Yes — cloud storage permissions process gap.</p>
+      <p><strong>Lesson:</strong> The first 30 minutes matter enormously — is this responsible disclosure (researcher wants to help) or the opening of an extortion attempt? Your response tone in the first reply will set the dynamic. Having a published VDP and security.txt creates a welcoming channel that nudges researchers toward responsible disclosure rather than selling the data. Law enforcement has specific thresholds for involvement — involve legal counsel before making any payments or promises.</p>
+    </div>
+
+    <div class="incident">
+      <div class="incident-id">Incident 5 — Pre-Resignation Data Exfiltration</div>
+      <h5>DLP flags employee sending a 45MB "kids.jpg" to a personal Hotmail account two weeks before resignation</h5>
+      <p><strong>Classification:</strong> Sev 3 (targeted data exfil) → likely Sev 2 if data confirmed sensitive. <strong>Reported by:</strong> DLP tool → SIEM. <strong>Data Disclosure?</strong> Yes. <strong>Risk Register?</strong> No (the control worked; it's an incident management issue).</p>
+      <p><strong>Lesson 1 — Steganography:</strong> The oversized "image" file almost certainly contains data hidden inside it. A legitimate 45MB photo is suspicious; a file that's 45MB but is the same photo you'd expect at 5MB has data appended. By emailing it, the employee surrendered plausible deniability — "I didn't know" doesn't work when you knowingly sent a 9x oversized file.</p>
+      <p><strong>Lesson 2 — HR leverage window:</strong> Act quickly. While the employee is still employed, HR has leverage (final paycheck, reference letters, equity vesting). Cooperation is much easier to obtain before termination than after. The window closes fast.</p>
+    </div>
+
+    <div class="incident">
+      <div class="incident-id">Incident 6 — Network Switch on eBay</div>
+      <h5>A buyer finds a decommissioned switch with live IP configuration and credentials still loaded</h5>
+      <p><strong>Classification:</strong> Sev 3 (data exposure, potential credential compromise). <strong>Reported by:</strong> Public (cooperative external). <strong>Data Disclosure?</strong> Yes — network topology and credentials exposed. <strong>Risk Register?</strong> Yes — hardware decommissioning and sanitization process gap.</p>
+      <p><strong>Lesson:</strong> Don't antagonize strangers who are trying to help you. This person could have done much worse with that switch. Respond professionally, coordinate return, rotate all credentials on the affected segment, and open a risk register item on decommissioning process. The best risk assessments are free — this one arrived at no cost.</p>
+    </div>
+
+    <div class="incident">
+      <div class="incident-id">Incident 7 — Wiper Malware (Dublin Office)</div>
+      <h5>Guy Fawkes masks appear on all screens in the Dublin office; wiper malware deployed</h5>
+      <p><strong>Classification:</strong> Sev 1. <strong>Reported by:</strong> Staff (multiple simultaneous reports). <strong>Data Disclosure?</strong> Assess — wipers often precede or follow data theft. <strong>Risk Register?</strong> Yes — if network segmentation wasn't in place, this would be enterprise-wide.</p>
+      <p><strong>Lesson:</strong> Network segmentation that isolates the Dublin office means the damage is contained. Pre-drilled containment runbooks mean your team doesn't freeze in the first 30 minutes. Assign an incident commander — someone who coordinates rather than investigates. The commander's job is communication and decision-making, not forensics.</p>
+    </div>
+
+    <div class="incident">
+      <div class="incident-id">Incident 8 — DDoS Extortion with Proof Attack</div>
+      <h5>Extortion demand with a proof-of-concept DDoS attached: pay 10 BTC or we take you offline</h5>
+      <p><strong>Classification:</strong> Sev 2 (if the test attack caused operational impact) or Sev 3 (if absorbed). <strong>Reported by:</strong> External (threat actor) + NOC (if network impact detected). <strong>Data Disclosure?</strong> No. <strong>Risk Register?</strong> Yes — DDoS mitigation posture.</p>
+      <p><strong>Intelligence value of the wallet address:</strong> If the attacker uses a shared crypto wallet (same address used in other extortion campaigns), this is a mass-blast campaign — they send the same email to thousands of companies. A unique wallet address per victim indicates a genuine targeted attack with prior reconnaissance. Share wallet addresses with your ISAC immediately — this is high-value tactical intelligence for the community.</p>
+      <p><strong>IP vs. DNS targeting:</strong> Attackers who target your IP address directly have done more research (IP addresses are less publicly advertised than domain names). DNS-based DDoS is less sophisticated but harder to mitigate without CDN/scrubbing services.</p>
+    </div>
+
+    <div class="incident">
+      <div class="incident-id">Incident 9 — Mimikatz Alert in Remote Office</div>
+      <h5>EPP logs: Mimikatz (credential harvesting tool) detected on a desktop. Employee denies running it.</h5>
+      <p><strong>Classification:</strong> Sev 3 (targeted intent — Mimikatz is not accidental). <strong>Reported by:</strong> EPP tool → SIEM. <strong>Data Disclosure?</strong> Probable — assess immediately for credential exposure. <strong>Risk Register?</strong> Possibly — depending on findings.</p>
+      <p><strong>Lesson:</strong> Never accept "unexplained" as a satisfactory investigation conclusion. Mimikatz doesn't run itself. If the employee can't explain it, someone else was on that machine. Investigation effort should not be proportional to impact — a quiet credential harvesting operation in a small office can be the precursor to enterprise-wide compromise. Spend the forensic hours. Attribution and intent are hard to determine especially early in an investigation — that's a reason to investigate more, not less.</p>
+    </div>
+
+    <div class="lesson-refs">
+      <span class="refs-label">See also</span>
+      <a class="ref-link" href="https://www.cisa.gov/vulnerability-disclosure-policy" target="_blank">CISA VDP Framework</a>
+      <a class="ref-link" href="https://securitytxt.org" target="_blank">security.txt standard</a>
+      <a class="ref-link" href="https://www.first.org/csirt/" target="_blank">FIRST CSIRT Handbook</a>
+    </div>
+  </LessonCard>
+
+</section>
+</BaseLayout>

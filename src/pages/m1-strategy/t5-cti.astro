@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LessonCard from '../../components/LessonCard.astro';
+import Callout from '../../components/Callout.astro';
+---
+<BaseLayout title="T5: Cyber Threat Intelligence — CS8803 Reference" currentPath="/m1-strategy/t5-cti">
+
+<section class="topic">
+  <div class="topic-header">
+    <div class="topic-num">T5</div>
+    <h3>Cyber Threat Intelligence (CTI)</h3>
+  </div>
+
+  <LessonCard code="Mod 1 · Topic 5 · Lesson 1" title="CTI Overview and the Marketing Bias Problem" tags={[{label:"Definition",type:"def"},{label:"Critical Thinking",type:"tip"}]} searchData="CTI overview intelligence definition marketing bias vendor private sector public sector">
+    <p>CTI = collecting, analyzing, and disseminating information about cyber threats to enable better decisions. "Intelligence" implies scientific rigor — fighting cognitive bias, forming hypotheses, and testing them — not just aggregating threat feeds.</p>
+
+    <div class="section-label">The primary bias to fight in private-sector CTI</div>
+    <p><strong>Marketing hype.</strong> Vendors have a financial interest in inflating the threat landscape — a scarier threat environment justifies more products. Private-sector CTI teams must critically evaluate vendor-produced threat reports for scope inflation, exaggerated attribution, or conveniently timed disclosure that aligns with product launches.</p>
+
+    <p>Public-sector CTI (government agencies) fights different biases: adversary disinformation and the political pressures around attribution. Private-sector CTI should triangulate both sources but distrust both reflexively.</p>
+
+    <Callout variant="green">Apply the Analysis of Competing Hypotheses (ACH) technique from intelligence tradecraft — list all plausible explanations for observed data, then systematically find evidence that <em>disproves</em> rather than confirms each hypothesis. This counteracts confirmation bias.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 1 · Topic 5 · Lesson 2" title="CTI Types: Strategic, Operational, and Tactical" tags={[{label:"Three CTI Types",type:"def"}]} searchData="strategic operational tactical CTI intelligence types IOC TTP narrative">
+    <div class="def-row"><div class="def-term">Strategic Intelligence</div><div class="def-body">Narrative-format reporting about adversary groups, their motivations, target industries, and campaign trends. Consumed by CISOs, executives, and board members. Expressed with confidence intervals ("with moderate confidence, this activity is attributed to a financially motivated group targeting US financial services"). Sourced from vendor annual threat reports, ISAC intelligence briefings, and government advisories.</div></div>
+    <div class="def-row"><div class="def-term">Operational Intelligence</div><div class="def-body">TTPs, kill chain steps, adversary playbooks. Consumed by SOC analysts, threat hunters, and red teamers. Answers "how are they attacking?" not "who is attacking?" Sourced from incident analysis, ISAC sharing, and deep/dark web forums. Feeds detection logic and red team test scenarios.</div></div>
+    <div class="def-row"><div class="def-term">Tactical Intelligence</div><div class="def-body">IOCs — specific file hashes, IP addresses, domains, URLs. Immediately actionable for blocking but have a short shelf life (attackers rotate infrastructure). Most valuable for: (1) retroactive log searches ("did we see this IP before it was flagged?") and (2) thematic policy changes (e.g., block all domains in a suspicious TLD after a campaign is identified). IOC feeds without context are almost always stale by publication.</div></div>
+
+    <Callout variant="orange">Practical: Don't feed raw IOC lists directly into blocking rules unless you have a high-confidence, low-false-positive filter. Blocking a shared IP address used by both a C2 server and a legitimate CDN node causes painful production outages.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 1 · Topic 5 · Lesson 3" title="CTI Audiences and Sources" tags={[{label:"Applications",type:"tip"}]} searchData="CTI audiences SOC vulnerability management marketing brand CISO board customers downstream sharing sources dark web social media">
+    <div class="section-label">Key audiences and what they need</div>
+    <ul class="bullet">
+      <li><strong>IR/SOC:</strong> Operational TTPs, kill chain mapping, hunting hypotheses</li>
+      <li><strong>Vulnerability Management:</strong> Tactical IOCs + active exploitation news ("CVE-2024-XXXX is being actively exploited in the wild")</li>
+      <li><strong>Marketing/Brand team:</strong> Social engineering awareness — impersonation campaigns, fake job listings, brand-abusing domains</li>
+      <li><strong>CISO/Board:</strong> Strategic intelligence filtered through the Threat Objective lens — only objectives above the risk appetite threshold</li>
+      <li><strong>Customers (downstream sharing):</strong> Sharing relevant threat intelligence with customers positions your organization as a trusted ecosystem leader and builds goodwill — often via industry ISAC channels</li>
+    </ul>
+
+    <div class="section-label">Intelligence sources (ranked by difficulty and richness)</div>
+    <ul class="bullet">
+      <li><strong>Deep/Dark Web (DDW):</strong> Highest signal, hardest to access. Commercial CTI providers embed operatives in criminal forums and marketplaces — the "tradecraft" in their products. This is their primary differentiator.</li>
+      <li><strong>Social media / OSINT:</strong> LinkedIn, Twitter/X, GitHub, paste sites. Low barrier; high noise. Good for executive impersonation tracking and leaked credential monitoring.</li>
+      <li><strong>Technical feeds (API):</strong> Passive DNS, WHOIS history, certificate transparency logs, malware sandboxes, threat intel platforms (TIPs).</li>
+      <li><strong>Internal logs (most underutilized):</strong> Your own SIEM, endpoint telemetry, and DNS logs contain threat signals specific to your environment that no commercial feed can replicate.</li>
+    </ul>
+  </LessonCard>
+
+  <LessonCard code="Mod 1 · Topic 5 · Lesson 4" title="Information Sharing and Traffic Light Protocol (TLP)" tags={[{label:"Framework: TLP",type:"fw"},{label:"Classification",type:"def"}]} searchData="information sharing ISAC TLP traffic light protocol trust red amber green clear FIRST">
+    <p>ISACs (Information Sharing and Analysis Centers) are sector-based trust communities established by US Executive Order in 2001. Each major sector has one (FS-ISAC for financial services, H-ISAC for healthcare, E-ISAC for electricity, etc.). Membership provides access to peers who share threat intelligence without competitive concern.</p>
+
+    <div class="section-label">TLP (Traffic Light Protocol) — defined by FIRST.org</div>
+    <div class="def-row"><div class="def-term">TLP:RED</div><div class="def-body">For individual recipients only — no further disclosure. Used when information could damage the privacy, reputation, or operations of involved organizations if shared. In a meeting context, limited to those physically present. Most restrictive.</div></div>
+    <div class="def-row"><div class="def-term">TLP:AMBER</div><div class="def-body">Limited disclosure within the recipient's organization and to their direct clients, on a need-to-know basis. TLP:AMBER+STRICT further restricts to the organization only (no clients).</div></div>
+    <div class="def-row"><div class="def-term">TLP:GREEN</div><div class="def-body">Community distribution — share within the broader cybersecurity/defense community but not via public channels or media.</div></div>
+    <div class="def-row"><div class="def-term">TLP:CLEAR</div><div class="def-body">No restrictions on disclosure. Suitable for public release. Subject to standard copyright rules.</div></div>
+
+    <Callout>Trust scales inversely with group size. A 5-person working group can share TLP:RED freely; a 500-person ISAC chapter cannot. Consider the realistic blast radius of any shared intelligence before assigning TLP:AMBER or lower.</Callout>
+    <Callout variant="orange">Government portals (CISA, FBI's InfraGard) are often less trusted for sensitive sharing — members worry about regulatory misuse. Information shared with a regulator could be cited in enforcement actions. Private ISAC channels offer better confidentiality protections.</Callout>
+    <div class="lesson-refs">
+      <span class="refs-label">See also</span>
+      <a class="ref-link" href="https://www.first.org/tlp/" target="_blank">FIRST TLP Standard</a>
+      <a class="ref-link" href="https://www.fsisac.com" target="_blank">FS-ISAC</a>
+      <a class="ref-link" href="https://oasis-open.github.io/cti-documentation/" target="_blank">STIX/TAXII Docs</a>
+    </div>
+  </LessonCard>
+
+  <LessonCard code="Mod 1 · Topic 5 · Lesson 5" title="Takedowns and Sock Puppets" tags={[{label:"Operational",type:"tip"}]} searchData="takedowns UDRP ICANN cease desist registrar domain sock puppet adversary engagement VDP security.txt">
+    <div class="section-label">Domain and content takedowns</div>
+    <ul class="bullet">
+      <li><strong>Cease &amp; desist letters to registrar/hosting provider/network provider:</strong> Fastest, cheapest (often free), and surprisingly effective. Specialized vendors (brand protection firms) maintain relationships with major providers and can achieve takedowns in hours. Start here.</li>
+      <li><strong>UDRP (Uniform Domain-Name Dispute-Resolution Policy) via ICANN:</strong> Formal legal mechanism. Cost: ~$1,500. Timeline: weeks to months. Appropriate for trademark abuse or cybersquatting. Has self-perpetuating downsides — filing one creates a public record adversaries can learn from.</li>
+      <li><strong>Social media platform abuse forms:</strong> For impersonation profiles — usually effective for major platforms (Meta, LinkedIn, X) with documented trademark ownership.</li>
+    </ul>
+
+    <div class="section-label">Sock puppets</div>
+    <p>A sock puppet is a false online identity used to engage adversaries and extract information about their identity or intentions. Important caveats:</p>
+    <ul class="bullet">
+      <li>Extremely dangerous — adversaries are often more sophisticated than assumed</li>
+      <li>Prohibited in most corporate environments — legal/compliance teams will shut this down</li>
+      <li>Engaging with adversaries can antagonize them and escalate a situation from passive reconnaissance to active targeting</li>
+      <li>Best left to professional services firms (brand protection vendors, threat intelligence firms) who have established OPSEC tradecraft</li>
+    </ul>
+
+    <Callout variant="green">Publish a security.txt file (securitytxt.org) and a formal Vulnerability Disclosure Program (VDP). When an external researcher finds an unsecured S3 bucket full of your data, the difference between responsible disclosure and extortion often depends on whether they found a welcoming path to report it to you.</Callout>
+    <div class="lesson-refs">
+      <span class="refs-label">See also</span>
+      <a class="ref-link" href="https://www.icann.org/resources/pages/udrp-2012-02-25-en" target="_blank">ICANN UDRP</a>
+      <a class="ref-link" href="https://securitytxt.org" target="_blank">security.txt</a>
+      <a class="ref-link" href="https://www.cisa.gov/vulnerability-disclosure-policy" target="_blank">CISA VDP Guidance</a>
+    </div>
+  </LessonCard>
+
+</section>
+</BaseLayout>
