@@ -1,0 +1,25 @@
+---
+interface Props {
+  code: string;
+  title: string;
+  tags?: Array<{ label: string; type?: 'def' | 'fw' | 'tip' | 'new' | '' }>;
+  searchData?: string;
+}
+const { code, title, tags = [], searchData = '' } = Astro.props;
+---
+<div class="lesson" data-text={searchData}>
+  <div class="lesson-head">
+    <div class="lesson-code">{code}</div>
+    <h4>{title}</h4>
+  </div>
+  <div class="lesson-body">
+    {tags.length > 0 && (
+      <div class="tags">
+        {tags.map(tag => (
+          <span class={`tag ${tag.type || ''}`}>{tag.label}</span>
+        ))}
+      </div>
+    )}
+    <slot />
+  </div>
+</div>

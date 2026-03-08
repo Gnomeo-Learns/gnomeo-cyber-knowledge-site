@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<BaseLayout title="Module 1: Strategy — CS8803 Reference" currentPath="/m1-strategy">
+
+<div class="module-header">
+  <div class="module-num">Module 01</div>
+  <h2>Strategy</h2>
+</div>
+
+<p style="margin-bottom:1.5rem;">Module 1 covers the strategic foundations of enterprise cybersecurity management: how to write a cybersecurity strategy, define and score threat objectives, organize the security department, manage talent, and operationalize cyber threat intelligence.</p>
+
+<div class="overview-grid">
+  <a href={`${base}/m1-strategy/t1-composition`} class="overview-card">
+    <div class="card-code">Topic 1 · 3 Lessons</div>
+    <div class="card-title">Strategy Composition</div>
+    <div class="card-desc">Course overview, strategy history and purpose, NIST Cybersecurity Framework (CSF).</div>
+  </a>
+  <a href={`${base}/m1-strategy/t2-threat-objectives`} class="overview-card">
+    <div class="card-code">Topic 2 · 6 Lessons</div>
+    <div class="card-title">Threat Objectives</div>
+    <div class="card-desc">Vocabulary, MECE taxonomy, the six threat objectives, scoring, usage, and residual challenges.</div>
+  </a>
+  <a href={`${base}/m1-strategy/t3-departmental-org`} class="overview-card">
+    <div class="card-code">Topic 3 · 6 Lessons</div>
+    <div class="card-title">Departmental Organization</div>
+    <div class="card-desc">Adversarial risk lifecycle, Three Lines Model, cyber functions, benchmarking, CISO archetypes, RISOs/BISOs.</div>
+  </a>
+  <a href={`${base}/m1-strategy/t4-talent-management`} class="overview-card">
+    <div class="card-code">Topic 4 · 5 Lessons</div>
+    <div class="card-title">Talent Management</div>
+    <div class="card-desc">Hiring, retention pillars, internal recruiting, outsourcing, talent metrics.</div>
+  </a>
+  <a href={`${base}/m1-strategy/t5-cti`} class="overview-card">
+    <div class="card-code">Topic 5 · 5 Lessons</div>
+    <div class="card-title">Cyber Threat Intelligence</div>
+    <div class="card-desc">CTI overview, intelligence types, audiences and sources, information sharing (TLP), takedowns.</div>
+  </a>
+</div>
+
+</BaseLayout>

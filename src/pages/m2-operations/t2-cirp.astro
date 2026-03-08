@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LessonCard from '../../components/LessonCard.astro';
+import Callout from '../../components/Callout.astro';
+---
+<BaseLayout title="T2: Incident Response (CIRP) — CS8803 Reference" currentPath="/m2-operations/t2-cirp">
+
+<section class="topic">
+  <div class="topic-header">
+    <div class="topic-num">T2</div>
+    <h3>Cyber Incident Response Procedures (CIRP)</h3>
+  </div>
+
+  <LessonCard code="Mod 2 · Topic 2 · Lesson 1" title="Incident Response Terminology" tags={[{label:"Key Definitions",type:"def"}]} searchData="terminology SOC DFIR IR CIRP CINC OINC OIRP SIEM DPO investor relations">
+    <div class="def-row"><div class="def-term">SOC — Security Operations Center</div><div class="def-body">Tiered analyst structure (L1 → L2 → L3) for monitoring, triage, and investigation. L1 handles alert triage; L2 investigates; L3 handles complex forensics and threat hunting.</div></div>
+    <div class="def-row"><div class="def-term">IR — Incident Response</div><div class="def-body">The process of responding to and managing security incidents. <em>Warning:</em> IR also stands for Investor Relations in corporate contexts — always clarify when speaking cross-functionally. Confusing the two in a board briefing is a real risk.</div></div>
+    <div class="def-row"><div class="def-term">DFIR — Digital Forensics and Incident Response</div><div class="def-body">IR plus forensic evidence collection, preservation, and analysis. Required when legal proceedings, regulatory reporting, or law enforcement involvement is anticipated.</div></div>
+    <div class="def-row"><div class="def-term">CIRP — Cyber Incident Response Procedure</div><div class="def-body">The primary procedural document that governs how cyber incidents are identified, categorized, escalated, and closed. This is the first document regulators, auditors, and law enforcement ask for after a significant incident.</div></div>
+    <div class="def-row"><div class="def-term">CINC — Cybersecurity Incident</div><div class="def-body">A unique-identified record of a confirmed or suspected cyber incident. Distinct from a risk (potential future event) or a vulnerability (condition that enables an incident). CINCs are NOT: vulnerabilities, projects, or audit findings.</div></div>
+    <div class="def-row"><div class="def-term">OIRP / OINC — Operational Incident</div><div class="def-body">The operational counterpart to CIRP/CINC. Must maintain harmonized severity numbering and clear trigger rules for when one type generates the other.</div></div>
+    <div class="def-row"><div class="def-term">DPO — Data Privacy Officer</div><div class="def-body">Engage early and often — privacy law obligations are not tied to security severity levels. A low-severity incident with potential data disclosure triggers DPO involvement regardless of technical impact magnitude.</div></div>
+  </LessonCard>
+
+  <LessonCard code="Mod 2 · Topic 2 · Lesson 2" title="CIRP Structure and Integration" tags={[{label:"Document Structure",type:"fw"},{label:"Governance",type:"tip"}]} searchData="CIRP structure policy procedure governance chain of custody operational integration severity escalation">
+    <div class="section-label">Policy vs. Procedure distinction</div>
+    <ul class="bullet">
+      <li><strong>Policy:</strong> Governance-approved, rarely changes, sets principles ("we will respond to all confirmed incidents within X hours")</li>
+      <li><strong>CIRP (Procedure):</strong> Security leadership-approved, operationally detailed, updated regularly. Disseminated to all relevant stakeholders — not just security. Legal, compliance, communications, and executive leadership all need copies.</li>
+    </ul>
+
+    <div class="section-label">What the CIRP defines</div>
+    <ul class="bullet">
+      <li>CINC field schema and data dictionary</li>
+      <li>Severity level definitions (Sev 1–5) with triggering criteria</li>
+      <li>Escalation paths by severity (who gets paged, when, via what channel)</li>
+      <li>Chain of custody guidance — <em>apply only when prosecution is anticipated</em>. Mandating forensic chain of custody for every Sev 5 alert is wasteful; reserving it for Sev 2+ or when criminal referral is likely is practical.</li>
+      <li>Regulatory reporting obligations by severity level</li>
+    </ul>
+
+    <div class="section-label">Integrating with Operational Incidents (OINCs)</div>
+    <ul class="bullet">
+      <li><strong>When OINCs trigger CINCs:</strong> Every Sev 3+ operational incident should automatically generate a cyber investigation — even natural disasters and infrastructure failures can mask or coincide with cyber activity ("was it a cyber hurricane?")</li>
+      <li><strong>When CINCs trigger OINCs:</strong> Rare — typically only when a cyber incident has confirmed operational impact (which should already be an OINC)</li>
+      <li>Maintain parallel severity numbering across CIRP and OIRP to eliminate translation errors in escalation conversations</li>
+    </ul>
+
+    <div class="lesson-refs">
+      <span class="refs-label">See also</span>
+      <a class="ref-link" href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf" target="_blank">NIST SP 800-61r3 (IR Guide)</a>
+      <a class="ref-link" href="https://www.first.org/csirt/" target="_blank">FIRST CSIRT Resources</a>
+    </div>
+  </LessonCard>
+
+  <LessonCard code="Mod 2 · Topic 2 · Lesson 3" title="CINC Fields and Metrics" tags={[{label:"Data Schema",type:"def"},{label:"Metrics",type:"def"}]} searchData="CINC fields severity reported by data disclosure risk register workflow status timestamps MTTD MTTR MTTC">
+    <div class="section-label">Required CINC fields</div>
+    <ul class="bullet">
+      <li><strong>Severity:</strong> Dropdown (Sev 1–5). Determines escalation path, reporting obligations, and resource allocation.</li>
+      <li><strong>Reported By:</strong> Detection source category — staff-reported, customer-reported, public-reported (external researcher), SIEM logic, or specific tool (IDS, WAF, deception, EPP). Tracks detection effectiveness over time.</li>
+      <li><strong>Potential Data Disclosure? (boolean):</strong> Triggers DPO engagement regardless of severity. A Sev 5 alert with potential PII exposure has the same privacy obligation as a Sev 2.</li>
+      <li><strong>Risk Register Referral? (boolean):</strong> Creates a long-term remediation record when the incident reveals a systemic condition that requires a risk register entry — not just incident closure.</li>
+      <li><strong>Status workflow:</strong> New → Assigned → Triage → Review → Closed. Each transition is timestamped.</li>
+      <li><strong>Timestamps:</strong> Enable MTTD (Mean Time to Detect), MTTR (Mean Time to Respond), MTTC (Mean Time to Contain) calculations.</li>
+    </ul>
+
+    <Callout variant="green">Red team engagements give more accurate MTT* metrics than real incidents. You know the exact moment the test started (precise "detection time zero") and whether containment was genuine. Real incidents often have ambiguous timelines because detection occurred well after initial compromise.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 2 · Topic 2 · Lesson 4" title="Severity Level Definitions (Sev 5 → Sev 1)" tags={[{label:"Severity Scale",type:"def"},{label:"Escalation Triggers",type:"tip"}]} searchData="severity levels sev1 sev2 sev3 sev4 sev5 material impact targeted intent operational DPO board regulatory reporting escalation">
+    <div class="def-row"><div class="def-term">Sev 5 — Automated Alert</div><div class="def-body">An event worth recording and potentially triaging by humans. No confirmed malicious activity. May be noise, misconfiguration, or false positive. Great automation target — rule-based triage can close many Sev 5s without analyst involvement.</div></div>
+    <div class="def-row"><div class="def-term">Sev 4 — Confirmed Activity</div><div class="def-body">Confirmed unauthorized activity OR a policy violation — even if blocked or contained. "The firewall blocked it" doesn't mean it doesn't warrant documentation. Someone probed your network with intent; that's a Sev 4 regardless of outcome.</div></div>
+    <div class="def-row"><div class="def-term">Sev 3 — Threshold: Targeted Intent OR Operational Impact</div><div class="def-body">Targeted malicious intent directed specifically at your organization (even with no operational impact yet), OR an event with measurable operational impact (even if intent is unclear). Triggers periodic regulatory reporting in many jurisdictions. This is the "probable cause" threshold.</div></div>
+    <div class="def-row"><div class="def-term">Sev 2 — Threshold: Targeted Intent AND Operational Impact</div><div class="def-body">Both criteria met simultaneously. Triggers <em>immediate</em> compliance/legal/DPO notification — do not wait for analysis to complete. Engage compliance the moment you assess Sev 2. Regulatory notification clocks often start here.</div></div>
+    <div class="def-row"><div class="def-term">Sev 1 — Material Impact</div><div class="def-body">Full major incident response: all hands on deck, incident commander assigned, board notification, external communications team activated, potential press/investor relations involvement. Reserve this for confirmed, significant business disruption or material data breaches.</div></div>
+
+    <Callout variant="orange">Interview question: "What is a Sev 3 vs. Sev 2?" The answer is the AND/OR difference: Sev 3 = targeted OR impact. Sev 2 = targeted AND impact. Getting this right demonstrates operational IR maturity.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 2 · Topic 2 · Lesson 5" title="SIEM: What Makes It a SIEM" tags={[{label:"SIEM Definition",type:"def"}]} searchData="SIEM security information event management log repository correlation logic rules">
+    <p>A SIEM is defined by <strong>correlation logic</strong> — not by storage capacity. A log repository without correlation rules is just a database. A database with if-then correlation rules on log data is a SIEM.</p>
+    <p>Classic SIEM use case: "5 failed login attempts followed by a successful login from the same IP within 10 minutes" → generate alert. Each event individually is benign; the temporal correlation reveals the pattern.</p>
+    <p>SIEM roles in the security stack:</p>
+    <ul class="bullet">
+      <li>Central log aggregation point across all security tools and infrastructure</li>
+      <li>Correlation engine — converts raw events into actionable alerts</li>
+      <li>Reporting platform for governance and compliance evidence</li>
+      <li>Historical search surface for incident investigation and threat hunting</li>
+      <li>Timeline reconstruction for forensics</li>
+    </ul>
+  </LessonCard>
+
+  <LessonCard code="Mod 2 · Topic 2 · Lesson 6" title="Log and Visibility Pipelines" tags={[{label:"Pipeline Model",type:"fw"},{label:"Architecture",type:"tip"}]} searchData="log pipeline visibility events alerts incidents retention high volume low fidelity phish DLP firewall WEF sysmon">
+    <div class="section-label">The alert funnel (approximate ratios)</div>
+    <ul class="bullet">
+      <li><strong>Raw Logs:</strong> Millions/day — all ingested events across all sources</li>
+      <li><strong>Alerts (Sev 5):</strong> ~1/1,000 raw events — correlation logic fires</li>
+      <li><strong>Correlated Events (Sev 4):</strong> ~1/10 alerts — analyst confirms activity</li>
+      <li><strong>Incidents (Sev 3–1):</strong> ~1/10 correlated events — confirmed significant activity requiring escalation</li>
+    </ul>
+
+    <div class="section-label">Log retention strategy</div>
+    <p>Balance three competing interests: forensics needs (longer is better), storage cost (shorter is better), and legal discovery burden (longer creates more discoverable material in litigation). Work with legal counsel to establish a documented retention policy — never retain indefinitely by default.</p>
+
+    <div class="section-label">High-volume, low-fidelity sources — don't route to SIEM directly</div>
+    <p>These sources generate too many events for cost-effective SIEM storage but are still valuable:</p>
+    <ul class="bullet">
+      <li><strong>Phish reports:</strong> Store in dedicated phishing triage platform; send SIEM a pointer when a campaign pattern is confirmed</li>
+      <li><strong>DLP events:</strong> Store in DLP console; escalate to SIEM on policy-defined thresholds</li>
+      <li><strong>ACL/Firewall drops:</strong> High volume, mostly noise; summarize via NetFlow, not raw packet logs</li>
+      <li><strong>Egress web filtering hits:</strong> Log in proxy platform; escalate to SIEM on blocked C2-category or high-risk domain hits</li>
+      <li><strong>WEF (Windows Event Forwarding) / Sysmon:</strong> Highly valuable for endpoint forensics but extremely high volume — tune aggressively before routing to SIEM</li>
+    </ul>
+
+    <Callout variant="orange">The goal for high-volume sources: configure the native tool to generate a SIEM pointer to the relevant event for reporting purposes — not to route every raw event. The distinction matters enormously for SIEM licensing costs (usually volume-based).</Callout>
+  </LessonCard>
+
+</section>
+</BaseLayout>

@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LessonCard from '../../components/LessonCard.astro';
+import Callout from '../../components/Callout.astro';
+---
+<BaseLayout title="T3: Departmental Organization — CS8803 Reference" currentPath="/m1-strategy/t3-departmental-org">
+
+<section class="topic">
+  <div class="topic-header">
+    <div class="topic-num">T3</div>
+    <h3>Departmental Organization</h3>
+  </div>
+
+  <LessonCard code="Mod 1 · Topic 3 · Lesson 1" title="Setting the Mission: Adversarial Risk Lifecycle" tags={[{label:"Model: Lifecycle",type:"fw"}]} searchData="adversarial risk lifecycle mission calibrate test operate identify report">
+    <p>The security department's mission is <strong>Adversarial Risk Management</strong> — a continuous cycle distinguishing it from all other risk functions by the adaptive nature of the opponent:</p>
+    <ul class="bullet">
+      <li><strong>Calibrate Objectives</strong> → Map and score threat objectives for your organization</li>
+      <li><strong>Test</strong> → Red team exercises to validate residual risk assumptions</li>
+      <li><strong>Operate Defense</strong> → SOC, DFIR, architecture, and automation running daily operations</li>
+      <li><strong>Identify Risks</strong> → GRC, AppSec, TPRM, and vulnerability management surfacing new risks</li>
+      <li><strong>Report</strong> → Governance reporting back to leadership and the board — which feeds into the next calibration cycle</li>
+    </ul>
+    <Callout>This is a continuous loop — not a project. The adversary is always adapting; your calibration must keep pace.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 1 · Topic 3 · Lesson 2" title="The Three Lines Model (IIA)" tags={[{label:"Framework: IIA Three Lines",type:"fw"},{label:"Independence",type:"def"}]} searchData="three lines model IIA first line second line third line internal audit board">
+    <div class="def-row"><div class="def-term">First Line — Production/Delivery</div><div class="def-body">Owns the business function and its associated risks. If a first-line function disappears overnight, revenue impact is felt immediately. In cybersecurity: the SOC, DFIR, architecture, and automation teams.</div></div>
+    <div class="def-row"><div class="def-term">Second Line — Monitoring/Challenge</div><div class="def-body">Provides oversight, policy, standards, and challenge functions. If a second-line function disappears overnight, the impact may not be noticed for days or weeks — the absence becomes a compliance or governance gap, not an operational outage. In cybersecurity: GRC, red team, AppSec, TPRM, IAM.</div></div>
+    <div class="def-row"><div class="def-term">Third Line — Internal Audit</div><div class="def-body">Fully independent assurance function. Reports directly to the Board Audit Committee, not to operating management. Required by exchange listing rules for US public companies (NYSE, NASDAQ). Should never be subordinated to the CISO — that would eliminate independence.</div></div>
+
+    <Callout variant="orange">Interview tip: When asked about cybersecurity governance, immediately reference the Three Lines model. It demonstrates organizational maturity and shows you understand the independence requirements that separate monitoring from execution.</Callout>
+    <div class="lesson-refs">
+      <span class="refs-label">See also</span>
+      <a class="ref-link" href="https://www.theiia.org/en/standards/three-lines-model/" target="_blank">IIA Three Lines Model</a>
+    </div>
+  </LessonCard>
+
+  <LessonCard code="Mod 1 · Topic 3 · Lesson 3" title="Cyber Functions in the Three Lines Model" tags={[{label:"Org Model",type:"fw"},{label:"Function Map",type:"def"}]} searchData="cyber three lines model SOC DFIR architecture automation threat intelligence GRC AppSec TPRM IAM red team">
+    <div class="section-label">First Line (Cybersecurity / Operations)</div>
+    <ul class="bullet">
+      <li><strong>SOC / DFIR:</strong> Detection, triage, investigation, and forensics</li>
+      <li><strong>Security Architecture:</strong> Tool selection, configuration, and policy writing</li>
+      <li><strong>Automation:</strong> Python/scripting team serving all security functions via runbooks, playbooks, and dashboards</li>
+      <li><strong>Data Science:</strong> Behavioral analytics, anomaly detection, ML-based detection</li>
+      <li><strong>Threat Intelligence (partial):</strong> Operational/tactical CTI that feeds SOC and architecture decisions</li>
+    </ul>
+
+    <div class="section-label">Second Line (Security Assurance)</div>
+    <ul class="bullet">
+      <li><strong>GRC:</strong> Governance, risk, and compliance — largest function in second line</li>
+      <li><strong>Red Team:</strong> Adversarial testing; lives in second line because it challenges first-line defense effectiveness</li>
+      <li><strong>AppSec:</strong> Application security assessments, secure SDLC, code review</li>
+      <li><strong>TPRM:</strong> Third-party risk management — vendor assessments and supply chain controls</li>
+      <li><strong>IAM:</strong> Identity and access management — policy and entitlement governance</li>
+    </ul>
+
+    <Callout variant="green">Small team scaling rule: At 3 people, structure as one first-line practitioner + one second-line practitioner + a head who spans both. At 10 people, consider a dedicated second-line lead. At 30+, formalize separation with distinct department heads.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 1 · Topic 3 · Lesson 4" title="Benchmarking: Headcount and Spend" tags={[{label:"Benchmarks",type:"def"},{label:"Practical",type:"tip"}]} searchData="benchmarking headcount FTE spend opex financial services 1 percent">
+    <div class="section-label">Headcount benchmarking</div>
+    <ul class="bullet">
+      <li>Target ratio: <strong>~1–2% of total company FTEs</strong> in large financial organizations (10,000 employees → 100–200 security FTEs)</li>
+      <li>Compare only against similar subsectors — a tech company with 80% engineers has a fundamentally different risk profile than a bank with 80% branch staff</li>
+      <li>Cybersecurity is labor-intensive; headcount ratios matter more than pure dollar spend</li>
+    </ul>
+
+    <div class="section-label">Spend benchmarking</div>
+    <ul class="bullet">
+      <li>Target ratio: <strong>~1% of total company OpEx</strong> (not "IT spend")</li>
+      <li>Use OpEx, not IT budget — OpEx is GAAP-defined, publicly available in annual reports, and comparable across companies. "IT spend" is inconsistently defined.</li>
+      <li>~$10–20M per $1B OpEx in financial services (range reflects sector maturity and regulatory exposure)</li>
+      <li>Cybersecurity is OpEx-heavy (vs. CapEx) — talent is the dominant cost driver</li>
+    </ul>
+
+    <Callout variant="orange">When presenting budget requests, anchor to these OpEx ratios. "We're currently at 0.6% of OpEx; peer organizations average 1%" is a board-legible argument.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 1 · Topic 3 · Lesson 5" title="CISO Reporting Lines and Archetypes" tags={[{label:"CISO Archetypes",type:"def"},{label:"Career",type:"tip"}]} searchData="CISO reporting lines first line second line executive west coast CRO GC CEO">
+    <div class="def-row"><div class="def-term">First-Line CISO (reports to CIO)</div><div class="def-body">Operational and tactical focus. Often hired post-breach to fix specific problems. Background typically in incident response. Risk: subordinated under IT creates independence conflicts — CIO shouldn't supervise the person assessing CIO's org.</div></div>
+    <div class="def-row"><div class="def-term">"West Coast" CISO (reports to CTO)</div><div class="def-body">Common in technology-first companies (Silicon Valley). Focuses on product security and engineering integration. Often more AppSec/DevSecOps oriented. Independence challenges similar to First-Line.</div></div>
+    <div class="def-row"><div class="def-term">Second-Line CISO (reports to CRO or GC)</div><div class="def-body">Risk and strategy focus. Policy, governance, and assurance. Appropriate for highly regulated industries (banking, insurance). May lack operational authority over defensive tools.</div></div>
+    <div class="def-row"><div class="def-term">Executive CISO (reports to CEO/President)</div><div class="def-body">Owns both first and second lines. Provides the highest independence and authority. <em>Requires</em> separate deputies for each line (see next lesson). Becoming the gold standard in mature organizations.</div></div>
+
+    <Callout variant="orange">Job search tip: Use standardized titles (CISO, RISO, BISO) — they exist as keywords in resume screening systems. "Global Head of Information Security" sounds impressive but gets filtered out by ATS matching for "CISO."</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 1 · Topic 3 · Lesson 6" title="RISOs, BISOs, and Distributed Security Leadership" tags={[{label:"Titles",type:"def"},{label:"Career",type:"tip"}]} searchData="RISO BISO regional business information security officer subsidiary geography">
+    <div class="def-row"><div class="def-term">RISO — Regional Information Security Officer</div><div class="def-body">Geographically aligned (Americas / EMEA / APAC). Primary function: navigate regional regulatory requirements (GDPR, MAS, LGPD) and build local relationships with regulators. Reports to the global CISO.</div></div>
+    <div class="def-row"><div class="def-term">BISO — Business Information Security Officer</div><div class="def-body">Most popular title in large organizations. Aligned to a business segment or major subsidiary. Ensures the security program is applied proportionally to each business unit and that smaller subsidiaries don't become the weakest link. Serves as a translator between business operations and the central security team.</div></div>
+
+    <Callout variant="green">At the Executive CISO level, you need separate deputies for first-line (operational security) and second-line (assurance). Without this structure, one person tries to both run the SOC and objectively audit it — a clear conflict of interest.</Callout>
+  </LessonCard>
+
+</section>
+</BaseLayout>

@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LessonCard from '../../components/LessonCard.astro';
+import Callout from '../../components/Callout.astro';
+---
+<BaseLayout title="T1: Architecture and Automation — CS8803 Reference" currentPath="/m2-operations/t1-architecture">
+
+<section class="topic">
+  <div class="topic-header">
+    <div class="topic-num">T1</div>
+    <h3>Architecture and Automation</h3>
+  </div>
+
+  <LessonCard code="Mod 2 · Topic 1 · Lesson 1" title="Introduction to Security Architecture" tags={[{label:"Principle",type:"tip"}]} searchData="architecture introduction toolset controls monitoring configuration">
+    <p>The security architecture team makes decisions that are <strong>often more impactful than any individual tool purchase</strong>. A well-architected environment with commodity tooling outperforms a poorly architected environment loaded with expensive point solutions.</p>
+    <p>Architecture owns three responsibilities: (1) define the toolset and control framework, (2) write security policies and standards, and (3) configure monitoring infrastructure. These decisions set the ceiling for what's achievable across the entire security program.</p>
+    <Callout variant="green">The strongest controls are often simply strategic decisions implemented via features already available for free in existing tools. Most enterprise environments (cloud, OS, network) contain significant unused security features — activating them costs zero dollars and requires only design effort.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 2 · Topic 1 · Lesson 2" title='Build vs. Buy: The "Builders Buy" Philosophy' tags={[{label:"Decision Framework",type:"tip"}]} searchData="build vs buy builders buy prototype validate scalability requirements vendor empowerment">
+    <p><strong>"Builders Buy"</strong> — the recommended approach: always prototype internally first, then decide whether to buy or continue building.</p>
+    <ul class="bullet">
+      <li><strong>Why prototype first:</strong> It proves the problem is real, reveals what's technically hard, generates precise requirements for vendor evaluation, and builds team credibility ("we built something that works, now we need scale")</li>
+      <li><strong>Buy when:</strong> The solution would benefit a broad set of customers → commercial vendors have economies of scale. The tool will become operationally critical / "inline" → you need enterprise SLAs and vendor support. The team's time is better spent on your unique problems.</li>
+      <li><strong>Build permanently when:</strong> The problem is specific to your organization's unique infrastructure, threat model, or data. No commercial solution fits. Your engineers have the domain expertise.</li>
+      <li><strong>Empowerment rule:</strong> Allow the operational team to evaluate and select tools, even when the CISO isn't personally excited about their choice. Ownership drives adoption.</li>
+    </ul>
+  </LessonCard>
+
+  <LessonCard code="Mod 2 · Topic 1 · Lesson 3" title="Buying Solutions, Not Problems" tags={[{label:"Procurement Principle",type:"tip"}]} searchData="buy solutions not problems vendor RFP red team gap requirements prototype consensus">
+    <p>The correct procurement sequence: <strong>Threat Objectives → Red Team → Gap Identification → Problem Definition → Prototype → RFP</strong>. Never reverse this by letting a vendor brief you on a threat landscape and then sell you a solution for threats they just introduced you to.</p>
+    <ul class="bullet">
+      <li>Vendors excel at defining problems in ways that maximize their addressable market — your problem definition should precede vendor contact</li>
+      <li>Build consensus and support among technology owners and stakeholders <em>before</em> issuing an RFP — if infrastructure teams haven't bought in, even the best-selected tool will be poorly deployed</li>
+      <li>Activating existing security features in your current stack is always the first option — most environments are dramatically under-configured relative to available security capabilities</li>
+    </ul>
+  </LessonCard>
+
+  <LessonCard code="Mod 2 · Topic 1 · Lesson 4" title="Defense in Depth and Zero Trust" tags={[{label:"Model: Defense in Depth",type:"fw"},{label:"Model: Zero Trust",type:"fw"}]} searchData="defense in depth zero trust complementary redundant controls SolarWinds egress ingress default deny">
+    <div class="section-label">Defense in Depth</div>
+    <p>The goal is <strong>complementary controls</strong>, not redundant ones. Redundant controls share the same failure condition and create the "too many outfielders" problem — each team assumes the other is covering the gap, so both relax their posture. The right model layering example:</p>
+    <ul class="bullet">
+      <li><strong>Redundant (avoid):</strong> Network firewall + host-based layer-3 firewall in sequence — same protocol, same failure condition (firewall rule misconfiguration)</li>
+      <li><strong>Complementary (good):</strong> Network layer-3 firewall + application layer-7 WAF — different protocol layers, different failure conditions, different attack surface coverage</li>
+    </ul>
+
+    <div class="section-label">Zero Trust</div>
+    <p>An extension of "Default Deny" applied to networks, applications, and entitlements. The operating assumption: <em>every entity is treated as compromised before it is admitted to the ecosystem</em>. Controls are designed around this assumption rather than around a trusted perimeter.</p>
+    <p><strong>SolarWinds (2020) as the case study:</strong> The legitimate Orion network monitoring software was compromised at the build level — one of the most trusted agents in the environment became malicious. Under Zero Trust:</p>
+    <ul class="bullet">
+      <li>Egress: Orion would be restricted to only the hosts it monitors, via only the services/ports it needs — no internet access required for its legitimate function</li>
+      <li>Ingress: Limited to administrative interfaces needed for configuration and reporting only</li>
+      <li>These controls would have broken the C2 kill chain even after the malware was installed — the compromised tool couldn't phone home</li>
+    </ul>
+
+    <Callout variant="green">Zero Trust's most powerful application is network egress restriction on servers — see the Ingress/Egress section below for a full explanation of why this is both rarely implemented and extraordinarily effective.</Callout>
+    <div class="lesson-refs">
+      <span class="refs-label">See also</span>
+      <a class="ref-link" href="https://csrc.nist.gov/publications/detail/sp/800-207/final" target="_blank">NIST SP 800-207 (Zero Trust)</a>
+      <a class="ref-link" href="https://www.mandiant.com/resources/evasive-attacker-leverages-solarwinds-supply-chain-compromises-with-sunburst-backdoor" target="_blank">Mandiant: SolarWinds Analysis</a>
+    </div>
+  </LessonCard>
+
+  <LessonCard code="Mod 2 · Topic 1 · Lesson 5" title="Tool and Technology Roles" tags={[{label:"Roles Matrix",type:"def"}]} searchData="tool technology roles architecture engineering operations security passive active inline tools WAF EDR SIEM IDS IPS PAM ASM deception">
+    <div class="section-label">Who owns what</div>
+    <ul class="bullet">
+      <li><strong>Security Architecture:</strong> Selects and configures security tools, writes security policies and standards, owns control framework design</li>
+      <li><strong>Engineering/Infrastructure Operations:</strong> Deploys hardware and VMs, maintains HA/DR, owns mission-critical tools (firewalls, switches) — because these have production impact if misconfigured</li>
+      <li><strong>Security Operations:</strong> Runs queries, performs threat hunts, manages passive/detective tools daily</li>
+    </ul>
+
+    <div class="section-label">Tool categories by NIST function</div>
+    <ul class="bullet">
+      <li><strong>Identify:</strong> Attack Surface Management (ASM), Bug bounty programs, Asset inventory tools</li>
+      <li><strong>Protect:</strong> PAM (Privileged Access Mgmt), WAF, MFA/IAM, Endpoint Protection Platform (EPP), Network segmentation</li>
+      <li><strong>Detect:</strong> SIEM, EDR, IDS/IPS, Deception technology (honeypots), Behavioral analytics / UEBA</li>
+      <li><strong>Respond:</strong> DFIR toolkits, SOAR (automation), Forensics platforms, Threat intelligence platforms (TIP)</li>
+      <li><strong>Recover:</strong> Backup and DR systems (primarily IT-owned), runbook automation</li>
+    </ul>
+
+    <Callout variant="orange">Inline (active) tools — WAF, IPS, DLP in blocking mode — sit in the production traffic path. A misconfiguration can take down the application. These require change management discipline and rollback procedures. Passive tools (IDS, log collectors) have near-zero production risk; prioritize getting them deployed and tuned before activating inline counterparts.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 2 · Topic 1 · Lesson 6" title="The Cyber Defense Matrix (Sounil Yu)" tags={[{label:"Framework: Cyber Defense Matrix",type:"fw"},{label:"MECE",type:"def"}]} searchData="cyber defense matrix Sounil Yu MECE asset class NIST function identify protect detect respond recover devices apps networks data users">
+    <p>The Cyber Defense Matrix is a 2D MECE grid that maps your security tooling across two axes simultaneously, exposing gaps that single-axis frameworks miss.</p>
+
+    <div class="section-label">The Two Axes</div>
+    <ul class="bullet">
+      <li><strong>X-axis (columns):</strong> NIST CSF functions — Identify, Protect, Detect, Respond, Recover</li>
+      <li><strong>Y-axis (rows):</strong> Asset classes — Devices, Applications, Networks, Data, Users</li>
+    </ul>
+
+    <div class="section-label">Key structural insights</div>
+    <ul class="bullet">
+      <li><strong>Left side (Identify + Protect):</strong> Technology-heavy — tools automate the bulk of the work. Good ROI on tool investment.</li>
+      <li><strong>Right side (Detect + Respond + Recover):</strong> People-heavy — <em>by definition</em>, technology has failed at this point (otherwise you'd still be in Protect). People make the judgment calls during incidents.</li>
+      <li><strong>Defense in breadth vs. depth:</strong> A row with only one tool for 4 asset classes is breadth. A cell with 10 tools is depth. Strive for breadth first.</li>
+      <li><strong>Vendor discipline:</strong> Force every vendor to claim a primary cell in the matrix. If they claim to cover 20 cells, their coverage in any single cell is likely shallow. This simplifies consolidation conversations.</li>
+      <li><strong>Gap identification → build opportunity:</strong> An empty cell in the matrix represents either a coverage gap (risk) or a build opportunity (where internal tooling could outperform commercial options given your specific environment).</li>
+    </ul>
+
+    <Callout variant="green">This is one of the most useful frameworks for portfolio rationalization conversations with executives — it visualizes both "what we have" and "what's missing" without getting lost in product names.</Callout>
+    <div class="lesson-refs">
+      <span class="refs-label">See also</span>
+      <a class="ref-link" href="https://cyberdefensematrix.com" target="_blank">Cyber Defense Matrix</a>
+      <a class="ref-link" href="https://attack.mitre.org" target="_blank">MITRE ATT&CK</a>
+    </div>
+  </LessonCard>
+
+  <LessonCard code="Mod 2 · Topic 1 · Lesson 7" title="Network Egress/Ingress and DNS Tunneling" tags={[{label:"Definitions",type:"def"},{label:"Zero Trust Applied",type:"fw"},{label:"High-Impact, Zero-Cost Control",type:"tip"}]} searchData="network egress ingress DNS tunneling C2 command control zero trust server firewall stateful gateway direction initiator client server port 443">
+    <div class="section-label">The most common miscommunication in enterprise networking</div>
+    <p>Confusion about network direction is pervasive — not just among junior engineers, but frequently among software engineers and technology leaders. The root cause: most people think about <em>data flow</em>, but network security rules operate on <em>connection initiation</em>.</p>
+
+    <div class="section-label">The initiator defines the direction</div>
+    <p>A network connection must begin with an initiator — the party that sends the first packet. That first packet defines the connection direction for its <em>entire lifetime</em>, regardless of how much data subsequently flows in the opposite direction.</p>
+    <ul class="bullet">
+      <li><strong>Client initiates → egress for the client, ingress for the server.</strong> Even if the server sends 100GB back in response (e.g., a large file download), the server is NOT performing egress — it is replying to ingress. The connection was initiated by the client.</li>
+      <li><strong>Example:</strong> Your phone downloads a 100GB file from Dropbox. Your phone made an egress connection. Dropbox's servers saw an ingress connection. The overwhelming majority of packets flowed FROM server TO client — but this changes nothing about the direction classification.</li>
+    </ul>
+
+    <div class="section-label">Critical security implication for servers</div>
+    <p>A web server that only needs to serve files to clients does <strong>not need egress access</strong>. Ever. The reply packets back to clients are automatically permitted as return traffic by the stateful gateway — not as egress connections.</p>
+    <p>The classic miscommunication:</p>
+    <div class="incident">
+      <div class="incident-id">Common scenario</div>
+      <p><strong>Software Engineer:</strong> "I need port 443 open on my server, please"</p>
+      <p><strong>Firewall Engineer:</strong> "In which direction?"</p>
+      <p><strong>Software Engineer:</strong> "Both."</p>
+      <p style="color:var(--accent2);">That answer is always wrong. <em>Ingress only</em> is correct. The reply packets are handled automatically by stateful inspection — you do not need an egress rule for a web server to respond to requests.</p>
+    </div>
+
+    <div class="section-label">Why denying server egress is extraordinarily powerful</div>
+    <p>Denying outbound connections from servers eliminates a staggering number of attacker capabilities:</p>
+    <ul class="bullet">
+      <li>Cannot establish C2 sessions to attacker infrastructure</li>
+      <li>Cannot download malware after exploitation of an RCE vulnerability</li>
+      <li>Cannot exfiltrate stolen data via SFTP or HTTPS</li>
+      <li>Cannot reach attacker-controlled update servers (disrupts supply-chain attacks)</li>
+    </ul>
+    <p>This single architectural decision disrupts the kill chain for the majority of high-profile attacks — including SolarWinds. The only collateral damage: server administrators cannot run live OS updates from the internet (which is the right behavior anyway — production servers should receive patches via internal deployment infrastructure, not direct internet access).</p>
+
+    <Callout variant="green">This is a <strong>zero-cost control</strong> that most organizations don't implement — purely because technologists (including senior engineers) don't understand the ingress/egress distinction. Understanding this conversation puts you ahead of the majority of technology leaders.</Callout>
+
+    <div class="section-label">DNS Tunneling: the bypass that survives egress filtering</div>
+    <p>Even backend servers with no internet route — and no egress firewall rules — can typically still make DNS queries (port 53). Attackers exploit this:</p>
+    <ul class="bullet">
+      <li>Malware encodes data into dynamically generated domain name strings in outbound DNS queries (e.g., <code>aGVsbG8t.attacker.com</code> → base64-encoded payload)</li>
+      <li>The attacker's authoritative DNS server decodes these queries and sends back encoded commands in DNS responses</li>
+      <li>Bidirectional C2 — including a full interactive shell — is possible over DNS alone, bypassing firewalls entirely</li>
+      <li>Since DNS is rarely inspected (unlike HTTP/HTTPS), this channel often goes undetected for months</li>
+    </ul>
+
+    <div class="section-label">Defenses against DNS tunneling</div>
+    <ul class="bullet">
+      <li><strong>Restrict to internal DNS resolvers only:</strong> Force all server DNS traffic through your own resolvers — external DNS queries should be blocked</li>
+      <li><strong>Response Policy Zones (RPZ):</strong> Allows your DNS resolver to block or redirect queries to known malicious domains at the resolver level</li>
+      <li><strong>Discretionary/secure DNS providers:</strong> Cloudflare 1.1.1.1 for Teams, Cisco Umbrella — maintain curated threat intel-based block lists</li>
+      <li><strong>Anomaly detection on query strings:</strong> Flag abnormally long query strings or high query rates to random-looking subdomains (characteristic of base64-encoded C2 traffic)</li>
+    </ul>
+
+    <Callout variant="orange">Practical: If you implement nothing else from this section, restrict server DNS to internal resolvers. The performance impact is zero; the security gain is significant. It's a 15-minute firewall rule change that closes one of the most common C2 persistence mechanisms.</Callout>
+    <div class="lesson-refs">
+      <span class="refs-label">See also</span>
+      <a class="ref-link" href="https://unit42.paloaltonetworks.com/dns-tunneling-how-dns-can-be-abused-by-malicious-actors/" target="_blank">Palo Alto: DNS Tunneling</a>
+      <a class="ref-link" href="https://csrc.nist.gov/publications/detail/sp/800-207/final" target="_blank">NIST Zero Trust (SP 800-207)</a>
+    </div>
+  </LessonCard>
+
+  <LessonCard code="Mod 2 · Topic 1 · Lesson 8" title="Security Automation" tags={[{label:"SOAR",type:"def"},{label:"Applied",type:"tip"}]} searchData="automation SOAR Python scripting GRC workflows AppSec IAM IOC SOC triage board dashboards key control testing">
+    <p>The automation team (Python/scripting practitioners) serves as an internal product development function for the entire security organization. Their output multiplies the capacity of every other team:</p>
+    <ul class="bullet">
+      <li><strong>GRC workflows:</strong> Auto-populate risk register fields, generate compliance evidence packages, schedule control reviews</li>
+      <li><strong>Key control playback testing:</strong> Automated probes that verify critical controls are still active (e.g., "test that DLP is blocking SSN-pattern data exfil every 24 hours")</li>
+      <li><strong>AppSec finding aggregation:</strong> Normalize findings from multiple scanners into a unified dashboard, deduplicate, and prioritize by exploitability</li>
+      <li><strong>IAM auto-termination:</strong> Automatically disable accounts for employees who hit termination dates or fail HR data reconciliation</li>
+      <li><strong>IOC operationalization:</strong> Ingest tactical intelligence feeds, deduplicate, format, and push to blocking rules or detection logic without analyst intervention</li>
+      <li><strong>SOC triage enrichment:</strong> Automatically enrich alerts with asset context, threat intel lookups, and historical CINC data before presenting to an analyst</li>
+      <li><strong>Board dashboards:</strong> Pull data from CINC system, risk register, and vulnerability management to generate executive-ready reporting automatically</li>
+    </ul>
+    <Callout variant="green">SOAR (Security Orchestration, Automation, and Response) is the product category for security automation runbook platforms. Whether you use a commercial SOAR or build internal Python tooling, the objective is the same: remove repetitive human decision-making from tasks where the decision logic is already known.</Callout>
+  </LessonCard>
+
+</section>
+</BaseLayout>

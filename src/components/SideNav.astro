@@ -1,0 +1,81 @@
+---
+interface Props {
+  currentPath: string;
+}
+const { currentPath } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+function isActive(path: string): boolean {
+  return currentPath === path || currentPath === path + '/';
+}
+
+function isModuleActive(modulePaths: string[]): boolean {
+  return modulePaths.some(p => isActive(p));
+}
+
+const m1Paths = ['/m1-strategy', '/m1-strategy/t1-composition', '/m1-strategy/t2-threat-objectives', '/m1-strategy/t3-departmental-org', '/m1-strategy/t4-talent-management', '/m1-strategy/t5-cti'];
+const m2Paths = ['/m2-operations', '/m2-operations/t1-architecture', '/m2-operations/t2-cirp', '/m2-operations/t3-cirp-examples'];
+const refPaths = ['/glossary'];
+---
+<button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">☰</button>
+<div class="nav-overlay" id="nav-overlay"></div>
+<nav class="side-nav" id="side-nav">
+  <div class={`nav-section ${isModuleActive(m1Paths) ? 'expanded' : ''}`}>
+    <div class="nav-section-label" data-nav-toggle>Module 01 — Strategy</div>
+    <div class="nav-links">
+      <a href={`${base}/m1-strategy`} class={isActive('/m1-strategy') ? 'active' : ''}>Overview</a>
+      <a href={`${base}/m1-strategy/t1-composition`} class={isActive('/m1-strategy/t1-composition') ? 'active' : ''}>T1 · Strategy Composition</a>
+      <a href={`${base}/m1-strategy/t2-threat-objectives`} class={isActive('/m1-strategy/t2-threat-objectives') ? 'active' : ''}>T2 · Threat Objectives</a>
+      <a href={`${base}/m1-strategy/t3-departmental-org`} class={isActive('/m1-strategy/t3-departmental-org') ? 'active' : ''}>T3 · Departmental Organization</a>
+      <a href={`${base}/m1-strategy/t4-talent-management`} class={isActive('/m1-strategy/t4-talent-management') ? 'active' : ''}>T4 · Talent Management</a>
+      <a href={`${base}/m1-strategy/t5-cti`} class={isActive('/m1-strategy/t5-cti') ? 'active' : ''}>T5 · Cyber Threat Intelligence</a>
+    </div>
+  </div>
+  <div class={`nav-section ${isModuleActive(m2Paths) ? 'expanded' : ''}`}>
+    <div class="nav-section-label" data-nav-toggle>Module 02 — Operations</div>
+    <div class="nav-links">
+      <a href={`${base}/m2-operations`} class={isActive('/m2-operations') ? 'active' : ''}>Overview</a>
+      <a href={`${base}/m2-operations/t1-architecture`} class={isActive('/m2-operations/t1-architecture') ? 'active' : ''}>T1 · Architecture and Automation</a>
+      <a href={`${base}/m2-operations/t2-cirp`} class={isActive('/m2-operations/t2-cirp') ? 'active' : ''}>T2 · Incident Response (CIRP)</a>
+      <a href={`${base}/m2-operations/t3-cirp-examples`} class={isActive('/m2-operations/t3-cirp-examples') ? 'active' : ''}>T3 · CIRP Examples</a>
+    </div>
+  </div>
+  <div class={`nav-section ${isModuleActive(refPaths) ? 'expanded' : ''}`}>
+    <div class="nav-section-label" data-nav-toggle>Reference</div>
+    <div class="nav-links">
+      <a href={`${base}/glossary`} class={isActive('/glossary') ? 'active' : ''}>Glossary</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Collapsible nav sections
+  document.querySelectorAll('[data-nav-toggle]').forEach(label => {
+    label.addEventListener('click', () => {
+      const section = label.parentElement;
+      if (section) section.classList.toggle('expanded');
+    });
+  });
+
+  // Mobile hamburger
+  const hamburger = document.getElementById('hamburger-btn');
+  const sideNav = document.getElementById('side-nav');
+  const overlay = document.getElementById('nav-overlay');
+
+  function closeMobileNav() {
+    sideNav?.classList.remove('open');
+    overlay?.classList.remove('visible');
+  }
+
+  hamburger?.addEventListener('click', () => {
+    sideNav?.classList.toggle('open');
+    overlay?.classList.toggle('visible');
+  });
+
+  overlay?.addEventListener('click', closeMobileNav);
+
+  // Close nav on link click (mobile)
+  sideNav?.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', closeMobileNav);
+  });
+</script>

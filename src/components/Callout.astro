@@ -1,0 +1,10 @@
+---
+interface Props {
+  variant?: 'default' | 'orange' | 'green' | 'purple';
+}
+const { variant = 'default' } = Astro.props;
+const classes = ['callout', variant !== 'default' ? variant : ''].filter(Boolean).join(' ');
+---
+<div class={classes}>
+  <slot />
+</div>

@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Glossary — CS8803 Reference" currentPath="/glossary">
+
+<div class="module-header">
+  <div class="module-num">Reference</div>
+  <h2>Glossary / Acronym Dictionary</h2>
+</div>
+<p style="color:var(--text-dim); font-family:'DM Mono',monospace; font-size:12px; margin-bottom:1.5rem;">Hover over <span class="acro-demo" style="color:var(--accent3); text-decoration:underline dotted rgba(79,247,176,0.5); cursor:help;">underlined acronyms</span> anywhere in the document for inline tooltips. Full definitions below.</p>
+
+<div class="glossary-grid">
+  <div class="g-item"><div class="g-term">2LD</div><div class="g-def">Second-Level Domain — e.g., gatech in gatech.edu (with .edu being the top-level domain)</div></div>
+  <div class="g-item"><div class="g-term">ACH</div><div class="g-def">Automated Clearing House (financial payments context) — OR — Analysis of Competing Hypotheses (intelligence analysis method that fights confirmation bias)</div></div>
+  <div class="g-item"><div class="g-term">APT</div><div class="g-def">Advanced Persistent Threat — originally US military terminology for targeted, persistent attackers (vs. opportunistic). Commercially overused to mean "nation-state actor," though semantically tied to behavior, not identity.</div></div>
+  <div class="g-item"><div class="g-term">AppSec</div><div class="g-def">Application Security — the practice of identifying, fixing, and preventing security vulnerabilities in software applications</div></div>
+  <div class="g-item"><div class="g-term">ASM</div><div class="g-def">Attack Surface Management — continuous discovery and monitoring of all externally visible assets that could be exploited</div></div>
+  <div class="g-item"><div class="g-term">ATO</div><div class="g-def">Account Takeover — unauthorized access to a user account, typically via credential theft or stuffing</div></div>
+  <div class="g-item"><div class="g-term">BEC</div><div class="g-def">Business Email Compromise — attacker has actual control of a legitimate corporate email account (more dangerous than spoofing)</div></div>
+  <div class="g-item"><div class="g-term">BES</div><div class="g-def">Business Email Spoofing — spoofing the display name in the "From" field without controlling the actual domain. Detectable via header analysis.</div></div>
+  <div class="g-item"><div class="g-term">BISO</div><div class="g-def">Business Information Security Officer — security leadership role aligned to a specific business unit or subsidiary</div></div>
+  <div class="g-item"><div class="g-term">C2</div><div class="g-def">Command and Control — the infrastructure and processes used by attackers to remotely control compromised systems ("phone home" traffic)</div></div>
+  <div class="g-item"><div class="g-term">CIA</div><div class="g-def">Confidentiality, Integrity, Availability — the classic information security triad defining the properties that controls are designed to protect</div></div>
+  <div class="g-item"><div class="g-term">CINC</div><div class="g-def">Cybersecurity Incident — a unique-identified record of a confirmed or suspected cyber security event requiring formal response</div></div>
+  <div class="g-item"><div class="g-term">CIRP</div><div class="g-def">Cyber Incident Response Procedure — the governing document that defines how incidents are classified, escalated, and resolved</div></div>
+  <div class="g-item"><div class="g-term">CISO</div><div class="g-def">Chief Information Security Officer — the executive responsible for an organization's information security program</div></div>
+  <div class="g-item"><div class="g-term">COBIT</div><div class="g-def">Control Objectives for Information Technologies — a governance framework for IT management, published by ISACA</div></div>
+  <div class="g-item"><div class="g-term">CRO</div><div class="g-def">Chief Risk Officer — executive responsible for enterprise risk management; one of the possible CISO reporting lines</div></div>
+  <div class="g-item"><div class="g-term">CTI</div><div class="g-def">Cyber Threat Intelligence — the collection, analysis, and dissemination of information about cyber threats</div></div>
+  <div class="g-item"><div class="g-term">CVE</div><div class="g-def">Common Vulnerabilities and Exposures — a standard identifier format for publicly disclosed cybersecurity vulnerabilities</div></div>
+  <div class="g-item"><div class="g-term">DAC</div><div class="g-def">Discretionary Access Control — access control where the owner of a resource controls who can access it</div></div>
+  <div class="g-item"><div class="g-term">DDW</div><div class="g-def">Deep and Dark Web — resources unavailable via standard search engines due to authentication or network-level restrictions; often associated with criminal forums</div></div>
+  <div class="g-item"><div class="g-term">DFIR</div><div class="g-def">Digital Forensics and Incident Response — IR augmented with forensic evidence collection, preservation, and legal chain of custody</div></div>
+  <div class="g-item"><div class="g-term">DLP</div><div class="g-def">Data Loss/Leakage Prevention — technology that detects and prevents unauthorized transmission of sensitive data</div></div>
+  <div class="g-item"><div class="g-term">DPO</div><div class="g-def">Data Privacy Officer — responsible for ensuring compliance with data privacy laws (GDPR, CCPA, etc.); must be engaged on any potential data disclosure regardless of incident severity</div></div>
+  <div class="g-item"><div class="g-term">EDR</div><div class="g-def">Endpoint Detection and Response — endpoint security tool that records and monitors system behavior to detect and investigate threats</div></div>
+  <div class="g-item"><div class="g-term">EPP</div><div class="g-def">Endpoint Protection Platform — traditional antivirus evolved to include behavioral detection; the prevention layer (vs. EDR's detection/response layer)</div></div>
+  <div class="g-item"><div class="g-term">FQDN</div><div class="g-def">Fully Qualified Domain Name — the complete, unambiguous domain name (e.g., prism.gatech.edu), as opposed to an unqualified hostname (e.g., just "prism")</div></div>
+  <div class="g-item"><div class="g-term">GC</div><div class="g-def">General Counsel — the organization's chief legal officer; key stakeholder in incident response, data breach notifications, and regulatory matters</div></div>
+  <div class="g-item"><div class="g-term">GRC</div><div class="g-def">Governance, Risk, and Compliance — the second-line function responsible for policy, risk management, and regulatory compliance</div></div>
+  <div class="g-item"><div class="g-term">HSM</div><div class="g-def">Hardware Security Module — a physical device that safeguards and manages cryptographic keys; used for high-assurance encryption operations</div></div>
+  <div class="g-item"><div class="g-term">IAM</div><div class="g-def">Identity and Access Management — the framework for managing digital identities and controlling access to resources</div></div>
+  <div class="g-item"><div class="g-term">IDS</div><div class="g-def">Intrusion Detection System — passive monitoring tool that detects suspicious activity and generates alerts (does not block)</div></div>
+  <div class="g-item"><div class="g-term">IIA</div><div class="g-def">Institute of Internal Auditors — professional body that defines the Three Lines Model for organizational governance and risk management</div></div>
+  <div class="g-item"><div class="g-term">IOC</div><div class="g-def">Indicator of Compromise — specific technical artifacts (file hashes, IP addresses, domains) associated with known attacks; tactical intelligence with short shelf life</div></div>
+  <div class="g-item"><div class="g-term">IPS</div><div class="g-def">Intrusion Prevention System — active (inline) counterpart to IDS; can block detected threats in real time but carries production risk if misconfigured</div></div>
+  <div class="g-item"><div class="g-term">IR</div><div class="g-def">Incident Response (security context) — OR — Investor Relations (corporate context). Always clarify when speaking cross-functionally.</div></div>
+  <div class="g-item"><div class="g-term">ISAC</div><div class="g-def">Information Sharing and Analysis Center — sector-based communities for sharing threat intelligence among industry peers (FS-ISAC, H-ISAC, E-ISAC, etc.)</div></div>
+  <div class="g-item"><div class="g-term">ISMS</div><div class="g-def">Information Security Management System — the overarching framework of policies, procedures, and controls for managing information security (ISO 27001 defines requirements for an ISMS)</div></div>
+  <div class="g-item"><div class="g-term">ITIL</div><div class="g-def">Information Technology Infrastructure Library — a set of IT service management practices; relevant for aligning security operations with broader IT operations</div></div>
+  <div class="g-item"><div class="g-term">Kill Chain</div><div class="g-def">The "Cyber Kill Chain" (Lockheed Martin, 2011) — maps attacks across: Reconnaissance → Weaponization → Delivery → Exploitation → Installation → C2 → Actions on Objectives</div></div>
+  <div class="g-item"><div class="g-term">MAC</div><div class="g-def">Mandatory Access Control — access control enforced by the system based on classifications (e.g., government security labels), not owner discretion</div></div>
+  <div class="g-item"><div class="g-term">MECE</div><div class="g-def">Mutually Exclusive, Collectively Exhaustive — a taxonomy design principle ensuring categories don't overlap and collectively cover all cases</div></div>
+  <div class="g-item"><div class="g-term">MITRE ATT&amp;CK</div><div class="g-def">A MITRE framework defining a MECE taxonomy of adversary techniques organized by kill chain phases; 500+ techniques mapped across 14 tactic categories</div></div>
+  <div class="g-item"><div class="g-term">MNPI</div><div class="g-def">Material Non-Public Information — information that has not been disclosed publicly and could affect an investor's decision (insider trading context); theft of MNPI is a Data Disclosure threat objective</div></div>
+  <div class="g-item"><div class="g-term">MSSP</div><div class="g-def">Managed Security Service Provider — a third party that operates security functions (commonly SOC/monitoring) on behalf of an organization</div></div>
+  <div class="g-item"><div class="g-term">MTTC</div><div class="g-def">Mean Time to Contain — average time from incident detection to confirmed containment of the threat</div></div>
+  <div class="g-item"><div class="g-term">MTTD</div><div class="g-def">Mean Time to Detect — average time between when a threat event begins and when it is detected</div></div>
+  <div class="g-item"><div class="g-term">MTTR</div><div class="g-def">Mean Time to Respond — average time from detection to the beginning of active response actions</div></div>
+  <div class="g-item"><div class="g-term">NAC</div><div class="g-def">Network Access Control — technology that enforces security policies before granting device access to a network</div></div>
+  <div class="g-item"><div class="g-term">NetFlow</div><div class="g-def">A network protocol and data format for collecting IP traffic metadata (source/dest IP, port, bytes) — useful for forensics without storing full packet captures</div></div>
+  <div class="g-item"><div class="g-term">NIST</div><div class="g-def">National Institute of Standards and Technology — US federal agency that publishes widely adopted cybersecurity frameworks (CSF, SP 800-series)</div></div>
+  <div class="g-item"><div class="g-term">OINC</div><div class="g-def">Operational Incident — the operations counterpart to a CINC; must maintain parallel severity numbering and defined trigger rules between OINC and CINC systems</div></div>
+  <div class="g-item"><div class="g-term">OIRP</div><div class="g-def">Operational Incident Response Procedure — the operations counterpart to the CIRP</div></div>
+  <div class="g-item"><div class="g-term">OPSEC</div><div class="g-def">Operational Security — practices used to protect one's own identity and activities from adversary observation. FLOPSec = failed OPSEC that attracts more attention than it conceals.</div></div>
+  <div class="g-item"><div class="g-term">OSINT</div><div class="g-def">Open Source Intelligence — intelligence gathered from publicly available sources (LinkedIn, social media, search engines, job postings)</div></div>
+  <div class="g-item"><div class="g-term">PAM</div><div class="g-def">Privileged Access Management — controls governing access to administrative/privileged accounts; among the most critical controls for limiting blast radius</div></div>
+  <div class="g-item"><div class="g-term">pDNS</div><div class="g-def">Passive DNS — data collected from DNS resolvers that records queries and responses without making them directly; useful for researching domain history covertly</div></div>
+  <div class="g-item"><div class="g-term">PHI</div><div class="g-def">Protected Health Information — health data protected under HIPAA; a Data Disclosure threat objective sub-category</div></div>
+  <div class="g-item"><div class="g-term">PII</div><div class="g-def">Personally Identifiable Information — any data that can identify a specific individual; triggers privacy law obligations upon disclosure</div></div>
+  <div class="g-item"><div class="g-term">RBAC</div><div class="g-def">Role-Based Access Control — access control where permissions are assigned to roles, and users are assigned to roles (vs. individual permissions per user)</div></div>
+  <div class="g-item"><div class="g-term">RFI</div><div class="g-def">Request for Information — a targeted intelligence request to a sharing community (e.g., "please share anything on adversaries targeting oil distribution networks")</div></div>
+  <div class="g-item"><div class="g-term">RISO</div><div class="g-def">Regional Information Security Officer — geographically aligned security leadership role (Americas/EMEA/APAC)</div></div>
+  <div class="g-item"><div class="g-term">RPZ</div><div class="g-def">Response Policy Zone — a DNS feature allowing resolvers to block or redirect queries to known-malicious domains at the resolver level</div></div>
+  <div class="g-item"><div class="g-term">SIEM</div><div class="g-def">Security Information and Event Management — a log aggregation platform with correlation logic that converts raw events into actionable alerts</div></div>
+  <div class="g-item"><div class="g-term">SOAR</div><div class="g-def">Security Orchestration, Automation, and Response — platforms that automate security workflows and runbooks, reducing analyst time on repetitive tasks</div></div>
+  <div class="g-item"><div class="g-term">SOC</div><div class="g-def">Security Operations Center — tiered team (L1/L2/L3) responsible for monitoring, detection, triage, and initial response</div></div>
+  <div class="g-item"><div class="g-term">SQLi</div><div class="g-def">SQL Injection — an attack that inserts malicious SQL code into a query to manipulate a database; a common Data Disclosure attack vector</div></div>
+  <div class="g-item"><div class="g-term">STIX/TAXII</div><div class="g-def">Structured Threat Information Expression / Trusted Automated eXchange of Intelligence Information — OASIS standards for formatting and sharing threat intelligence data between organizations</div></div>
+  <div class="g-item"><div class="g-term">TIP</div><div class="g-def">Threat Intelligence Platform — software that ingests, normalizes, and operationalizes IOCs and threat intelligence from multiple sources</div></div>
+  <div class="g-item"><div class="g-term">TLD</div><div class="g-def">Top-Level Domain — .com, .net, .edu, etc. Includes country-code TLDs (ccTLDs: .ru, .us) and generic TLDs (gTLDs: .google, .club)</div></div>
+  <div class="g-item"><div class="g-term">TLP</div><div class="g-def">Traffic Light Protocol — a FIRST.org standard for classifying threat intelligence sharing permissions: RED (recipient only) → AMBER → GREEN → CLEAR (public)</div></div>
+  <div class="g-item"><div class="g-term">TPRM</div><div class="g-def">Third-Party Risk Management — the discipline of assessing and monitoring security risks introduced by vendors, suppliers, and partners</div></div>
+  <div class="g-item"><div class="g-term">TTP</div><div class="g-def">Tactics, Techniques, and Procedures — the habits, patterns, and tradecraft correlated with specific adversary groups or campaigns. MITRE ATT&amp;CK maps TTPs to kill chain phases.</div></div>
+  <div class="g-item"><div class="g-term">UDRP</div><div class="g-def">Uniform Domain-Name Dispute-Resolution Policy — ICANN's formal mechanism for resolving domain name disputes and cybersquatting (cost: ~$1,500; timeline: weeks to months)</div></div>
+  <div class="g-item"><div class="g-term">UCE</div><div class="g-def">Unsolicited Commercial Email — spam; technically not a phishing attack, though often reported as one by well-meaning employees</div></div>
+  <div class="g-item"><div class="g-term">VDP</div><div class="g-def">Vulnerability Disclosure Program — a formal channel for external researchers to responsibly report security vulnerabilities to an organization</div></div>
+  <div class="g-item"><div class="g-term">VEC</div><div class="g-def">Vendor Email Compromise — BEC targeting a trusted vendor's email account to redirect payments or extract information from their customers</div></div>
+  <div class="g-item"><div class="g-term">WAF</div><div class="g-def">Web Application Firewall — an inline (active) application-layer security control that inspects and filters HTTP/HTTPS traffic</div></div>
+  <div class="g-item"><div class="g-term">WEF</div><div class="g-def">Windows Event Forwarding — a Windows feature that forwards event log data from endpoints to a central collector; high-volume but valuable for forensics</div></div>
+  <div class="g-item"><div class="g-term">WHOIS</div><div class="g-def">A protocol and data format for identifying registrant contact information for domain names and internet networks</div></div>
+  <div class="g-item"><div class="g-term">XDR</div><div class="g-def">Extended Detection and Response — evolution of EDR that correlates telemetry across endpoints, network, cloud, and identity for unified threat detection</div></div>
+  <div class="g-item"><div class="g-term">YARA</div><div class="g-def">Yet Another Recursive Acronym — a pattern-matching language for describing and identifying malware families based on file content characteristics (broader than hash-based matching)</div></div>
+</div>
+
+</BaseLayout>
