@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<BaseLayout title="Module 3: Security Assurance — CS8803 Reference" currentPath="/m3-assurance">
+
+<div class="module-header">
+  <div class="module-num">Module 03</div>
+  <h2>Security Assurance</h2>
+</div>
+
+<p style="margin-bottom:1.5rem;">Module 3 covers the second-line security assurance functions: risk register management, compliance and policy frameworks, application security, red teaming, and vulnerability management.</p>
+
+<div class="overview-grid">
+  <a href={`${base}/m3-assurance/t1-risk-register`} class="overview-card">
+    <div class="card-code">Topic 1</div>
+    <div class="card-title">Risk Register</div>
+    <div class="card-desc">Enterprise risk register structure, risk scoring methodologies, risk acceptance workflows, and integration with incident response.</div>
+  </a>
+  <a href={`${base}/m3-assurance/t2-compliance-policy`} class="overview-card">
+    <div class="card-code">Topic 2</div>
+    <div class="card-title">Compliance &amp; Policy</div>
+    <div class="card-desc">Compliance frameworks, policy lifecycle management, regulatory mapping, and audit readiness.</div>
+  </a>
+</div>
+
+</BaseLayout>

@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LessonCard from '../../components/LessonCard.astro';
+import Callout from '../../components/Callout.astro';
+---
+<BaseLayout title="T2: Compliance &amp; Policy — CS8803 Reference" currentPath="/m3-assurance/t2-compliance-policy">
+
+<section class="topic">
+  <div class="topic-header">
+    <div class="topic-num">T2</div>
+    <h3>Compliance &amp; Policy</h3>
+  </div>
+
+  <LessonCard code="Mod 3 · Topic 2 · Lesson 1" title="Compliance vs. Security" tags={[{label:"Definition",type:"def"},{label:"Principle",type:"tip"}]} searchData="compliance security difference regulatory audit checkbox risk-based control framework">
+    <p>Compliance and security are related but <strong>not interchangeable</strong>. Compliance asks "do we meet the minimum requirements set by an external authority?" Security asks "are we effectively protecting the organization against realistic threats?"</p>
+    <ul class="bullet">
+      <li><strong>Compliance without security:</strong> An organization can pass every audit checkbox and still be trivially compromised — compliance frameworks lag behind attacker techniques by years</li>
+      <li><strong>Security without compliance:</strong> An organization can have world-class controls and still face regulatory penalties for failing to document them in the required format</li>
+      <li><strong>The right relationship:</strong> Use compliance requirements as a <em>floor</em> (minimum baseline), then build risk-based controls above that floor based on your actual threat model</li>
+    </ul>
+    <Callout variant="green">The goal is to be secure <strong>and</strong> compliant — not to treat compliance as a substitute for security. The most dangerous state is "audit-ready but breach-prone."</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 2 · Lesson 2" title="Major Compliance Frameworks" tags={[{label:"Framework: PCI DSS",type:"fw"},{label:"Framework: SOX",type:"fw"},{label:"Framework: HIPAA",type:"fw"}]} searchData="PCI DSS SOX HIPAA GDPR GLBA compliance framework regulation industry standard">
+    <div class="section-label">Industry-specific regulations</div>
+    <ul class="bullet">
+      <li><strong>PCI DSS (Payment Card Industry Data Security Standard):</strong> Required for any organization that stores, processes, or transmits cardholder data. 12 requirement categories covering network security, access control, monitoring, and testing. Enforced by card brands (Visa, Mastercard) through acquiring banks.</li>
+      <li><strong>SOX (Sarbanes-Oxley Act):</strong> Applies to publicly traded companies. Section 404 requires internal controls over financial reporting — IT controls are in scope because financial data flows through IT systems. Audited annually by external auditors.</li>
+      <li><strong>HIPAA (Health Insurance Portability and Accountability Act):</strong> Governs protected health information (PHI). The Security Rule specifies administrative, physical, and technical safeguards. Enforced by HHS Office for Civil Rights.</li>
+      <li><strong>GDPR (General Data Protection Regulation):</strong> EU regulation governing personal data of EU residents. Applies globally to any organization processing EU resident data. Notable for significant fines (up to 4% of global annual revenue).</li>
+      <li><strong>GLBA (Gramm-Leach-Bliley Act):</strong> Governs financial institutions' handling of consumer financial information. Requires a written information security program.</li>
+    </ul>
+
+    <div class="section-label">Voluntary frameworks used as compliance accelerators</div>
+    <ul class="bullet">
+      <li><strong>NIST CSF:</strong> Not a regulation, but widely adopted as the organizing framework that maps to multiple regulatory requirements simultaneously</li>
+      <li><strong>ISO 27001:</strong> International standard for information security management systems (ISMS). Certification demonstrates a mature, audited security program.</li>
+      <li><strong>SOC 2:</strong> Trust Services Criteria audit for service organizations — increasingly required by enterprise customers as a vendor qualification</li>
+    </ul>
+    <Callout variant="orange">Map your controls to NIST CSF first, then cross-reference to specific regulatory requirements. This avoids duplicating effort across PCI, SOX, HIPAA, etc. — one control can satisfy multiple frameworks simultaneously.</Callout>
+    <div class="lesson-refs">
+      <span class="refs-label">See also</span>
+      <a class="ref-link" href="https://nist.gov/cyberframework" target="_blank">NIST CSF 2.0</a>
+      <a class="ref-link" href="https://www.pcisecuritystandards.org/" target="_blank">PCI SSC</a>
+    </div>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 2 · Lesson 3" title="Policy Lifecycle Management" tags={[{label:"Process",type:"tip"},{label:"GRC",type:"def"}]} searchData="policy lifecycle management creation review approval distribution enforcement exception governance GRC">
+    <div class="section-label">Policy hierarchy</div>
+    <ul class="bullet">
+      <li><strong>Policy:</strong> High-level statement of intent and direction — approved by executive leadership (e.g., "All systems must use multi-factor authentication")</li>
+      <li><strong>Standard:</strong> Specific, measurable requirements that implement a policy (e.g., "MFA must use FIDO2 or TOTP; SMS-based OTP is not permitted")</li>
+      <li><strong>Procedure:</strong> Step-by-step instructions for carrying out a standard (e.g., "To enroll a FIDO2 key, navigate to Settings → Security → Add Key…")</li>
+      <li><strong>Guideline:</strong> Recommended best practices that are not mandatory (e.g., "Consider using a hardware security key for highest assurance")</li>
+    </ul>
+
+    <div class="section-label">Lifecycle stages</div>
+    <ul class="bullet">
+      <li><strong>Draft:</strong> Security architecture proposes the policy based on risk assessment, regulatory requirements, or incident learnings</li>
+      <li><strong>Review:</strong> Stakeholders (legal, HR, IT, business units) review for feasibility, conflicts, and operational impact</li>
+      <li><strong>Approval:</strong> Executive sponsor or governance committee formally approves the policy</li>
+      <li><strong>Distribution:</strong> Published to all affected personnel with acknowledgment tracking</li>
+      <li><strong>Enforcement:</strong> Technical controls and audit procedures verify compliance with the policy</li>
+      <li><strong>Review cycle:</strong> Policies are reviewed annually (or after significant incidents) and updated or retired</li>
+    </ul>
+    <Callout variant="green">A policy that exists but isn't enforced is worse than no policy — it creates legal liability ("you knew about the risk and documented requirements but failed to implement them") while providing zero security benefit.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 2 · Lesson 4" title="Audit Readiness and Evidence Collection" tags={[{label:"Process",type:"tip"},{label:"Automation Opportunity",type:"tip"}]} searchData="audit readiness evidence collection continuous monitoring GRC automation control testing attestation artifact">
+    <p>Audit readiness is a <strong>continuous state</strong>, not a pre-audit scramble. Organizations that treat audit prep as a periodic project consistently fail to demonstrate mature controls.</p>
+    <ul class="bullet">
+      <li><strong>Evidence artifacts:</strong> Screenshots, system configurations, access review reports, training completion records, incident response logs, change management tickets</li>
+      <li><strong>Continuous evidence collection:</strong> Automate evidence gathering through GRC platform integrations — pull access reviews from IAM, control test results from SOAR, configuration baselines from CMDB</li>
+      <li><strong>Control testing:</strong> Run automated playback tests on key controls (e.g., verify DLP blocks sensitive data exfil, verify terminated employees lose access within SLA)</li>
+      <li><strong>Gap remediation:</strong> Identified control gaps become risk register entries with remediation timelines — auditors want to see progress, not perfection</li>
+    </ul>
+    <Callout variant="orange">The security automation team (Module 2, T1L8) is the key enabler for continuous audit readiness. Every manual evidence collection task is a candidate for automation — and automated evidence is more trustworthy to auditors than manually assembled screenshots.</Callout>
+  </LessonCard>
+
+</section>
+</BaseLayout>
