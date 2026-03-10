@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LessonCard from '../../components/LessonCard.astro';
+import Callout from '../../components/Callout.astro';
+---
+<BaseLayout title="T1: Risk Register — CS8803 Reference" currentPath="/m3-assurance/t1-risk-register">
+
+<section class="topic">
+  <div class="topic-header">
+    <div class="topic-num">T1</div>
+    <h3>Risk Register</h3>
+  </div>
+
+  <LessonCard code="Mod 3 · Topic 1 · Lesson 1" title="Purpose of the Risk Register" tags={[{label:"Definition",type:"def"}]} searchData="risk register purpose enterprise risk management tracking remediation acceptance">
+    <p>The risk register is the <strong>central record of all identified security risks</strong> that cannot be immediately remediated. It serves as the bridge between incident response (tactical) and long-term risk management (strategic).</p>
+    <ul class="bullet">
+      <li><strong>Origin:</strong> Risks enter the register from multiple sources — incident post-mortems, audit findings, red team exercises, vulnerability assessments, and regulatory gap analyses</li>
+      <li><strong>Lifecycle:</strong> Each risk is tracked from identification through remediation or formal acceptance — risks don't disappear, they are either fixed or explicitly accepted by an accountable owner</li>
+      <li><strong>Visibility:</strong> The register provides executives and board members with a consolidated view of the organization's risk posture without requiring them to understand technical details</li>
+    </ul>
+    <Callout variant="green">A risk register is not a vulnerability scanner output or a ticket queue. It tracks <strong>conditions</strong> (systemic issues), not individual <strong>events</strong> (specific vulnerabilities or incidents). "We lack DDoS mitigation capability" is a risk register entry. "CVE-2024-1234 is unpatched on server X" is a vulnerability management ticket.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 1 · Lesson 2" title="Risk Register Structure and Fields" tags={[{label:"Structure",type:"def"},{label:"Applied",type:"tip"}]} searchData="risk register fields structure likelihood impact score owner remediation timeline acceptance criteria">
+    <div class="section-label">Core fields</div>
+    <ul class="bullet">
+      <li><strong>Risk ID:</strong> Unique identifier for tracking and cross-referencing (e.g., RSK-2026-017)</li>
+      <li><strong>Risk Description:</strong> Plain-language statement of the condition — what is the gap and what could happen if exploited</li>
+      <li><strong>Risk Owner:</strong> The business or technology leader accountable for remediation or acceptance — not the security team</li>
+      <li><strong>Likelihood:</strong> Probability rating (e.g., 1–5 scale) based on threat intelligence, historical data, and exposure</li>
+      <li><strong>Impact:</strong> Business impact rating (e.g., 1–5 scale) covering financial, operational, reputational, and regulatory dimensions</li>
+      <li><strong>Risk Score:</strong> Likelihood × Impact — used for prioritization and trending</li>
+      <li><strong>Remediation Plan:</strong> Specific actions, milestones, and target completion date</li>
+      <li><strong>Status:</strong> Open, In Remediation, Accepted, or Closed</li>
+    </ul>
+
+    <div class="section-label">Risk acceptance</div>
+    <p>When remediation is not feasible (cost, complexity, or business constraint), the risk owner may formally <strong>accept</strong> the risk. Acceptance requires documented justification and executive sign-off. Accepted risks are reviewed on a recurring schedule — acceptance is not permanent.</p>
+    <Callout variant="orange">The security team identifies and scores risks. The <strong>business</strong> owns and accepts them. If the CISO is accepting risks on behalf of the business, the governance model is broken — risk acceptance is a business decision, not a security decision.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 1 · Lesson 3" title="Risk Scoring Methodologies" tags={[{label:"Framework",type:"fw"},{label:"Applied",type:"tip"}]} searchData="risk scoring methodology qualitative quantitative heat map FAIR factor analysis information risk likelihood impact matrix">
+    <div class="section-label">Qualitative scoring</div>
+    <p>The most common approach in enterprise settings: risks are rated on ordinal scales (e.g., Low/Medium/High or 1–5) for both likelihood and impact. Results are plotted on a <strong>risk heat map</strong> for executive communication.</p>
+    <ul class="bullet">
+      <li><strong>Advantages:</strong> Fast, intuitive, easy to explain to non-technical stakeholders</li>
+      <li><strong>Disadvantages:</strong> Subjective, inconsistent across raters, difficult to compare risks precisely</li>
+    </ul>
+
+    <div class="section-label">Quantitative scoring (FAIR)</div>
+    <p><strong>FAIR (Factor Analysis of Information Risk)</strong> is the leading quantitative risk model. It expresses risk in financial terms — annualized loss expectancy — by decomposing risk into measurable factors:</p>
+    <ul class="bullet">
+      <li><strong>Loss Event Frequency:</strong> How often does the threat agent contact the asset × how often does contact result in a loss event</li>
+      <li><strong>Loss Magnitude:</strong> Primary losses (response costs, replacement) + secondary losses (regulatory fines, reputation damage, litigation)</li>
+    </ul>
+    <Callout variant="green">Most organizations use qualitative scoring for day-to-day risk management and reserve quantitative (FAIR) analysis for high-stakes decisions — e.g., justifying a $5M security investment to the board by demonstrating the expected annual loss reduction.</Callout>
+    <div class="lesson-refs">
+      <span class="refs-label">See also</span>
+      <a class="ref-link" href="https://www.fairinstitute.org/" target="_blank">FAIR Institute</a>
+      <a class="ref-link" href="https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final" target="_blank">NIST SP 800-30 (Risk Assessment)</a>
+    </div>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 1 · Lesson 4" title="Integration with Incident Response" tags={[{label:"Process",type:"tip"}]} searchData="risk register incident response CIRP CINC referral systemic condition post-mortem remediation">
+    <p>The CINC field <strong>"Risk Register Referral?"</strong> is the formal bridge between incident response and risk management. When an incident reveals a systemic condition — not just a one-time event — the IR team creates a risk register entry.</p>
+    <ul class="bullet">
+      <li><strong>Example:</strong> A phishing incident reveals that the organization has no VIP spoofing detection → risk register entry for "Executive impersonation detection gap"</li>
+      <li><strong>Example:</strong> A DDoS attack reveals no mitigation capability → risk register entry for "DDoS mitigation posture"</li>
+      <li><strong>Not a referral:</strong> A single malware detection that was caught and contained by existing controls — the control worked; no systemic gap was revealed</li>
+    </ul>
+    <Callout variant="orange">The risk register referral transforms incident response from a reactive function into a strategic input. Without this link, the same systemic conditions produce the same incidents repeatedly, and leadership never gains visibility into the pattern.</Callout>
+  </LessonCard>
+
+</section>
+</BaseLayout>

@@ -15,6 +15,7 @@ function isModuleActive(modulePaths: string[]): boolean {
 
 const m1Paths = ['/m1-strategy', '/m1-strategy/t1-composition', '/m1-strategy/t2-threat-objectives', '/m1-strategy/t3-departmental-org', '/m1-strategy/t4-talent-management', '/m1-strategy/t5-cti'];
 const m2Paths = ['/m2-operations', '/m2-operations/t1-architecture', '/m2-operations/t2-cirp', '/m2-operations/t3-cirp-examples'];
+const m3Paths = ['/m3-assurance', '/m3-assurance/t1-risk-register', '/m3-assurance/t2-compliance-policy'];
 const refPaths = ['/glossary'];
 ---
 <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">☰</button>
@@ -38,6 +39,14 @@ const refPaths = ['/glossary'];
       <a href={`${base}/m2-operations/t1-architecture`} class={isActive('/m2-operations/t1-architecture') ? 'active' : ''}>T1 · Architecture and Automation</a>
       <a href={`${base}/m2-operations/t2-cirp`} class={isActive('/m2-operations/t2-cirp') ? 'active' : ''}>T2 · Incident Response (CIRP)</a>
       <a href={`${base}/m2-operations/t3-cirp-examples`} class={isActive('/m2-operations/t3-cirp-examples') ? 'active' : ''}>T3 · CIRP Examples</a>
+    </div>
+  </div>
+  <div class={`nav-section ${isModuleActive(m3Paths) ? 'expanded' : ''}`}>
+    <div class="nav-section-label" data-nav-toggle>Module 03 — Assurance</div>
+    <div class="nav-links">
+      <a href={`${base}/m3-assurance`} class={isActive('/m3-assurance') ? 'active' : ''}>Overview</a>
+      <a href={`${base}/m3-assurance/t1-risk-register`} class={isActive('/m3-assurance/t1-risk-register') ? 'active' : ''}>T1 · Risk Register</a>
+      <a href={`${base}/m3-assurance/t2-compliance-policy`} class={isActive('/m3-assurance/t2-compliance-policy') ? 'active' : ''}>T2 · Compliance &amp; Policy</a>
     </div>
   </div>
   <div class={`nav-section ${isModuleActive(refPaths) ? 'expanded' : ''}`}>
