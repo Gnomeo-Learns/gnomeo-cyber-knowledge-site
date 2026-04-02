@@ -1,6 +1,6 @@
-# CS8803 Enterprise Cybersecurity Management — Reference Site
+# CS8833 Enterprise Cybersecurity Management — Reference Site
 
-Personal reference website for Georgia Tech CS8803 / CS6239 (Enterprise Cybersecurity Management, Prof. Jerry Perullo). Built with [Astro](https://astro.build) and deployed via GitHub Pages.
+Personal reference website for Georgia Tech CS8833 / CS6239 (Enterprise Cybersecurity Management, Prof. Jerry Perullo). Built with [Astro](https://astro.build) and deployed via GitHub Pages.
 
 ## Local Development
 

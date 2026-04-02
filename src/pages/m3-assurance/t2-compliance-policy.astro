@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import LessonCard from '../../components/LessonCard.astro';
 import Callout from '../../components/Callout.astro';
 ---
-<BaseLayout title="T2: Compliance &amp; Policy — CS8803 Reference" currentPath="/m3-assurance/t2-compliance-policy">
+<BaseLayout title="T2: Compliance &amp; Policy — CS8833 Reference" currentPath="/m3-assurance/t2-compliance-policy">
 
 <section class="topic">
   <div class="topic-header">
@@ -75,6 +75,123 @@ import Callout from '../../components/Callout.astro';
       <li><strong>Gap remediation:</strong> Identified control gaps become risk register entries with remediation timelines — auditors want to see progress, not perfection</li>
     </ul>
     <Callout variant="orange">The security automation team (Module 2, T1L8) is the key enabler for continuous audit readiness. Every manual evidence collection task is a candidate for automation — and automated evidence is more trustworthy to auditors than manually assembled screenshots.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 2 · Lesson 5" title="The Chain of Third-Party Risk Management" tags={[{label:"Framework",type:"fw"},{label:"Key Terms",type:"def"}]} searchData="TPRM third party risk management chain trust agreements tests enforcement board directors regulators customers investors insurers internal audit SOC2 SOX risk appetite IIA three lines">
+    <div class="section-label">Trust as a Chain</div>
+    <p>Every business relationship is underpinned by a chain of <strong>agreements, tests, and enforcement</strong>. This chain extends from government regulators on one end to individual security practitioners on the other, with layers of oversight in between.</p>
+
+    <div class="section-label">The Full Chain</div>
+    <ul class="bullet">
+      <li><strong>Government → Company:</strong> Agreement = laws and regulations. Tests = regulatory examinations (annual + spot exams). Enforcement = fines, criminal penalties, licensure revocation.</li>
+      <li><strong>Customers, Investors, Insurers → Company:</strong> Agreement = contracts (negotiable, unlike laws). Tests = SOC 2 reports, attestations, security ratings, right-to-audit clauses. Enforcement = commercial choice (they can leave), civil penalties for contract breach.</li>
+      <li><strong>Board of Directors → Senior Management:</strong> Agreement = risk appetite statement, corporate governance policies. Tests = external audit (board-nominated auditors test IT general controls including cybersecurity), internal governance reviews. Enforcement = performance management, compensation adjustments (cybersecurity metrics can be tied to CEO compensation).</li>
+      <li><strong>Senior Management → CISO Organization:</strong> Agreement = job descriptions, department charter, strategy. Tests = internal audit (third line of defense). Enforcement = performance management.</li>
+      <li><strong>Security Assurance → Engineering/Operations:</strong> Agreement = security policies (SESP, acceptable use, etc.). Tests = SAST, DAST, red teaming, vulnerability scanning, SLA tracking. Enforcement = risk register escalation, SLA breach reporting.</li>
+    </ul>
+
+    <div class="section-label">Key Dynamics</div>
+    <ul class="bullet">
+      <li><strong>Laws are not negotiable</strong> after legislation, but they <em>are</em> influenceable during the legislative process. Security leaders should engage with policymakers — results may take 2-5 years but the impact is lasting.</li>
+      <li><strong>Contracts are immediately negotiable</strong> — security leaders need a seat at the table during contract negotiation to prevent the company from agreeing to unsustainable security commitments.</li>
+      <li><strong>All agreements are subject to interpretation</strong> — document your interpretation of regulations proactively, before a dispute arises. Test interpretations with counterparties in advance rather than in a courtroom.</li>
+    </ul>
+    <Callout variant="orange">Security leaders should collaborate with internal audit proactively. Share themes you're focused on and areas of known weakness — auditors often appreciate the input and can align their plans accordingly. But respect their independence: they make the final call on what to audit.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 2 · Lesson 6" title="Questionnaires" tags={[{label:"Practical",type:"tip"},{label:"Process"}]} searchData="questionnaire VSAQ security assessment vendor evaluation customer inbound SOC2 controls attestation startup sales">
+    <div class="section-label">The Questionnaire Reality</div>
+    <p>Customer security questionnaires are a fact of life, especially for startups selling to enterprises. Expect 200-300 question questionnaires regularly. Proactive attestations like SOC 2 reports can satisfy ~80% of inbound questionnaires, but some customers insist on their own bespoke assessment regardless.</p>
+
+    <div class="section-label">What Questionnaires Ask About</div>
+    <p>Questionnaires generally cover security controls and policies. Examples from real assessment frameworks (like the VSAQ):</p>
+    <ul class="bullet">
+      <li>Do you conduct internal audits of your security and privacy program?</li>
+      <li>Do you have a program ensuring security of HR processes?</li>
+      <li>Do you have specific policies (acceptable use, data security, encryption, etc.)?</li>
+      <li>Are policies distributed to employees with sign-off tracking?</li>
+    </ul>
+
+    <div class="section-label">Responding to Questionnaires</div>
+    <p>Many questions can be satisfied by mapping to existing documentation and processes you already have. Some gaps will be easy to close (create a document). Others may require significant investment (implementing 24×7 monitoring). Honest responses are essential — answer yes or no truthfully. If the answer is no and you believe it's not a security problem, say so and defend your position. Possible outcomes:</p>
+    <ul class="bullet">
+      <li>The customer doesn't actually care and was just checking a box</li>
+      <li>The customer accepts your other compensating controls</li>
+      <li>The customer gives you a timeline to implement the missing control and proceeds with business in the interim</li>
+    </ul>
+    <Callout variant="green">Questionnaires are an input to your policy creation process. If you keep getting asked "do you have X policy?" and you don't, that's a signal to create one — not to lie about having one.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 2 · Lesson 7" title="Policy Guiding Principles" tags={[{label:"Principle"},{label:"Practical",type:"tip"}]} searchData="policy guiding principles conserve syllables 80 percent compliance must shall should awareness training duplication consolidation single document revision">
+    <div class="section-label">Principles for Writing Effective Policy</div>
+    <ul class="bullet">
+      <li><strong>Conserve syllables.</strong> People's attention span for policy is finite. Every word they read should matter. Cut flowery legalese — it dilutes the message.</li>
+      <li><strong>80% compliance before you ratify.</strong> Don't publish a policy you know you'll wildly fail Day 1. Socialize, educate, provide tools, and test informally. When you're roughly 80% compliant, ratify the policy while driving toward 100%.</li>
+      <li><strong>Don't write aspirational fiction.</strong> Never put something in policy just because it sounds good if you don't actually do it. It may pass a shallow audit, but any real test will expose the gap — and now you're both insecure and dishonest.</li>
+      <li><strong>It's okay to say no.</strong> When a questionnaire asks "do you do X?" the valid answers are yes and no. No doesn't have to be followed by an apology — it can be followed by "and here's why that's acceptable."</li>
+      <li><strong>Organize by audience breadth.</strong> Put policies affecting all employees first (acceptable use), then progressively narrower audiences (endpoint security → IT, software engineering policy → developers, security team policy → CISO org).</li>
+      <li><strong>Tie awareness training to policy.</strong> Don't teach generic cybersecurity trivia — teach your actual policies, especially the non-obvious requirements. You can't enforce what people don't know about.</li>
+      <li><strong>Eliminate duplication.</strong> If the same policy appears in both the security policy and the HR handbook, they <em>will</em> diverge over time. Use pointers: one authoritative source, everything else references it.</li>
+      <li><strong>"Must" vs. "shall" vs. "should."</strong> Use "must" when you mean it — auditors love it because it's testable. Use "shall" or "should" when compliance is recommended but not mandatory in every case. Be deliberate about the choice.</li>
+      <li><strong>Be able to explain the "why."</strong> For every policy statement, you should be able to articulate what threat it mitigates. If you can't, the policy statement undermines the credibility of everything around it.</li>
+      <li><strong>Consolidate into one document.</strong> Use sections/headings for individual policy areas. One document means one revision cycle, one approval process, and no stale orphaned policies that haven't been reviewed in years.</li>
+    </ul>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 2 · Lesson 8" title="Policy Components" tags={[{label:"Framework",type:"fw"},{label:"Practical",type:"tip"}]} searchData="policy components acceptable use social media identity management access control data security encryption endpoint cloud networking domain names TPRM software engineering vendor management BCP DR change control">
+    <div class="section-label">Security Policy Components (Ordered by Audience Breadth)</div>
+    <ul class="bullet">
+      <li><strong>1. Acceptable Use Policy:</strong> Applies to every employee — internet use, personal computing separation, removable media, expectations of privacy. (See Lesson 9 for deep dive.)</li>
+      <li><strong>2. Social Media Policy:</strong> Official accounts management, what employees can share publicly, password management for shared accounts, third-party management tools.</li>
+      <li><strong>3. Identity Management Policy:</strong> Centralized IDP usage, provisioning/deprovisioning procedures, authoritative identity source.</li>
+      <li><strong>4. Access Control Policy:</strong> Entitlements, system restrictions, IDP integration for fine-grained authorization.</li>
+      <li><strong>5. Data Security Policy:</strong> Data classification (public / confidential / strictly confidential), encryption requirements per classification, clean desk policy tied to classification levels.</li>
+      <li><strong>6. Encryption Policy:</strong> Cryptographic standards and protocols, tokenization strategy, key management, certificate lifecycle. More technical, updated more frequently.</li>
+      <li><strong>7. Endpoint Security Policy:</strong> What must be on every endpoint — targeted at IT teams managing laptops and desktops.</li>
+      <li><strong>8. End-User Computing Security Policy:</strong> How user IDs and email are configured — IT-centric.</li>
+      <li><strong>9. Corporate Systems Policy:</strong> Server and infrastructure standards — targeted at a smaller group of system administrators.</li>
+      <li><strong>10. Cloud / Networking / Domain Name Policy:</strong> Domain registration practices, internal vs. external DNS, public information exposure — may affect only 10 people in even large organizations.</li>
+      <li><strong>11. Third-Party Risk Management Policy:</strong> Security screening requirements before onboarding vendors.</li>
+      <li><strong>12. Software Engineering Security Policy (SESP):</strong> Secure coding requirements for developers. (See Topic 4 for full coverage.)</li>
+      <li><strong>13. Security Team Policy:</strong> Governs the CISO organization itself — training requirements, mandate to maintain CIRP and RAMP, operational procedures.</li>
+    </ul>
+
+    <div class="section-label">Non-Security Policies Worth Knowing</div>
+    <ul class="bullet">
+      <li><strong>Policy Policy:</strong> How policies themselves are created, approved, reviewed, and retired. Establish this first, organization-wide.</li>
+      <li><strong>Change Control:</strong> Usually operational, not security — but impacts security. Ensure developers can't push code to production unilaterally.</li>
+      <li><strong>Anti-Trust:</strong> Legal will own this. Be aware of it for threat intelligence sharing with competitors — you need to know what topics to avoid.</li>
+      <li><strong>Know Your Customer / Anti-Money Laundering:</strong> Compliance may ask security to block geographic regions or detect sanctioned-party activity.</li>
+      <li><strong>Code of Conduct:</strong> Should dovetail with your acceptable use policy.</li>
+      <li><strong>Business Continuity (BCP) / Disaster Recovery (DR):</strong> BCP = humans (office evacuation, remote work). DR = machines (datacenter failover, cloud recovery). Security may or may not own these — be aware of them regardless.</li>
+      <li><strong>Patch Management:</strong> Use the risk register and SLAs for exploitable vulnerabilities. The patch management policy covers proactive, routine patching of all available updates.</li>
+      <li><strong>Physical Security:</strong> Increasingly converging with cyber. If you manage both, harmonize the approach — threat objectives, risk registers, and incident management apply to physical security too.</li>
+    </ul>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 2 · Lesson 9" title="Deep Dive: Acceptable Use Policy" tags={[{label:"Practical",type:"tip"},{label:"Applied"}]} searchData="acceptable use policy AUP guiding principles capability permission business personal computing shadow IT purchasing removable media mobile BYOD home computing privacy background checks travel high risk jurisdiction">
+    <div class="section-label">Guiding Principles</div>
+    <ul class="bullet">
+      <li><strong>"Capability does not imply permission."</strong> When controls break or a site hasn't been categorized, employees are not suddenly authorized to do whatever they want. The spirit of the policy carries, not just its technical enforcement.</li>
+      <li><strong>Collective responsibility.</strong> Every employee has a role in security — make this explicit.</li>
+    </ul>
+
+    <div class="section-label">Business vs. Personal Computing Separation</div>
+    <p>This is the topic hammered hardest in security awareness training. Employees should not put business data on home computers or do personal activities on business equipment. But you have to give them a practical path: "use your phone on our Wi-Fi for personal tasks." If you create rules without alternatives, people will simply ignore them.</p>
+
+    <div class="section-label">Key AUP Topics</div>
+    <ul class="bullet">
+      <li><strong>Shadow IT / Purchasing:</strong> Don't provision your own cloud services or purchase computing equipment independently. Redirect all provisioning through a central process.</li>
+      <li><strong>Removable media:</strong> Encrypting USB drives protects against loss but not against intentional insider theft. Blocking write access entirely is increasingly practical — people rarely need USB drives in the age of cloud storage.</li>
+      <li><strong>Mobile devices / BYOD:</strong> Define what's accessible from mobile, whether BYOD is permitted, what enrollment and management requirements apply, whether the company can remotely wipe corporate data.</li>
+      <li><strong>Home computing:</strong> Provide guidance (often "should" rather than "must") about securing home Wi-Fi, locking screens, restricting family access to work devices, and home printing policies.</li>
+      <li><strong>Expectation of privacy:</strong> State clearly that email, web activity, and communications on corporate resources may be monitored. Get this on paper before there's a dispute.</li>
+      <li><strong>Background checks:</strong> Disclose any recurring background check programs in the policy.</li>
+      <li><strong>Communication tools:</strong> Define approved channels (Slack, email, etc.) and behavioral expectations. If employees should only write things they'd defend in court, say so.</li>
+      <li><strong>Content filtering:</strong> Explain what's blocked and why (illegal content, adult content, etc.).</li>
+      <li><strong>Travel:</strong> Define high-risk jurisdictions (consider using extradition treaty status as the criterion — countries without extradition agreements are where cybercriminals operate with impunity). For travel to high-risk areas: don't bring corporate equipment. If you must, use a loaner with nothing on the hard drive, change passwords upon return, wipe the device after the trip.</li>
+    </ul>
+    <Callout variant="green">The travel policy pattern: "Don't do X. But if you must, then do Y. And if you absolutely must do Z, then here's how to do it safely." This waterfall approach gives people practical compliance paths instead of just a wall of prohibitions.</Callout>
   </LessonCard>
 
 </section>

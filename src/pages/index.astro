@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-<BaseLayout title="CS8803 — Enterprise Cybersecurity Management Reference" currentPath="/">
+<BaseLayout title="CS8833 — Enterprise Cybersecurity Management Reference" currentPath="/">
 
 <div class="legend-bar">
   <div class="legend-title">Guide Key</div>
@@ -23,7 +23,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <h2>Course Modules</h2>
 </div>
 
-<p style="margin-bottom:1.5rem;">Personal reference guide for Georgia Tech CS8803 / CS6239 — Enterprise Cybersecurity Management, taught by Prof. Jerry Perullo (former CISO, ICE/NYSE). Content covers strategy, cybersecurity operations, threat objectives, incident response, architecture, CTI, and more.</p>
+<p style="margin-bottom:1.5rem;">Personal reference guide for Georgia Tech CS8833 / CS6239 — Enterprise Cybersecurity Management, taught by Prof. Jerry Perullo (former CISO, ICE/NYSE). Content covers strategy, cybersecurity operations, threat objectives, incident response, architecture, CTI, and more.</p>
 
 <div class="overview-grid">
   <a href={`${base}/m1-strategy`} class="overview-card">
@@ -39,7 +39,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   <a href={`${base}/m3-assurance`} class="overview-card">
     <div class="card-code">Module 03</div>
     <div class="card-title">Security Assurance</div>
-    <div class="card-desc">Second-line defense: risk register management (RAMP, SLAs, urgency scoring, reporting) and GRC compliance (chain of TPRM, policy writing, corporate policy components).</div>
+    <div class="card-desc">Second-line defense: risk register management, GRC compliance and policy, reporting and metrics, application security, and red teaming.</div>
   </a>
 </div>
 
@@ -66,6 +66,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
         <div class="module-label">Module 3 — Security Assurance</div>
         <a href={`${base}/m3-assurance/t1-risk-register`}>T1 · GRC – Risk Register Management</a>
         <a href={`${base}/m3-assurance/t2-compliance-policy`}>T2 · GRC – Compliance and Corporate Policy</a>
+        <a href={`${base}/m3-assurance/t3-reporting-metrics`}>T3 · GRC – Reporting &amp; Metrics</a>
+        <a href={`${base}/m3-assurance/t4-appsec`}>T4 · Application Security</a>
+        <a href={`${base}/m3-assurance/t5-red-teaming`}>T5 · Red Teaming</a>
       </div>
       <div>
         <div class="module-label">References</div>

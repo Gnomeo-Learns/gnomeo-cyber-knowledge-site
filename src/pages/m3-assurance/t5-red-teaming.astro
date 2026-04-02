@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LessonCard from '../../components/LessonCard.astro';
+import Callout from '../../components/Callout.astro';
+---
+<BaseLayout title="T5: Red Teaming — CS8833 Reference" currentPath="/m3-assurance/t5-red-teaming">
+
+<section class="topic">
+  <div class="topic-header">
+    <div class="topic-num">T5</div>
+    <h3>Red Teaming</h3>
+  </div>
+
+  <LessonCard code="Mod 3 · Topic 5 · Lesson 1" title="Red Team Etymology and the Threat Objective Lifecycle" tags={[{label:"Definition",type:"def"},{label:"Framework",type:"fw"}]} searchData="red team etymology ethical hacker simulated adversary threat objective lifecycle risk identification RAMP SERP kill chain residual risk">
+    <div class="section-label">What Is a Red Team?</div>
+    <p><strong>Red teaming</strong> originates from 1960s Department of Defense terminology. A red team is a <strong>simulated adversary</strong> — ethical hackers who do everything a real attacker would, stopping just short of achieving actual threat objectives. They demonstrate they <em>could</em> steal data or shut down systems, but don't actually do it. Red teams can be internal employees or third-party firms.</p>
+
+    <div class="section-label">Where Red Teaming Fits</div>
+    <p>Red teaming is one of the best methods to <strong>identify risks</strong> and set <strong>residual likelihood</strong> values on threat objectives. The flow:</p>
+    <ul class="bullet">
+      <li><strong>Threat objectives</strong> define what you care about (data theft, sabotage, extortion)</li>
+      <li><strong>Inherent risk</strong> is set based on threat intelligence and likelihood assessment</li>
+      <li>The <strong>red team tests</strong> whether existing controls actually prevent those objectives from being achieved</li>
+      <li>Findings feed into the <strong>RAMP</strong> (Risk Assessment Management Procedure) and become risk register entries</li>
+      <li>At the same time, the engagement <strong>exercises the CIRP</strong> — your incident response team gets to practice detecting and responding to realistic adversary behavior</li>
+    </ul>
+    <Callout variant="green">Red teaming transforms the threat objective lifecycle from theoretical to empirical. Instead of estimating residual risk, you measure it by seeing what an adversary can actually accomplish.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 5 · Lesson 2" title="Penetration Testing vs. Red Teaming" tags={[{label:"Key Terms",type:"def"},{label:"Practical",type:"tip"}]} searchData="penetration testing pen test red team comparison fixed price automated tools vulnerability known zero day scope awareness">
+    <div class="section-label">Key Differences</div>
+    <ul class="bullet">
+      <li><strong>Duration:</strong> Pen tests are fixed-term (days to a week). Red team engagements run 3-4+ weeks to allow slower, more realistic adversary behavior.</li>
+      <li><strong>Tools:</strong> Pen testers use commercial, off-the-shelf scanning tools. Red teamers build custom tools, repurpose non-security applications creatively, and adapt on the fly.</li>
+      <li><strong>Awareness:</strong> Pen tests are usually announced — everyone knows they're happening, often scheduled during a safe window. Red team engagements operate in the dark — only a minimal group of people know the engagement is active.</li>
+      <li><strong>Vulnerability discovery:</strong> Pen testers scan for <em>known</em> vulnerabilities and attempt to exploit them. Red teamers discover <em>new</em> vulnerabilities, including logic flaws and process weaknesses that no scanner would find. Red teams are the groups that often discover zero-day vulnerabilities.</li>
+      <li><strong>Targets:</strong> Pen test targets are predefined and scoped tightly. Red team targets are fluid — they have latitude to find any path to the objective.</li>
+      <li><strong>Methodology:</strong> Pen testing is sequential (enumerate → identify → exploit). Red teaming is parallel — phishing, scanning, and insider-perspective testing may all happen simultaneously.</li>
+    </ul>
+    <Callout variant="orange">Pen testing is like a building inspection — checking known standards against a checklist. Red teaming is like hiring someone to break in and steal the safe — they'll find paths you never anticipated.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 5 · Lesson 3" title="Trends in Red Teaming" tags={[{label:"Framework",type:"fw"},{label:"New (2024+)",type:"new"}]} searchData="trends threat objective guided intelligence led adversary emulation tradecraft kill chain attribution TIBER regulatory">
+    <div class="section-label">Threat Objective-Guided Testing</div>
+    <p>Instead of simply saying "break in," modern red team engagements are scoped against specific threat objectives: <em>exfiltrate 100 sensitive customer records</em>, or <em>gain root access to the trading platform</em>. This forces management to articulate what they're actually worried about — and every finding from the engagement is automatically contextualized within a risk that governance has already deemed important. Regulators are increasingly adopting this approach (see frameworks like TIBER-EU).</p>
+
+    <div class="section-label">Intelligence-Led Engagements</div>
+    <p>Red teams consume <strong>cyber threat intelligence</strong> to inform their approach: recent breach reports from peer organizations, forensic analyses of real-world attacks, and TTPs attributed to relevant threat actors. Instead of testing in a vacuum, they replay what actually worked against similar targets last month.</p>
+
+    <div class="section-label">Adversary Emulation — Index on Tradecraft, Not Attribution</div>
+    <p>While "adversary emulation" is trending, it's more effective to focus on <strong>how</strong> adversaries operate (tradecraft) rather than <strong>who</strong> they are (attribution). Strong adversaries constantly adopt the latest tools — what they did last week isn't what they'll do next week. By indexing on tradecraft, you also capture techniques from unattributed attacks: you don't know who did it, but you can emulate exactly how they did it.</p>
+    <Callout variant="green">Think of adversary emulation as studying a silhouette — you don't need to know who it is to replicate what they did. And you'll catch unattributed techniques that named-group emulation would miss.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 5 · Lesson 4" title="Methodology and Assumed Breach" tags={[{label:"Framework",type:"fw"},{label:"Practical",type:"tip"}]} searchData="assumed breach methodology kill chain parallel testing compressed timeline insider threat phishing reconnaissance lateral movement privilege escalation command control C2">
+    <div class="section-label">Why Methodology Matters</div>
+    <p>Every red team needs a documented methodology for three reasons: (1) onboard new team members quickly, (2) set clear expectations with stakeholders before an engagement begins, and (3) state the methodology in the final report so findings can be interpreted in context.</p>
+
+    <div class="section-label">The Time Problem</div>
+    <p>Real adversaries follow the kill chain sequentially — reconnaissance takes weeks, phishing may require multiple attempts over a month, and post-compromise movement is deliberately slow to avoid detection. Red teams can't afford this timeline — the talent is expensive and the organization needs results. This is where <strong>assumed breach</strong> comes in.</p>
+
+    <div class="section-label">Assumed Breach Methodology</div>
+    <p>Assumed breach compresses the timeline by <strong>testing multiple kill chain stages in parallel</strong>:</p>
+    <ul class="bullet">
+      <li><strong>Day 1:</strong> IT provides the red team with a standard employee laptop, username, and unprivileged password — simulating a successful phish. Passive reconnaissance begins immediately from this insider position.</li>
+      <li><strong>Parallel track 1:</strong> A separate team performs external reconnaissance, attack surface scanning, and phishing attempts to test whether the "assumed" initial access would actually succeed.</li>
+      <li><strong>Parallel track 2:</strong> IT installs an unknown beacon package on a server to test whether C2 (command and control) traffic would be detected — skipping ahead to a step that normally requires completing all previous stages.</li>
+      <li><strong>Reassembly:</strong> When all parallel tracks complete, the team evaluates whether the full kill chain is achievable end-to-end. If no stage was a complete failure, the entire chain is demonstrated — just tested in parallel rather than sequentially.</li>
+    </ul>
+    <Callout variant="green">Assumed breach doesn't mean the engagement is less rigorous — it means you're testing every link in the chain simultaneously. If any link is broken, the full-chain narrative falls apart, and that's a legitimate defensive win worth documenting.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 5 · Lesson 5" title="IFF, Purple Teaming, and Ralph & Sam" tags={[{label:"Process"},{label:"Practical",type:"tip"},{label:"Key Terms",type:"def"}]} searchData="IFF identification friend foe deconfliction protocol purple team blue team collaboration wash up readout false positive Ralph Sam sheepdog coyote cartoon containment escalation FBI">
+    <div class="section-label">IFF — Identification Friend or Foe</div>
+    <p>When the red team operates covertly, there's a real risk that defenders escalate to law enforcement, trigger breach notifications, or call the CEO — all expensive mistakes when the "attacker" is your own team. The <strong>IFF (Identification Friend or Foe) protocol</strong> prevents this.</p>
+    <p>An IFF protocol document specifies:</p>
+    <ul class="bullet">
+      <li><strong>When to invoke:</strong> Before escalating any incident to severity 2+, or before engaging external parties</li>
+      <li><strong>Communication channel:</strong> A dedicated Slack channel, Signal group, or phone tree that reaches red team members 24/7</li>
+      <li><strong>Information to provide:</strong> IP addresses, hostnames, or other artifacts the red team can quickly confirm or deny</li>
+      <li><strong>Critical rule:</strong> Continue investigation in parallel — don't stop forensics work while awaiting IFF confirmation. Only pause the escalation itself.</li>
+      <li><strong>Containment is always acceptable:</strong> Isolating a compromised endpoint from the network is fine even before IFF confirmation. In a mature program, it's rarely a real employee's production machine — and if the CFO's laptop gets briefly disconnected once in five years because the blue team caught the red team, that's an advertisement for an effective security program, not a failure.</li>
+    </ul>
+    <Callout variant="orange">Defenders who catch the red team should be <strong>rewarded</strong>, not made to feel they wasted their time. If finding the red team feels like a punishment, people will stop looking.</Callout>
+
+    <div class="section-label">Purple Teaming</div>
+    <p>Purple teaming is red and blue working together. But "shoulder surfing" — having the blue team watch every red team attempt in real-time — is boring and unproductive (most attempts fail). Better approach:</p>
+    <ul class="bullet">
+      <li>Let the blue team know a red team engagement is active</li>
+      <li>Let the red team work independently, then ping the blue team: <em>"I just did X — check your logs, see if you detected me"</em></li>
+      <li>Collaborate to develop new detections based on what the red team was able to do undetected</li>
+    </ul>
+
+    <div class="section-label">Ralph and Sam — The Post-Engagement Wash-Up</div>
+    <p>Named after the Looney Tunes cartoon where the coyote (Ralph) and sheepdog (Sam) clock in as friends, fight all day at work, then clock out as friends again. The principle: <strong>once the engagement ends, there is no adversarial relationship</strong>.</p>
+    <p>The wash-up (readout) meeting must include <strong>all stakeholders</strong>: blue team defenders, software engineers, cloud engineers, IT — anyone whose area was tested. This allows:</p>
+    <ul class="bullet">
+      <li>Real-time dispute resolution: <em>"That was a honeypot, not a real system"</em> or <em>"Actually, that 'test system' you dismissed was production"</em></li>
+      <li>Collaborative identification of remediation actions — engineers may say <em>"We can fix that with a config change tonight"</em></li>
+      <li>GRC takes notes and generates risk register entries that have already been vetted by the people who'll remediate them</li>
+    </ul>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 5 · Lesson 6" title="Reporting Red Team Results" tags={[{label:"Framework",type:"fw"},{label:"Practical",type:"tip"}]} searchData="red team reporting heatmap assumed breach kill chain governance board consolidate engagement results impact exposure FTE root access">
+    <div class="section-label">The Consolidation Challenge</div>
+    <p>If you run red team engagements against every major threat objective, a single governance cycle may cover 3-6 engagements. Reading through multiple detailed reports during a board meeting is impossible. The solution: consolidate results into a <strong>single visual</strong> that captures the essential findings from all engagements.</p>
+
+    <div class="section-label">Red Team Results Heatmap</div>
+    <p>This specialized heatmap plots red team findings on two axes:</p>
+    <ul class="bullet">
+      <li><strong>Y-axis (Impact):</strong> How far toward the threat objective was the team able to progress? At the top: threat objective fully accomplished (data stolen, system shut down). Lower: partial progress (access gained but objective not achievable).</li>
+      <li><strong>X-axis (Assumed Breach Level):</strong> How much assumed access was required? Moving right-to-left:</li>
+    </ul>
+    <ul class="bullet">
+      <li><strong>Public (far right):</strong> Accomplished from the internet with no insider access — the worst-case scenario. "From a Holiday Inn," as the saying goes.</li>
+      <li><strong>Customer/Vendor:</strong> Required customer-level or vendor-level access. Still alarming — these are external parties whose security you don't control.</li>
+      <li><strong>Full-Time Employee (FTE):</strong> Required insider access equivalent to a standard employee (phish victim or insider threat). Concerning but less so than public access.</li>
+      <li><strong>Privileged User:</strong> Required software engineer or administrator-level access. Less surprising — engineers inherently have significant access.</li>
+      <li><strong>Root (far left):</strong> Required root/admin access. Largely unsurprising that root can accomplish anything, but worth documenting if even root access should have been limited by controls.</li>
+    </ul>
+    <p>Governance reads the heatmap like any risk visual: <strong>top-right is alarming</strong> (high impact, minimal assumed access), <strong>bottom-left is expected</strong> (low impact, high privilege required). Multiple engagement results can be plotted as numbered data points on the same heatmap, enabling comparison and trend analysis across engagements.</p>
+    <Callout variant="green">This heatmap builds in the critical footnotes about assumed breach automatically. A finding in the "FTE" column doesn't carry the same urgency as one in the "Public" column — and governance can see that distinction at a glance without reading a 50-page report.</Callout>
+
+    <div class="lesson-refs">
+      <span class="refs-label">See also</span>
+      <a class="ref-link" href="https://attack.mitre.org/" target="_blank">MITRE ATT&CK Framework</a>
+      <a class="ref-link" href="https://www.ecb.europa.eu/paym/cyber-resilience/tiber-eu/html/index.en.html" target="_blank">TIBER-EU — Threat Intelligence-Based Ethical Red Teaming</a>
+    </div>
+  </LessonCard>
+
+</section>
+</BaseLayout>

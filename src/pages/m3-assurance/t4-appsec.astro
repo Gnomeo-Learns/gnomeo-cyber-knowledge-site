@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LessonCard from '../../components/LessonCard.astro';
+import Callout from '../../components/Callout.astro';
+---
+<BaseLayout title="T4: Application Security — CS8833 Reference" currentPath="/m3-assurance/t4-appsec">
+
+<section class="topic">
+  <div class="topic-header">
+    <div class="topic-num">T4</div>
+    <h3>Application Security</h3>
+  </div>
+
+  <LessonCard code="Mod 3 · Topic 4 · Lesson 1" title="Defining Application Security" tags={[{label:"Definition",type:"def"},{label:"Key Terms",type:"def"}]} searchData="appsec application security definition scope COTS open source software engineering TTP assurance">
+    <div class="section-label">What Is AppSec?</div>
+    <p><strong>Application Security (AppSec)</strong> is the set of tactics, techniques, and procedures that the security team uses to secure the output and behaviors of the software engineering organization. Its scope is defined by exactly what your software engineering team does — if they write it, AppSec reviews it.</p>
+
+    <div class="section-label">What's In Scope</div>
+    <ul class="bullet">
+      <li><strong>Proprietary code</strong> developed by your software engineering team — this is the primary focus</li>
+      <li><strong>Open source software</strong> integrated into your applications — a blurred line, since it's third-party code incorporated into first-party products. AppSec typically doesn't review open source line-by-line, but checks versions against databases of known vulnerabilities before integration</li>
+    </ul>
+
+    <div class="section-label">What's Out of Scope</div>
+    <ul class="bullet">
+      <li><strong>COTS (Commercial Off-The-Shelf) software</strong> like Oracle databases or SolarWinds — the closed-source code itself is outside AppSec's remit. Security engineering and architecture handle positioning and protecting these through network controls, segmentation, and monitoring without knowing what's inside the software</li>
+    </ul>
+    <Callout variant="green">AppSec secures what your engineers build. Security architecture secures what your engineers buy. Both are essential, but they require different approaches.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 4 · Lesson 2" title="Software Engineering Security Policy (SESP)" tags={[{label:"Framework",type:"fw"},{label:"Policy"},{label:"Practical",type:"tip"}]} searchData="SESP software engineering security policy SDLC logging input validation secrets management IAM egress HTTP TLS content security policy encryption standards">
+    <div class="section-label">What Is the SESP?</div>
+    <p>The <strong>Software Engineering Security Policy (SESP)</strong> defines the security requirements, standards, and practices for software engineers. It's not just a list of prohibitions — it should provide practical guidance: how to store passwords, which encryption algorithms to use, what logging format to follow. A well-written SESP is genuinely helpful to engineers.</p>
+    <p>The SESP drives a chain: <strong>Policy → Education/Training → Audit → Assurance Tasks → Risk Register entries</strong> for any non-compliance discovered.</p>
+
+    <div class="section-label">Relationship to the SDLC</div>
+    <p>The <strong>SDLC (Software Development Lifecycle)</strong> predates security — it governs languages, repositories, pull request procedures, merge approvals, environment management (dev/test/prod), and code check-in workflows. The SESP builds on the SDLC by adding security-specific requirements. If your organization doesn't have an SDLC yet, the SESP may be the first step toward one.</p>
+
+    <div class="section-label">Key SESP Components</div>
+    <ul class="bullet">
+      <li><strong>Logging standards:</strong> Specify timestamp format (use <code>YYYY-MM-DD</code> to avoid regional ambiguity — "4/11" means April 11 in the US but November 4 in the UK). Specify data format (JSON preferred over delimited text for nested structures and SIEM ingestion). Specify required fields: username, timestamp, IP address, action, result.</li>
+      <li><strong>Input validation:</strong> Require all external input to pass through validation routines before processing. Provide language-specific validation libraries that engineers can call directly.</li>
+      <li><strong>Secrets management:</strong> Define how service account passwords, API keys, and private keys are stored and retrieved. Applications should never contain hard-coded credentials — they should check out secrets from a vault at runtime, with the vault applying rate-limiting, time-of-day checks, and source verification.</li>
+      <li><strong>IAM (Identity and Access Management):</strong> Specify whether applications must use a centralized Identity Provider (IDP) — "Login with Google/Microsoft/Apple" — or may implement local authentication. Define MFA requirements.</li>
+      <li><strong>Architectural requirements:</strong> Require that administrative interfaces are inaccessible from the public internet. Require that any egress calls (application reaching out to the internet) be explicitly declared and approved.</li>
+      <li><strong>HTTP/Web security standards:</strong> Define acceptable TLS versions and cipher suites, Content Security Policy templates, cookie security settings, and third-party content restrictions.</li>
+    </ul>
+    <Callout variant="orange">The logging supplement: inconsistent timestamp formats across applications make investigations exponentially harder. Specifying <code>YYYY-MM-DD</code> in UTC and JSON format in the SESP pays dividends for years — get it right early.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 4 · Lesson 3" title="Top Issues" tags={[{label:"Key Terms",type:"def"},{label:"Practical",type:"tip"}]} searchData="RCE remote code execution SQL injection IDOR XSS SSRF CSRF buffer overflow client attacks server attacks kill chain data theft">
+    <div class="section-label">Remote Code Execution (RCE)</div>
+    <p>RCE is the "holy grail" for attackers — the ability to make a target system execute arbitrary code specified by the attacker. Sources include buffer overflows (memory management exploits), command injection (input evaluated as shell commands), and deserialization vulnerabilities. An RCE finding is almost always a Priority 1.</p>
+
+    <div class="section-label">Data Attacks</div>
+    <ul class="bullet">
+      <li><strong>SQL Injection (SQLi):</strong> Attacker crafts input that gets evaluated as part of a database query, allowing them to dump, modify, or delete data. Prevention: input validation and parameterized queries.</li>
+      <li><strong>Insecure Direct Object Reference (IDOR):</strong> Changing a parameter value (e.g., <code>companyID=500</code> → <code>companyID=501</code>) exposes another user's data. Prevention: <strong>complete mediation</strong> — verify authorization on every data access, not just at login.</li>
+    </ul>
+
+    <div class="section-label">Client Attacks</div>
+    <ul class="bullet">
+      <li><strong>Cross-Site Scripting (XSS):</strong> Attacker injects JavaScript that executes in another user's browser context. Stored XSS (in a forum post) is especially dangerous — it can steal session tokens from any user who views the content. XSS is typically part of a kill chain, not a standalone threat objective achievement.</li>
+      <li><strong>Cross-Site Request Forgery (CSRF):</strong> Co-opts a user's authenticated session to perform actions they didn't intend, particularly dangerous in cloud environments where actions can grant access to third parties.</li>
+    </ul>
+
+    <div class="section-label">Server Attacks</div>
+    <ul class="bullet">
+      <li><strong>Server-Side Request Forgery (SSRF):</strong> Co-opts the server's network access to reach internal resources the attacker shouldn't see. Particularly dangerous in cloud environments where the server can access internal metadata services and adjacent infrastructure.</li>
+    </ul>
+    <Callout variant="green">Why is RCE generally more impactful than XSS? RCE gets you close to accomplishing a threat objective immediately. XSS is almost always just one link in a longer kill chain — it needs additional steps to reach meaningful impact.</Callout>
+
+    <div class="section-label">AppSec Assurance Tasks</div>
+    <p>These are the testing methods used to discover the issues above:</p>
+    <ul class="bullet">
+      <li><strong>Threat Modeling</strong> — cerebral/questionnaire-based review at design time</li>
+      <li><strong>SAST</strong> — Static Application Security Testing (code-level, pre-deployment)</li>
+      <li><strong>DAST</strong> — Dynamic Application Security Testing (runtime, web-focused)</li>
+      <li><strong>SCA</strong> — Software Composition Analysis (open-source/third-party libraries)</li>
+      <li><strong>External sources</strong> — bug bounties, vulnerability scanners, attack surface management</li>
+    </ul>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 4 · Lesson 4" title="Threat Modeling" tags={[{label:"Process"},{label:"Practical",type:"tip"}]} searchData="threat modeling design review questionnaire data classification tokenization encryption egress HSM hardware security module">
+    <div class="section-label">The First Assurance Task</div>
+    <p>Threat modeling is the most cerebral AppSec assurance task — a structured questionnaire and design review performed when an application is first being architected, before significant code is written. It begins with identifying the application owner and then walking through a checklist of security-relevant questions.</p>
+
+    <div class="section-label">Key Threat Modeling Questions</div>
+    <ul class="bullet">
+      <li><strong>What data does this application handle?</strong> Email addresses, phone numbers, SSNs, credit card numbers, health records? Classify the data early so appropriate controls can be designed in rather than bolted on.</li>
+      <li><strong>Where does sensitive data flow?</strong> Document which sub-processes and services access sensitive data, when, and why. Identify opportunities for <strong>tokenization</strong> over traditional encryption.</li>
+      <li><strong>Does the application need egress?</strong> Will it call out to the internet? If so, which specific URLs? Engineers often answer "yes" reflexively — clarify that you mean outbound connections, not inbound requests. Every egress call should be explicitly declared and approved.</li>
+    </ul>
+
+    <div class="section-label">Tokenization vs. Encryption</div>
+    <p>If data like a Social Security Number is only needed rarely (e.g., once during a credit check), consider <strong>tokenization</strong>: replace the real value with a randomly generated substitute, store the mapping in a Hardware Security Module (HSM), and use the token everywhere else. The HSM can enforce rate-limiting, adaptive authentication, and time-of-day restrictions when someone requests the real value. This is far more protective than encryption, where any authorized user can routinely decrypt.</p>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 4 · Lesson 5" title="SAST — Static Application Security Testing" tags={[{label:"Definition",type:"def"},{label:"Practical",type:"tip"}]} searchData="SAST static code analysis IDE plugin real-time false positive shift left development environment">
+    <div class="section-label">How SAST Works</div>
+    <p><strong>Static Application Security Testing (SAST)</strong> reviews source code for security vulnerabilities while it's being written — before the application is compiled or deployed. SAST tools often integrate as <strong>IDE plugins</strong> (e.g., in VS Code), flagging issues in real-time as developers type: "You're taking external input and passing it without validation," for example.</p>
+
+    <div class="section-label">Strengths and Weaknesses</div>
+    <ul class="bullet">
+      <li><strong>Strength:</strong> Catches issues at the earliest possible stage — before code is even checked in</li>
+      <li><strong>Weakness:</strong> No context. SAST doesn't know where the code fits in the application architecture. Input might already be validated upstream, making the finding a false positive. Expect a <strong>high false positive rate</strong> that requires tuning and triage.</li>
+    </ul>
+    <Callout variant="green">SAST works best when your engineers are already using IDE plugins for code quality (linting, formatting). Adding security scanning to an existing workflow creates far less friction than introducing an entirely new tool.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 4 · Lesson 6" title="DAST — Dynamic Application Security Testing" tags={[{label:"Definition",type:"def"},{label:"Practical",type:"tip"}]} searchData="DAST dynamic testing Burp Suite fuzzing web application QA quality assurance IDOR browser runtime">
+    <div class="section-label">How DAST Works</div>
+    <p><strong>Dynamic Application Security Testing (DAST)</strong> tests a running application from the outside — taking the perspective of a web browser. DAST emerged with the shift to web applications and remains heavily web-centric. Tools like <strong>Burp Suite</strong> allow testers to intercept, modify, and replay HTTP requests to probe for vulnerabilities.</p>
+
+    <div class="section-label">Key Capabilities</div>
+    <ul class="bullet">
+      <li><strong>Request interception:</strong> Pause a form submission mid-flight, inspect the underlying data, modify values (like changing a company ID to test for IDOR), then send it</li>
+      <li><strong>Automated fuzzing:</strong> Systematically vary input values — increment IDs, inject special characters, test boundary conditions — and record all responses</li>
+      <li><strong>Runtime context:</strong> Because DAST tests the live application, findings are higher fidelity than SAST — if DAST finds a vulnerability, it's real</li>
+    </ul>
+
+    <div class="section-label">Who Runs DAST?</div>
+    <p>Developers are usually too busy. The security team doesn't scale to thousands of applications. A powerful force multiplier: <strong>train your existing QA/quality assurance teams</strong> to run DAST tools alongside their functional testing. They're already looking for bugs — adding security testing to their workflow leverages existing headcount.</p>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 4 · Lesson 7" title="SCA — Software Composition Analysis" tags={[{label:"Definition",type:"def"},{label:"Practical",type:"tip"}]} searchData="SCA software composition analysis open source third-party libraries vulnerability database false positive lexical analysis">
+    <div class="section-label">How SCA Works</div>
+    <p><strong>Software Composition Analysis (SCA)</strong> examines the third-party libraries and open-source components integrated into your applications, checking versions against databases of known vulnerabilities. It answers: "Are we using any packages with known security flaws?"</p>
+
+    <div class="section-label">Sophistication Levels</div>
+    <ul class="bullet">
+      <li><strong>Basic:</strong> Scans the repository for library files and flags any with known vulnerabilities. Problem: a library in the repo doesn't mean it's actually imported and used.</li>
+      <li><strong>Intermediate:</strong> Performs lexical analysis of the code to confirm the vulnerable library is actually called/imported. Fewer false positives.</li>
+      <li><strong>Advanced:</strong> Identifies not just that a vulnerable library is imported, but whether the <strong>specific vulnerable methods</strong> within that library are actually being called by your code. Dramatically reduces false positives because many libraries have vulnerabilities in functions your application never touches.</li>
+    </ul>
+    <Callout variant="orange">The more sophisticated your SCA tool, the lower the false positive rate. Low-fidelity SCA generates noise that engineers learn to ignore — which means they'll also ignore the real findings. Invest in the best SCA you can afford.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 4 · Lesson 8" title="External Tools and Sources" tags={[{label:"Practical",type:"tip"},{label:"Key Terms",type:"def"}]} searchData="bug bounty vulnerability scanner attack surface management ASM external tools researchers scope rewards zero trust COTS supply chain">
+    <div class="section-label">Bug Bounties</div>
+    <p>Bug bounty programs invite external researchers to test your application's security for monetary rewards. They combine the <strong>cerebral creativity of a red team</strong> with the <strong>scale of automated scanning</strong> — many researchers, all incentivized to be the first to find something. Programs can be public (anyone on the internet) or private (vetted researchers only). Scope documents define what's testable and set rules of engagement: "demonstrate data access with 1-2 rows, don't exfiltrate everything."</p>
+
+    <div class="section-label">Vulnerability Scanning</div>
+    <p>Automated scanners point at URLs or IP addresses and run known exploit attempts. They're fast and scalable but produce false positives and generally operate at the OS/infrastructure level rather than application logic. Vulnerability scanning is a parallel activity to AppSec — it finds known vulnerabilities in deployed environments.</p>
+
+    <div class="section-label">Attack Surface Management (ASM)</div>
+    <p>ASM is vulnerability scanning 2.0. Instead of taking a list of your IPs as input, ASM tools start with your business name or domain and <strong>discover</strong> your attack surface: reverse WHOIS lookups find related domains, DNS enumeration finds subdomains, port scanning identifies services. ASM shows you what attackers see — including assets you may have forgotten about — and maps it all against known vulnerabilities. It can guide not just patching but <strong>architectural decisions</strong> about closing down unnecessary exposure.</p>
+
+    <div class="section-label">Securing COTS / Third-Party Software</div>
+    <p>For commercial software you can't review the code of (SolarWinds, Oracle, etc.), the defense strategy is layered:</p>
+    <ul class="bullet">
+      <li><strong>Contracts:</strong> Require vendors to deliver software free of known defects and backdoors. This is a last-resort remedy — useful after something goes wrong, not preventive.</li>
+      <li><strong>Questionnaires:</strong> Evaluate the vendor's own AppSec program — do they do SAST, threat modeling, etc.?</li>
+      <li><strong>Zero-trust architecture:</strong> Regardless of vendor assurances, put third-party software in a cage — network segmentation, egress controls, monitoring. If the next SolarWinds-style supply chain attack hits, your architecture prevents lateral movement and data exfiltration.</li>
+    </ul>
+    <Callout variant="green">Zero-trust for COTS is the ultimate insurance. When a supply chain breach makes headlines, you want to be the organization that says "that's awful — but our architecture means it can't reach our sensitive data."</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 4 · Lesson 9" title="Bonus Concepts" tags={[{label:"Practical",type:"tip"},{label:"Key Terms",type:"def"}]} searchData="shift left gating CICD segregation of duties RASP continuous integration deployment supply chain shift left boom">
+    <div class="section-label">Shift Left</div>
+    <p>"Shift left" means finding security issues earlier in the engineering process — catching bugs during design (threat modeling) rather than after deployment (bug bounty). While the instinct is sound, <strong>you need testing at every stage</strong>. Earlier findings have more false positives (less context); later findings have higher fidelity (the vulnerability is proven exploitable). A balanced AppSec program covers the full spectrum.</p>
+
+    <div class="section-label">Gating</div>
+    <p>Should you block code from advancing to the next stage until security assurance tasks are completed? It sounds responsible, but <strong>gating can position security as a blocker and cost center</strong>. The preferred approach: run security testing in parallel with development, and only pull the emergency brake when a genuine critical finding is discovered. This requires a strong relationship with the CTO/engineering leadership — work with them to define the approach collaboratively, not unilaterally.</p>
+
+    <div class="section-label">Segregation of Duties in CI/CD</div>
+    <p>In modern CI/CD (Continuous Integration / Continuous Deployment) pipelines, code changes flow rapidly to production. <strong>Segregation of duties</strong> — separating who writes code from who approves and deploys it — remains a classic audit requirement. Mechanisms include pull request approvals via messaging (e.g., Slack-based manager approval), dedicated platform teams managing deployment infrastructure, and automated approval workflows.</p>
+
+    <div class="section-label">RASP — A Word of Caution</div>
+    <p><strong>Runtime Application Self-Protection (RASP)</strong> tools run inside application processes, monitoring memory and stopping suspicious activity in real-time. In theory, they catch exploits that evade all other controls. In practice:</p>
+    <ul class="bullet">
+      <li>They insert security logic deep into production application memory</li>
+      <li>Early deployments have high false positive rates that kill legitimate processes</li>
+      <li>When engineering spends two weeks debugging a "bug" that turns out to be RASP killing their process, the security team's reputation takes lasting damage</li>
+    </ul>
+    <Callout variant="orange">Take vendor claims about RASP's magic with a grain of salt. The organizational risk of jamming security monitoring into production application memory — without the same operational rigor that engineering applies to their own code — often outweighs the technical benefit.</Callout>
+
+    <div class="lesson-refs">
+      <span class="refs-label">See also</span>
+      <a class="ref-link" href="https://owasp.org/www-project-top-ten/" target="_blank">OWASP Top 10</a>
+      <a class="ref-link" href="https://cwe.mitre.org/" target="_blank">MITRE CWE — Common Weakness Enumeration</a>
+    </div>
+  </LessonCard>
+
+</section>
+</BaseLayout>
