@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import LessonCard from '../../components/LessonCard.astro';
 import Callout from '../../components/Callout.astro';
 ---
-<BaseLayout title="T1: Risk Register — CS8803 Reference" currentPath="/m3-assurance/t1-risk-register">
+<BaseLayout title="T1: Risk Register — CS8833 Reference" currentPath="/m3-assurance/t1-risk-register">
 
 <section class="topic">
   <div class="topic-header">
@@ -69,6 +69,160 @@ import Callout from '../../components/Callout.astro';
       <li><strong>Not a referral:</strong> A single malware detection that was caught and contained by existing controls — the control worked; no systemic gap was revealed</li>
     </ul>
     <Callout variant="orange">The risk register referral transforms incident response from a reactive function into a strategic input. Without this link, the same systemic conditions produce the same incidents repeatedly, and leadership never gains visibility into the pattern.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 1 · Lesson 5" title="Service Level Agreements (SLAs)" tags={[{label:"Definition",type:"def"},{label:"Practical",type:"tip"}]} searchData="SLA service level agreement remediation timeline urgency priority critical high medium low escalation reporting due date maximum time">
+    <div class="section-label">What Is an SLA in Risk Context?</div>
+    <p>A <strong>Service Level Agreement (SLA)</strong> defines the maximum time allowed to accomplish a remediation task. Exceeding that number triggers escalation or reporting. The SLA is <em>not</em> how long you want people to take — it's the ceiling where things have taken too long.</p>
+    <Callout variant="orange">A 30-day SLA on critical risks does <strong>not</strong> mean people should wait until day 29. You should always drive remediation as fast as is prudent. The SLA exists so that after 30 days, you escalate and report — it's a measurement threshold, not a permission to delay.</Callout>
+
+    <div class="section-label">SLA Tiers by Urgency</div>
+    <p>The RAMP defines SLAs mapped to urgency levels. A representative example:</p>
+    <ul class="bullet">
+      <li><strong>P1 — Critical (score 80-100):</strong> 30 days — drive for immediate remediation, but recognize that rushing can introduce more risk than the vulnerability itself (change windows, performance-sensitive systems, compensating controls buying time)</li>
+      <li><strong>P2 — High (score 50-79):</strong> 90 days</li>
+      <li><strong>P3 — Medium (score 40-49):</strong> 6 months</li>
+      <li><strong>P4 — Low (score below 40):</strong> 1 year</li>
+      <li><strong>P5 — Informational:</strong> No SLA — logged but not required to be remediated</li>
+    </ul>
+    <p>The SLA clock typically starts when there is <strong>agreement on the remediation path</strong>, not when the risk was first detected — because you can't hold someone to a deadline when nobody has agreed on what to do yet.</p>
+
+    <div class="section-label">Contractual Origins</div>
+    <p>The term "service level agreement" comes from outsourcing relationships — if you outsource risk management to a third party, the SLA is literally a contractual performance guarantee. Miss the SLA, and there may be financial penalties. Even for internal teams, the concept translates: SLAs create measurable accountability.</p>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 1 · Lesson 6" title="Sources and Workflow" tags={[{label:"Process"},{label:"Practical",type:"tip"}]} searchData="risk sources workflow triage audits vulnerability scanner bug bounty PHNV potentially harmful new vulnerability remediation closure proposed validation GRC governance">
+    <div class="section-label">Sources of Risk</div>
+    <ul class="bullet">
+      <li><strong>Audits and examinations:</strong> External or internal audit findings are direct candidates for the risk register — they represent assessed weaknesses in your program.</li>
+      <li><strong>Technical tools:</strong> Vulnerability scanners, DAST/SAST tools, attack surface management platforms — all automatically generate reports of discovered vulnerabilities.</li>
+      <li><strong>Human reports:</strong> Staff observations, customer reports, public disclosures, bug bounty submissions.</li>
+      <li><strong>PHNV (Potentially Harmful New Vulnerability):</strong> When threat intelligence reports a new vulnerability in widely-used software (e.g., Log4J), it enters the risk register as a potential risk. The team investigates whether the organization is affected. This is the appropriate place for it — not an incident (nothing bad has happened yet), but a risk that needs assessment.</li>
+    </ul>
+
+    <div class="section-label">Five-Stage Workflow</div>
+    <ul class="bullet">
+      <li><strong>1. Triage:</strong> An owner (typically GRC) assesses whether the report constitutes a real, pressing risk or a low-fidelity finding. This is critical — if you overdramatize, people desensitize and stop paying attention when you actually have something urgent.</li>
+      <li><strong>2. Urgency Proposed:</strong> GRC calculates a proposed urgency score using contextual awareness that the source tool or report didn't have. A governance committee reviews, giving remediators a chance to push back with compensating controls or business context GRC may have missed.</li>
+      <li><strong>3. Remediation:</strong> Once urgency is agreed, the SLA clock starts. The risk is assigned to an owner (usually a group, not an individual — people come and go). Automation nudges them to stay on track. Critical risks may have the security team in a live call throughout remediation.</li>
+      <li><strong>4. Closure Proposed:</strong> When the remediator says they're done, it enters "closure proposed" rather than closing automatically. You don't just take their word for it — a second-line validation confirms the fix actually works.</li>
+      <li><strong>5. Closed:</strong> After validation confirms remediation, the risk is formally closed.</li>
+    </ul>
+    <Callout variant="green">The "closure proposed" stage is the quality gate. For P2 or higher risks, always have someone independent (red team, GRC, AppSec) verify the fix before accepting closure. For lower risks, you may skip validation to avoid overhead.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 1 · Lesson 7" title="Risk Register Fields" tags={[{label:"Framework",type:"fw"},{label:"Key Terms",type:"def"}]} searchData="fields engagement ID source cause class opened by assigned to description title business unit audit trail updates urgency score tentative score created date detected date due date expected date validator validation test sensitivity">
+    <div class="section-label">Why Fields Matter</div>
+    <p>Fields exist for two purposes: (1) enabling searches and ad hoc queries after the fact, and (2) driving the reports and analysis you'll need later. You must collect the data <em>before</em> you need to report on it.</p>
+
+    <div class="section-label">Core Fields</div>
+    <ul class="bullet">
+      <li><strong>Engagement ID:</strong> Links all risks discovered by a specific engagement — useful for reporting "status of all findings from audit X"</li>
+      <li><strong>Source:</strong> The tool, audit, report, or process that discovered this risk</li>
+      <li><strong>Cause class:</strong> Thematic categories (configuration, code, architecture, vulnerability, behavior) that enable strategic analysis — if most high-severity risks come from "code," invest more in developer education</li>
+      <li><strong>Opened by / Assigned to:</strong> Who created the entry and who is responsible for remediation (prefer groups over individuals)</li>
+      <li><strong>Description:</strong> Detailed technical specifics — IP addresses, server names, exploitation conditions. <strong>This is your most sensitive field.</strong> It's essentially a roadmap for compromising your organization. Consider restricting description access to the security team while leaving other fields visible to remediators.</li>
+      <li><strong>Title:</strong> Just enough to remind people what this is about, without the exploitable detail that lives in the description</li>
+      <li><strong>Business unit:</strong> Enables scoping visibility so subsidiaries only see their own risks</li>
+      <li><strong>Audit trail:</strong> Automatic logging of who changed what, with timestamps</li>
+      <li><strong>Updates:</strong> Sequential notes from analysts and remediators — the history of work on this risk</li>
+    </ul>
+
+    <div class="section-label">Scoring Fields</div>
+    <ul class="bullet">
+      <li><strong>Calculated urgency score:</strong> Likelihood × Impact, assessed by GRC with full context</li>
+      <li><strong>Tentative score:</strong> What came in from the tool or external report, without context. Keep this — it lets you flag and explain any large divergence between the tool's assessment and yours, demonstrating that you're not hiding findings</li>
+    </ul>
+
+    <div class="section-label">Date Fields</div>
+    <ul class="bullet">
+      <li><strong>Detected date:</strong> When the tool or report actually found it</li>
+      <li><strong>Created date:</strong> When it entered the risk register (may differ from detected date, especially for reports with drafting cycles)</li>
+      <li><strong>Due date:</strong> Calculated from the remediation agreement date + SLA window</li>
+      <li><strong>Expected date:</strong> For cases where the due date will be exceeded by agreement — allows residual risk projections to model when risks will actually close rather than treating them as perpetual</li>
+    </ul>
+
+    <div class="section-label">Validation Fields</div>
+    <ul class="bullet">
+      <li><strong>Validator:</strong> Who will confirm the fix works</li>
+      <li><strong>Validation test:</strong> A script or procedure that can be run on demand to prove the vulnerability still exists (or has been fixed). Red team findings are ideal candidates — write an exploit script that confirms the vulnerability, then rerun it after remediation</li>
+    </ul>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 1 · Lesson 8" title="Urgency Scoring" tags={[{label:"Framework",type:"fw"},{label:"Practical",type:"tip"}]} searchData="urgency scoring likelihood impact CVSS exploitability exposure ITW in the wild POC proof of concept air gap public employee customer heat map SLA mapping">
+    <div class="section-label">Likelihood: Exploitability + Exposure</div>
+    <p>Urgency = Likelihood × Impact, producing a score from 0-100.</p>
+    <p><strong>Exploitability</strong> factors:</p>
+    <ul class="bullet">
+      <li><strong>CVSS score:</strong> A starting point from the public vulnerability database, but lacking your organizational context</li>
+      <li><strong>Published POC (Proof of Concept):</strong> If exploit code exists publicly, adversaries know how to use it — likelihood increases</li>
+      <li><strong>ITW (In The Wild):</strong> The vulnerability is actively being exploited — highest exploitability signal</li>
+      <li><strong>Red Team validation:</strong> Your own team tested it in your environment and confirmed it works</li>
+    </ul>
+    <p><strong>Exposure</strong> is massive in the likelihood calculation and often under-weighted:</p>
+    <ul class="bullet">
+      <li><strong>Public internet:</strong> Any adversary worldwide can exploit it instantly — highest exposure</li>
+      <li><strong>Customer-facing:</strong> Restricted to authenticated customers — still high if self-registration is easy</li>
+      <li><strong>Employee-only:</strong> Requires insider access — higher trust level, more time to remediate</li>
+      <li><strong>Air-gapped:</strong> Not connected to any network — lowest exposure, but not zero risk</li>
+    </ul>
+
+    <div class="section-label">Impact: Path to Threat Objectives</div>
+    <p>Impact measures how likely an exploited vulnerability would be to contribute to a threat objective being realized. Certain vulnerability types are inherently more dangerous:</p>
+    <ul class="bullet">
+      <li><strong>Remote Code Execution (RCE):</strong> Very high impact — directly enables threat objective achievement</li>
+      <li><strong>SQL Injection:</strong> High impact — direct path to data theft</li>
+      <li><strong>IDOR:</strong> High impact for data exposure</li>
+      <li><strong>XSS:</strong> Lower impact — usually just one link in a longer kill chain</li>
+    </ul>
+
+    <div class="section-label">Score-to-SLA Mapping</div>
+    <p>Top-weight the scale: consider anything below 40 as low at best. A representative mapping:</p>
+    <ul class="bullet">
+      <li><strong>80-100 (Critical):</strong> 30-day SLA — report to governance, escalate actively</li>
+      <li><strong>50-79 (High):</strong> 90-day SLA — report to governance</li>
+      <li><strong>40-49 (Medium):</strong> 6-month SLA — manage with operational teams</li>
+      <li><strong>Below 40 (Low/Info):</strong> 1 year or informational — track but don't over-invest governance attention</li>
+    </ul>
+    <Callout variant="green">Focus governance on criticals and highs. Mediums and lows are managed with the remediation teams directly — but check on them frequently, because long SLA windows (a year) make it easy for everyone to procrastinate.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 1 · Lesson 9" title="Reporting" tags={[{label:"Practical",type:"tip"},{label:"Framework",type:"fw"}]} searchData="reporting governance board management remediation agility stacked chart overdue SLA critical high unforgivable exploit evidence screenshot video red green">
+    <div class="section-label">"Exploit or It Didn't Happen"</div>
+    <p>Before reporting a risk as critical to governance, you must be able to <strong>reproduce the exploit</strong>. If you're going to escalate and demand engineering priority, you need screenshots, videos, red team demonstrations — evidence so compelling that no one can claim it's unimportant. At critical level, findings must be <strong>unforgivable</strong>: proven exploitable, clearly impactful, undeniable.</p>
+
+    <div class="section-label">Senior Management: The Table</div>
+    <p>For critical and high risks, list them all in a table for senior management meetings. Don't hide behind aggregate graphs that will prompt defensive questions like "what do you mean? which risks?" Just present the table. It gives people a chance to pre-read, do research, and come prepared — no surprises in the meeting.</p>
+
+    <div class="section-label">Governance: The Remediation Agility Chart</div>
+    <p>One single graph showing high and critical risks over time (monthly), with each bar split into <strong>green (within SLA)</strong> and <strong>red (overdue)</strong>. This single visual answers multiple questions simultaneously:</p>
+    <ul class="bullet">
+      <li>Is discovery pace healthy and steady? (If nothing is found, you're not looking)</li>
+      <li>Is remediation keeping pace? (Green should dominate)</li>
+      <li>What caused that spike in July? (New tool deployed, acquisition integrated, regulatory exam)</li>
+      <li>Is security debt growing? (Increasing red means you need more resources or fewer competing priorities)</li>
+    </ul>
+    <Callout variant="green">Don't flip through 30 slides. Put one powerful visual on screen and have multiple conversations around it. Board members and executives retain more from sustained discussion of one chart than rapid-fire slide transitions.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 1 · Lesson 10" title="RAMP Exercises" tags={[{label:"Practical",type:"tip"},{label:"Applied"}]} searchData="RAMP exercises risk assessment examples log4j TLS encryption customer sales bug bounty OneDrive BYOD red team private keys scoring practice">
+    <div class="section-label">Exercise 1: Poppable Log4J in Production</div>
+    <p>An ASM tool reports a Log4J vulnerability on a public-facing URL, confirmed via DNS callback. The exposure is internet-facing (high likelihood). But does the ASM tool prove full exploitability, or just DNS reachability? If your architecture blocks egress (servers can't reach the internet), the attacker can confirm the vulnerability but can't download malware. This lowers likelihood enough that it might be a <strong>high</strong> rather than <strong>critical</strong>. A well-informed GRC team also considers DNS tunneling — limited but not zero risk.</p>
+
+    <div class="section-label">Exercise 2: Customer Reports Weak TLS</div>
+    <p>A prospective customer's security team finds your servers support TLS 1.1 and calls it a high. Your tentative score says high. But supporting an old protocol doesn't mean mandating it — the customer chooses which version to negotiate. If you support TLS 1.3 and they use it, TLS 1.1 support is a low-fidelity finding. Document your analysis, respond transparently, and demonstrate your risk register process. Most sophisticated assessors respect a well-documented, thoughtful response more than blind compliance.</p>
+
+    <div class="section-label">Exercise 3: AppSec Design Review — Weak Passwords</div>
+    <p>A design review reveals an application doesn't enforce password complexity. Urgency depends heavily on context: Is there MFA? Can customers set their own policies? Is the application internet-facing? Is there sensitive data behind it? The same finding could be critical (no MFA, public internet, PII behind it) or medium (MFA in place, customers enforce their own policies).</p>
+
+    <div class="section-label">Exercise 4: Red Team Finds Private Keys in Public Bucket</div>
+    <p>Private keys stored with only base64 encoding (reversible, not encrypted) in a publicly accessible bucket. This "smells like a critical" immediately. Multiple risks may emerge: architecture risk (public bucket) assigned to DevOps, code risk (base64 instead of encryption) assigned to engineering. The red team can write a validation script that automatically tests whether the keys are still accessible — rerun it after remediation to confirm the fix.</p>
+
+    <div class="section-label">Exercise 5: Bug Bounty — Stack Dump</div>
+    <p>A researcher triggers a debug function on a production URL, revealing internal server names, IP addresses, and service account usernames. Likelihood is high (if a researcher found it, attackers have too). But impact is moderate — this information is useful as part of a kill chain but doesn't achieve a threat objective on its own. The fix (disable debug mode in production) should be straightforward. Result: probably medium urgency.</p>
+
+    <div class="section-label">Exercise 6: OneDrive Download to BYOD</div>
+    <p>An employee demonstrates they can download strictly confidential data from the corporate file system to an unmanaged home computer. Likelihood is lower than a public exploit (requires an authenticated employee) but not negligible. Impact depends heavily on data sensitivity and regulatory environment. In a highly regulated industry with PII: potentially critical. In a less regulated environment with non-monetizable data: possibly high or medium.</p>
   </LessonCard>
 
 </section>

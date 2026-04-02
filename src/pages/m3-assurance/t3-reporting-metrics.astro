@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LessonCard from '../../components/LessonCard.astro';
+import Callout from '../../components/Callout.astro';
+---
+<BaseLayout title="T3: Reporting & Metrics — CS8833 Reference" currentPath="/m3-assurance/t3-reporting-metrics">
+
+<section class="topic">
+  <div class="topic-header">
+    <div class="topic-num">T3</div>
+    <h3>GRC Reporting & Metrics</h3>
+  </div>
+
+  <LessonCard code="Mod 3 · Topic 3 · Lesson 1" title="Metrics Defined" tags={[{label:"Definition",type:"def"},{label:"Principle"}]} searchData="metrics definition quantitative qualitative insight decision-making governance reporting measurement control improvement">
+    <div class="section-label">Philosophical Definition</div>
+    <p>The traditional, almost academic, case for metrics follows a chain of reasoning: if you can't <strong>measure</strong> something, you can't <strong>understand</strong> it. If you can't understand it, you can't <strong>control</strong> it. And if you can't control it, you can't <strong>improve</strong> it. This framing positions metrics as the essential prerequisite for any kind of organizational improvement.</p>
+
+    <div class="section-label">Practical Definition</div>
+    <p>In practice — especially in the boardroom — metrics are the <strong>presentation of quantitative data to provide insight and aid in decision-making</strong>. This breaks into two directions:</p>
+    <ul class="bullet">
+      <li><strong>Looking back (insight):</strong> Metrics show historical trends. Governance bodies are accustomed to charts and graphs where visual anomalies — a spike, a sudden color change — immediately signal areas that warrant attention. Even without the presenter calling it out, the audience will spot and ask about anything that looks unusual.</li>
+      <li><strong>Looking forward (decision-making):</strong> Metrics signal warning signs and guide decisions about changes in strategy, resource allocation, or investment. They can also highlight positive outcomes — like the return on a security investment — that validate previous decisions.</li>
+    </ul>
+    <Callout variant="green">Metrics serve two masters: they tell the story of what happened, and they inform decisions about what to do next. A metric that does neither is overhead.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 3 · Lesson 2" title="Non-Cyber Metric Examples" tags={[{label:"Practical",type:"tip"},{label:"Framework",type:"fw"}]} searchData="executive dashboard operational metrics claims insurance KPI non-cyber examples revenue uptime capacity">
+    <div class="section-label">Why Study Non-Cyber Metrics</div>
+    <p>Metrics existed long before cybersecurity. Understanding what your audience — executives, board members, senior management — is already accustomed to seeing helps you design security metrics that feel familiar and intuitive rather than alien and confusing.</p>
+
+    <div class="section-label">Executive Dashboard</div>
+    <p>A typical executive dashboard uses dials, gauges, and color-coded indicators to show key business metrics at a glance: total accounts year-to-date, monthly recurring revenue, trial-to-business conversion rates, customer retention. Green zones indicate on-target performance; anything outside green immediately draws the eye. There is no single golden standard — formats range from open-source templates to proprietary commercial platforms.</p>
+
+    <div class="section-label">Operational Dashboard</div>
+    <p>Operational dashboards focus on metrics like <strong>uptime</strong>, <strong>stability</strong>, and <strong>capacity</strong>. Color coding signals urgency: red for critical issues, amber for warnings, green for healthy. These appear in both traditional manufacturing environments and digital platform operations — anyone running a high-performance website tracks response times and outage duration this way.</p>
+
+    <div class="section-label">Industry-Specific Dashboards</div>
+    <p>Different industries have their own metric traditions — insurance tracks claims data, expenses, and turnover; financial services tracks portfolio performance and risk exposure. Some of these include what might be called <strong>qualitative data presented as numbers</strong>: raw absolute counts that aren't ratios or percentages, aren't plotted against goals, but still provide useful context. Understanding these conventions helps you design security metrics that feel native to your audience.</p>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 3 · Lesson 3" title="Qualitative Metrics and Litmus Tests" tags={[{label:"Principle"},{label:"Practical",type:"tip"}]} searchData="qualitative metrics litmus tests sustainability governance reporting automation data collection expense">
+    <div class="section-label">The Qualitative Metrics Oxymoron</div>
+    <p>"Qualitative metrics" sounds like a contradiction — metrics imply numbers, qualitative implies narrative. But in practice, anything that is <strong>consistently reported using consistent terminology</strong> tends to get bundled under the umbrella of "metrics." When someone asks for your metrics, don't feel limited to spreadsheet-ready numbers. Tables of incidents with narrative descriptions, risk register summaries, and even status updates using standardized vocabulary all qualify.</p>
+
+    <div class="section-label">Litmus Tests Before Presenting a Metric</div>
+    <p>Before committing to any metric — qualitative or quantitative — run it through these filters:</p>
+    <ul class="bullet">
+      <li><strong>What data is required?</strong> A metric that requires massive data collection efforts, new logging infrastructure, or complex derivative calculations may cost more to produce than the insight it provides. Figure this out before you commit.</li>
+      <li><strong>What stories will it tell?</strong> Extrapolate the extremes — if this metric goes very positive or very negative, what narrative emerges? Does it drive useful discussions about M&A impact, resource allocation, policy effectiveness? If it doesn't drive action in any scenario, it's not worth tracking.</li>
+      <li><strong>What questions does it invite?</strong> Imagine your audience's reactions. You want the metric to provoke probing questions that lead to productive conclusions — not confused "what does this mean?" questions that indicate an unclear metric.</li>
+      <li><strong>"Who cares?" vs. "Why didn't you fix it?"</strong> These are the danger zones. If the metric is always boring regardless of direction, nobody cares and it's overhead. If it always shows bad news you could have resolved at a lower level, you look like you can't collaborate with peers. Exhaust your ability to fix problems before escalating them as metrics to governance.</li>
+      <li><strong>Is it sustainable?</strong> If producing this metric took you two days of manual data wrangling, it will be unsustainable by month two. Hold the metric back until you've automated production — don't over-promise on what you'll deliver every reporting cycle.</li>
+      <li><strong>Don't make it too fancy.</strong> Sometimes a simple statement is more effective than an elaborate chart. Not everything needs a visualization.</li>
+    </ul>
+    <Callout variant="orange">Set up the equation, but let the audience draw the conclusion. Show that vulnerabilities spiked after an acquisition — don't write "the acquisition has terrible security." Intelligent governance audiences will connect the dots themselves, and they may have context you don't.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 3 · Topic 3 · Lesson 4" title="Cyber Metric Examples" tags={[{label:"Framework",type:"fw"},{label:"Practical",type:"tip"},{label:"Key Terms",type:"def"}]} searchData="threat objective heatmap risk register stacked chart RAG remediation agility MTTD kill chain headcount tenure phishing vigilance geography board reporting governance">
+    <div class="section-label">Threat Objective Heatmap</div>
+    <p>The threat objective heatmap from Module 1 is itself a metric — a blend of qualitative and quantitative. The coordinates are numerical (likelihood × impact = risk score), but the underlying likelihood assessment is qualitative: labels like "certain" or "probable" are subjective judgments, not mathematical outputs. This is perfectly acceptable — just never misrepresent qualitative inputs as quantitative precision. Label them clearly so the audience understands what they're interpreting.</p>
+
+    <div class="section-label">Risk Register Stacked Chart ("Remediation Agility")</div>
+    <p>This single graph is one of the most powerful governance visuals. It shows high and critical risks from the risk register over time (monthly), with a stacked bar distinguishing <strong>on-time (green)</strong> vs. <strong>overdue/outside SLA (red)</strong> for each period.</p>
+    <p>What governance can read from this one visual:</p>
+    <ul class="bullet">
+      <li><strong>Discovery pace:</strong> A steady cadence of new findings is healthy — if you're finding nothing, you're not looking. A spike means either improved detection tools or increased risk (acquisition, new infrastructure).</li>
+      <li><strong>Remediation capacity:</strong> More green than red means the organization can keep pace with discoveries. Growing red means security debt is accumulating.</li>
+      <li><strong>Strategic triggers:</strong> Spikes correlate to events governance already knows about — new tools deployed, acquisitions integrated, regulatory exam findings — creating natural conversation starters.</li>
+    </ul>
+    <Callout variant="green">One graph, many conversations. At board level, aim for visuals that sustain extended discussion without flipping slides. Context-switching jars audiences and loses narrative thread.</Callout>
+
+    <div class="section-label">Qualitative Incident Table</div>
+    <p>When you have single-digit counts — four severity-3+ incidents in a quarter — a simple table is more appropriate than a chart. Going from 1 to 4 is not a meaningful "400% increase" worth graphing. List incidents with brief descriptions and key binary fields (Data Disclosure? Risk Register Referral?) to give governance a concrete feel for the types of events your team handles.</p>
+
+    <div class="section-label">RAG Chart (Red / Amber / Green)</div>
+    <p>A RAG chart tracks project status — what's on track (green), lagging (amber), or blocked (red). Audiences instinctively read reds first, then ambers, then greens only if the topic is a specific area of focus. RAG charts work best for <strong>internal governance committees</strong> where attendees can directly unblock projects. At board level, they tend to be too operational.</p>
+
+    <div class="section-label">Kill Chain Detection Metrics (Aspirational)</div>
+    <p>Measuring <strong>mean time to detect</strong> at each stage of the kill chain — reconnaissance, delivery, command and control, action on objectives — reveals where your detection capabilities are strongest and where they need investment. If you detect actions on objectives quickly but reconnaissance slowly, the metric makes the case for investing "left of boom" (earlier in the kill chain). This requires mature logging and often red team-generated data for accurate measurement.</p>
+
+    <div class="section-label">Headcount and Tenure Dashboard</div>
+    <p>A visualization showing allocated positions by team — with open positions visible as unfilled portions of each ring — immediately surfaces staffing risks. If application security is 40% understaffed, that's a discussion about recruiting strategy, internal talent pipelines, or resource sharing with engineering.</p>
+    <p><strong>Average tenure</strong> is a particularly honest metric. It takes years to improve and immediately drops when experienced people leave and are replaced by newcomers who lack institutional knowledge. If tenure is declining, it may signal compensation problems, mission dissatisfaction, or organizational friction — a diplomatic way to open difficult discussions about retention.</p>
+
+    <div class="section-label">Geographic Vigilance Map</div>
+    <p>Mapping security vigilance scores (e.g., phishing test performance) by geography serves multiple purposes. Each geography is really a proxy for a business unit, subsidiary, or workforce type — "Australia" might mean "outsourced software engineering." The map also inadvertently educates governance about the company's global footprint, which may not be well-visualized elsewhere. Differences in scores prompt questions about training effectiveness, cultural factors, or acquisition integration — all productive governance discussions.</p>
+
+    <div class="lesson-refs">
+      <span class="refs-label">See also</span>
+      <a class="ref-link" href="https://www.fairinstitute.org/" target="_blank">FAIR Institute — Quantitative Risk Analysis</a>
+    </div>
+  </LessonCard>
+
+</section>
+</BaseLayout>
