@@ -16,6 +16,7 @@ function isModuleActive(modulePaths: string[]): boolean {
 const m1Paths = ['/m1-strategy', '/m1-strategy/t1-composition', '/m1-strategy/t2-threat-objectives', '/m1-strategy/t3-departmental-org', '/m1-strategy/t4-talent-management', '/m1-strategy/t5-cti'];
 const m2Paths = ['/m2-operations', '/m2-operations/t1-architecture', '/m2-operations/t2-cirp', '/m2-operations/t3-cirp-examples'];
 const m3Paths = ['/m3-assurance', '/m3-assurance/t1-risk-register', '/m3-assurance/t2-compliance-policy', '/m3-assurance/t3-reporting-metrics', '/m3-assurance/t4-appsec', '/m3-assurance/t5-red-teaming'];
+const m4Paths = ['/m4-governance', '/m4-governance/t1-internal-governance', '/m4-governance/t2-board-governance'];
 const refPaths = ['/glossary'];
 ---
 <button class="hamburger" id="hamburger-btn" aria-label="Toggle navigation">☰</button>
@@ -50,6 +51,14 @@ const refPaths = ['/glossary'];
       <a href={`${base}/m3-assurance/t3-reporting-metrics`} class={isActive('/m3-assurance/t3-reporting-metrics') ? 'active' : ''}>T3 · Reporting &amp; Metrics</a>
       <a href={`${base}/m3-assurance/t4-appsec`} class={isActive('/m3-assurance/t4-appsec') ? 'active' : ''}>T4 · Application Security</a>
       <a href={`${base}/m3-assurance/t5-red-teaming`} class={isActive('/m3-assurance/t5-red-teaming') ? 'active' : ''}>T5 · Red Teaming</a>
+    </div>
+  </div>
+  <div class={`nav-section ${isModuleActive(m4Paths) ? 'expanded' : ''}`}>
+    <div class="nav-section-label" data-nav-toggle>Module 04 — Governance</div>
+    <div class="nav-links">
+      <a href={`${base}/m4-governance`} class={isActive('/m4-governance') ? 'active' : ''}>Overview</a>
+      <a href={`${base}/m4-governance/t1-internal-governance`} class={isActive('/m4-governance/t1-internal-governance') ? 'active' : ''}>T1 · Internal Governance</a>
+      <a href={`${base}/m4-governance/t2-board-governance`} class={isActive('/m4-governance/t2-board-governance') ? 'active' : ''}>T2 · Board Governance</a>
     </div>
   </div>
   <div class={`nav-section ${isModuleActive(refPaths) ? 'expanded' : ''}`}>

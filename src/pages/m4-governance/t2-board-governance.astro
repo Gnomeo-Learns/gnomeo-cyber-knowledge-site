@@ -1,0 +1,166 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LessonCard from '../../components/LessonCard.astro';
+import Callout from '../../components/Callout.astro';
+---
+<BaseLayout title="T2: External Board Cyber Governance — CS8833 Reference" currentPath="/m4-governance/t2-board-governance">
+
+<section class="topic">
+  <div class="topic-header">
+    <div class="topic-num">T2</div>
+    <h3>External Board Cyber Governance</h3>
+  </div>
+
+  <LessonCard code="Mod 4 · Topic 2 · Lesson 1" title="Corporate Governance 101" tags={[{label:"Definition",type:"def"},{label:"Framework",type:"fw"}]} searchData="corporate governance board directors fiduciary duty loyalty care shareholders SEC NYSE NASDAQ SRO self-regulatory NED non-executive independent director audit committee risk committee compensation nomination governance">
+    <div class="section-label">Boards Represent Shareholders</div>
+    <p>Board directors are <strong>fiduciaries</strong> — individuals required to act for the benefit of another person (the shareholders) on all matters within the scope of their relationship. This carries two core duties:</p>
+    <ul class="bullet">
+      <li><strong>Duty of loyalty:</strong> No conflicts of interest; always act in the company's (and thus shareholders') best interest</li>
+      <li><strong>Duty of care:</strong> Exercise diligent, informed judgment — not just show up, but actually engage with the material</li>
+    </ul>
+
+    <div class="section-label">Regulatory Structure</div>
+    <p>In the United States, the rules governing boards are promulgated by the listing stock exchanges (NYSE, NASDAQ) — which are <strong>Self-Regulatory Organizations (SROs)</strong>. The SEC oversees the exchanges and approves rule changes, but the exchanges themselves write and enforce the rules. Because two major exchanges exist, board composition requirements can differ slightly depending on where a company is listed.</p>
+
+    <div class="section-label">Types of Directors</div>
+    <ul class="bullet">
+      <li><strong>Executive Directors:</strong> Company employees (CEO is the most common). Not independent.</li>
+      <li><strong>Non-Executive Directors (NEDs) / Independent Directors:</strong> Outside individuals who are not employees and typically haven't worked for the company in the past five years. Exchanges require a minimum number of independent directors.</li>
+      <li><strong>Advisors/Experts:</strong> May attend meetings but aren't voting directors. Be aware of their presence — for certain sensitive topics, you may want an executive session that excludes non-directors.</li>
+    </ul>
+
+    <div class="section-label">Board Committees</div>
+    <p>A typical public company board has ~10-12 directors who meet as a <strong>full board</strong> and also divide into smaller <strong>committees</strong> of 2-4 independent directors plus select executives. Core committees:</p>
+    <ul class="bullet">
+      <li><strong>Audit Committee:</strong> Financial audit oversight. Originally where cybersecurity reporting often landed because IT controls fell under financial audit.</li>
+      <li><strong>Risk Committee:</strong> Surged in popularity after the 2008 financial crisis, originally focused on capital adequacy but now often absorbs cybersecurity, geopolitical, and operational risk oversight. Where cybersecurity increasingly reports.</li>
+      <li><strong>Compensation Committee:</strong> CEO salary, executive compensation strategy. Can tie cybersecurity metrics to CEO compensation targets.</li>
+      <li><strong>Nomination & Governance (NomGov):</strong> Hiring new directors, managing the board's own charter and organization.</li>
+      <li><strong>Optional committees:</strong> Some companies create specialized committees for technology risk, technology broadly, or even standalone cybersecurity oversight.</li>
+    </ul>
+  </LessonCard>
+
+  <LessonCard code="Mod 4 · Topic 2 · Lesson 2" title="The Other IR — Investor Relations" tags={[{label:"Key Terms",type:"def"},{label:"Practical",type:"tip"}]} searchData="investor relations IR 10K annual report proxy statement SEC disclosure risk factors cybersecurity expertise directors MD&A earnings call SRO">
+    <div class="section-label">IR Means Two Things</div>
+    <p>In cybersecurity, IR means Incident Response. In corporate governance, IR means <strong>Investor Relations</strong> — the department that prepares mandatory SEC filings, earnings calls, and shareholder communications. As a CISO, you need to know both definitions because cybersecurity now features prominently in investor relations documents.</p>
+
+    <div class="section-label">Where Cybersecurity Appears in Public Filings</div>
+    <ul class="bullet">
+      <li><strong>10-K (Annual Report):</strong> The mandatory annual filing. Cybersecurity appears in multiple sections:
+        <ul class="bullet">
+          <li><em>Business section:</em> Brief highlight of cybersecurity strategy if security is core to the business</li>
+          <li><em>Risk factors:</em> An exhaustive list of things that could go wrong — cybersecurity now features prominently alongside financial, operational, and market risks</li>
+          <li><em>MD&A (Management Discussion & Analysis):</em> Senior management's narrative on performance — companies recovering from breaches or dealing with regulatory fallout often discuss cybersecurity here</li>
+        </ul>
+      </li>
+      <li><strong>Proxy Statement:</strong> Informs shareholders about director elections and board structure. Key cybersecurity disclosures:
+        <ul class="bullet">
+          <li><em>Director qualifications:</em> Detailed backgrounds for each director, now including cybersecurity expertise</li>
+          <li><em>Board education:</em> What ongoing cybersecurity education directors receive</li>
+          <li><em>Committee composition:</em> Which committee oversees cybersecurity, with charter summaries</li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="section-label">SEC Cybersecurity Disclosure Rules</div>
+    <p>Recent SEC rulemaking requires public companies to disclose: cybersecurity <strong>risk management practices</strong>, <strong>strategy</strong>, <strong>governance</strong> structures, and material <strong>incident disclosure</strong> within specified timelines. Companies must also disclose which directors have cybersecurity expertise — implicitly pressuring boards to ensure at least some members do.</p>
+    <Callout variant="green">The SEC disclosure rule doesn't explicitly require a director with cybersecurity expertise — but by requiring you to disclose which directors have it (and by extension, which don't), it creates strong pressure to have at least one.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 4 · Topic 2 · Lesson 3" title="The Language of the Board" tags={[{label:"Principle"},{label:"Practical",type:"tip"},{label:"Key Terms",type:"def"}]} searchData="Roberts Rules motion second vote risk appetite statement limits breach lagging leading indicators RAG chart independent third party language vernacular boardroom">
+    <div class="section-label">Don't Teach a New Language</div>
+    <p>When communicating with the board, <strong>use the terms they already know</strong>. Directors spend most of their time on financial governance, risk management, and corporate strategy. Cybersecurity-specific jargon forces them to process unfamiliar terminology, during which they tune out your actual message. Map your concepts to their existing vocabulary:</p>
+    <ul class="bullet">
+      <li><strong>Risk = Likelihood × Impact</strong> — classic risk management structure they already know</li>
+      <li><strong>RAG charts</strong> (Red/Amber/Green) — standard status reporting format across all governance domains</li>
+      <li><strong>Limits</strong> — thresholds beyond which escalation is required. Note: boards traditionally use "breach" to mean exceeding a limit — nothing to do with data breaches. Be aware of the dual meaning.</li>
+      <li><strong>Robert's Rules of Order</strong> — formal meeting procedures (motions, seconds, votes). Know these so you can navigate formal approvals of strategy documents.</li>
+    </ul>
+
+    <div class="section-label">Independence Resonates</div>
+    <p>Independent directors exist <em>because</em> of independence requirements — they inherently value independent viewpoints. When you bring <strong>third-party assessments</strong> (maturity assessments, SOC 2 reports, independent red team results), this resonates deeply with board culture. Even if the board trusts you completely, err on the side of providing more independent validation, not less.</p>
+
+    <div class="section-label">Risk Appetite — Made Actionable</div>
+    <p>Traditional risk appetite statements are vague paragraphs: "We have a very low appetite for cybersecurity risk." The threat objective model makes this actionable. Lowering the risk appetite line exposes more threat objectives as above-threshold — expanding the mission and requiring more investment. Raising it reduces scope but accepts more risk. This lets the board see the <strong>cost of their risk appetite decisions</strong> in concrete terms.</p>
+
+    <div class="section-label">Lagging vs. Leading Indicators</div>
+    <ul class="bullet">
+      <li><strong>Lagging indicators:</strong> Limits, incident counts, SLA performance — things that already happened. Good for accountability, poor for prediction.</li>
+      <li><strong>Leading indicators:</strong> Threat intelligence, threat objective heatmap changes, emerging vulnerability trends — things that predict future risk. Better for strategic decisions.</li>
+    </ul>
+  </LessonCard>
+
+  <LessonCard code="Mod 4 · Topic 2 · Lesson 4" title="Board Committees" tags={[{label:"Practical",type:"tip"},{label:"Framework",type:"fw"}]} searchData="board committee quarterly briefing 20 minutes deck slides strategy approval CIO CTO delegate CISO credibility MECE CyberGov minutes appendix pre-read anecdotal narrative executive summary">
+    <div class="section-label">Strategy Approval</div>
+    <p>The board should formally <strong>approve the cybersecurity strategy</strong> — a long-lived (2-3 year) document tied to the threat objective study and structured around a framework like NIST CSF. Strategy approval goes in the minutes as formal evidence of board oversight. Individual policies and procedures are too detailed for board approval — that's what CyberGov is for.</p>
+
+    <div class="section-label">Working with 20 Minutes Per Quarter</div>
+    <p>In committee, expect at most 20 minutes per quarter for cybersecurity — and be prepared to get squeezed to 5 minutes if preceding items run long. Practical implications:</p>
+    <ul class="bullet">
+      <li><strong>~5 slides:</strong> Summary + threats + risks + incidents + compliance. That's your core recurring deck.</li>
+      <li><strong>Heavy pre-read:</strong> Directors are generally excellent about reading materials in advance. Put detailed threat intelligence, incident tables, and CyberGov minutes in the appendix.</li>
+      <li><strong>Narrative executive summary:</strong> An editorial-style first slide reflecting on the quarter's key developments. This is different every quarter and provides the qualitative framing for the quantitative slides that follow.</li>
+    </ul>
+
+    <div class="section-label">If You're Not Invited to the Boardroom Yet</div>
+    <p>Many CISOs report through a CIO, COO, or General Counsel who presents cybersecurity to the board on their behalf. This is normal, not an insult. CyberGov is where you brief that person so they're prepared to answer board questions. Consistently demonstrating professionalism and organizational skill in CyberGov builds the credibility that eventually earns you a direct invitation.</p>
+
+    <div class="section-label">Showing a Window into Internal Governance</div>
+    <p>Including CyberGov minutes in the board committee's appendix materials is powerful — directors can see which executives attend, who asks questions, and the caliber of internal discussion. This provides assurance that cybersecurity governance isn't just the CISO operating alone.</p>
+
+    <div class="section-label">Be Mutually Exclusive, Collectively Exhaustive</div>
+    <p>Don't present risks by individual tool ("SAST found X, the vulnerability scanner found Y"). Present them through a source-agnostic system like the risk register. Tool-by-tool reporting makes the board wonder: "Are there more tools I haven't heard about? Am I getting the complete picture?" A unified risk register answers that question implicitly.</p>
+    <Callout variant="green">Sequence your calendar: hold CyberGov a few weeks before the board committee meeting. The data stays timely, disagreements are already resolved, and you've already rehearsed your messaging.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 4 · Topic 2 · Lesson 5" title="Full Board Briefings" tags={[{label:"Practical",type:"tip"},{label:"Principle"}]} searchData="full board director education annual strategy culture decisiveness integration MNA acquisition security debt remediation agility repetition threat objective ISAC collaboration third party peer CISO">
+    <div class="section-label">Full Board vs. Committee</div>
+    <p>Committees handle the detailed quarterly cybersecurity review and report summaries to the full board. The full board rarely needs a separate cybersecurity briefing — maybe <strong>once a year</strong> for director education. Full board time is for strategic and cultural topics, not operational detail.</p>
+
+    <div class="section-label">What to Seek from the Full Board</div>
+    <p>The myth: CISOs go to the board to ask for budget. The reality: cybersecurity budgets are typically ~1% of operating expenditure — immaterial at the board level and already settled between the CISO and CFO long before the consolidated budget reaches the board. What the board <em>can</em> give you is far more valuable:</p>
+    <ul class="bullet">
+      <li><strong>Culture of security awareness:</strong> When the board signals that cybersecurity matters, it cascades through senior management into the entire workforce.</li>
+      <li><strong>Culture of decisiveness:</strong> The ability to change plans — delay a software release to fix a critical vulnerability, reprioritize engineering work for security remediation. This directly translates to remediation agility.</li>
+      <li><strong>Aggressive integration:</strong> When the company acquires other companies, the faster you integrate them under your control stack (risk management, monitoring, security tooling), the less unknown risk you carry. Socializing this at the board level means acquisition decisions may start factoring in cybersecurity integration cost and debt.</li>
+      <li><strong>Industry collaboration:</strong> Getting board-level endorsement for participation in ISACs and peer information sharing provides top-cover when legal or business units push back on sharing intelligence with competitors.</li>
+    </ul>
+
+    <div class="section-label">Communication Tactics for the Full Board</div>
+    <ul class="bullet">
+      <li><strong>Limited attention span:</strong> Pick a single-digit number of key points and make them repeatedly. Don't try to teach 20 things in one session.</li>
+      <li><strong>Use specifics:</strong> Concrete examples from your own environment or real-world incidents — not abstract frameworks.</li>
+      <li><strong>Avoid technical depth:</strong> Don't teach them to reverse engineer malware. Teach them to recognize threat objectives in news stories.</li>
+      <li><strong>Repetition across sessions:</strong> Use the same terminology every time. Don't rename concepts between meetings. After hearing "threat objectives" consistently, directors will start applying the framework when reading headlines.</li>
+      <li><strong>Peer CISOs as third-party educators:</strong> The "scared straight" era of bringing in FBI agents is over — directors already take cybersecurity seriously. Now bring in peer CISOs from companies with similar threat profiles (even different industries) to share real-world experience and validate your approach.</li>
+    </ul>
+    <Callout variant="orange">Don't ask the board for budget — ask for culture. Budget battles happen between the CISO and CFO. Culture changes start at the top and cascade down. A board that values decisiveness and transparency creates an environment where security remediation actually happens.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 4 · Topic 2 · Lesson 6" title="Technical Considerations in Board Communications" tags={[{label:"Practical",type:"tip"},{label:"Applied"}]} searchData="board communications email Gmail personal device BYOD portal software encryption DLP MFA multi-factor authentication remote wipe security directors attachment webmail">
+    <div class="section-label">The Personal Email Reality</div>
+    <p>Directors are not employees — they typically don't have corporate email accounts, and even if issued one, they still use personal accounts (Gmail is the most common). Your CEO and lead board director are probably communicating via Gmail. This is reality, not a problem to wish away.</p>
+
+    <div class="section-label">Why Corporate Email for Directors Doesn't Work</div>
+    <ul class="bullet">
+      <li><strong>Device burden:</strong> Directors serve on 3-4+ boards — they're not carrying that many laptops</li>
+      <li><strong>Webmail limitations:</strong> If your policy blocks attachment downloads from webmail (as it should for security), directors can't read board materials sent to corporate email from their personal devices</li>
+      <li><strong>Availability:</strong> When you need to send an urgent overnight update, the corporate device probably isn't the one on their nightstand</li>
+    </ul>
+
+    <div class="section-label">Securing Board Communications</div>
+    <ul class="bullet">
+      <li><strong>Board portal software:</strong> For formal board books (quarterly presentations), use dedicated portal software that installs on mobile devices. It provides MFA, sandboxed storage with encryption, and remote wipe capability. When a director leaves or loses their device, you deactivate their account centrally and the encrypted data becomes inaccessible. This solves the board book problem.</li>
+      <li><strong>Per-document encryption for email attachments:</strong> For between-meeting communications, require encryption on all attachments sent to director personal email addresses. Use a DLP policy in reverse: instead of scanning attachments for sensitive content, block any unencrypted attachment to board member email addresses. Store the standard decryption password in the board portal where directors can retrieve it securely.</li>
+      <li><strong>MFA on personal email — the highest-impact change:</strong> You can't control directors' Gmail accounts, but you can contractually require (or at minimum, strongly recommend) multi-factor authentication on personal email used for board business. This single change has the highest security impact with the lowest friction. Provide step-by-step instructions for major email platforms in the board deck appendix.</li>
+    </ul>
+    <Callout variant="green">Accept that directors will use personal email. Don't fight it — secure around it. Board portal for formal materials, document encryption for ad-hoc communications, and MFA on personal accounts for the biggest risk reduction with the least friction.</Callout>
+
+    <div class="lesson-refs">
+      <span class="refs-label">See also</span>
+      <a class="ref-link" href="https://www.sec.gov/rules/final/2023/33-11216.pdf" target="_blank">SEC Final Rule — Cybersecurity Risk Management, Strategy, Governance, and Incident Disclosure</a>
+    </div>
+  </LessonCard>
+
+</section>
+</BaseLayout>
