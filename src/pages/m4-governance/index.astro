@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+---
+<BaseLayout title="Module 4: Governance — CS8833 Reference" currentPath="/m4-governance">
+
+<div class="module-header">
+  <div class="module-num">Module 04</div>
+  <h2>Governance</h2>
+</div>
+
+<p style="margin-bottom:1.5rem;">Module 4 covers cybersecurity governance at two levels: internal governance committees (CyberGov) that arm cross-functional leadership and serve as dress rehearsals for the boardroom, and external governance through board of directors committees and full board briefings.</p>
+
+<div class="overview-grid">
+  <a href={`${base}/m4-governance/t1-internal-governance`} class="overview-card">
+    <div class="card-code">Topic 1</div>
+    <div class="card-title">Internal Cyber Governance</div>
+    <div class="card-desc">CyberGov committee charter and membership, agenda structure covering threats, risks, incidents, compliance, and controls, plus tips on minutes and action items.</div>
+  </a>
+  <a href={`${base}/m4-governance/t2-board-governance`} class="overview-card">
+    <div class="card-code">Topic 2</div>
+    <div class="card-title">External Board Cyber Governance</div>
+    <div class="card-desc">Corporate governance fundamentals, investor relations and SEC filings, the language of the boardroom, committee vs. full board briefings, and securing board communications.</div>
+  </a>
+</div>
+
+<div style="margin-top:2rem; padding:1.2rem 1.5rem; background:var(--card-bg); border:1px solid var(--border); border-radius:10px;">
+  <div style="font-family:'DM Mono',monospace; font-size:11px; color:var(--accent1); text-transform:uppercase; letter-spacing:1px; margin-bottom:0.5rem;">Supplementary Material</div>
+  <p style="margin-bottom:0.8rem;">The CyberGov Handbook is a concise reference covering key CyberGov concepts — threat objectives, risk identification, SLAs, remediation agility, incidents, compliance, and controls.</p>
+  <a href={`${base}/resources/CyberGov-Handbook.pdf`} target="_blank" style="color:var(--accent1); font-family:'DM Mono',monospace; font-size:13px; text-decoration:none;">Download CyberGov Handbook (PDF) →</a>
+</div>
+
+</BaseLayout>

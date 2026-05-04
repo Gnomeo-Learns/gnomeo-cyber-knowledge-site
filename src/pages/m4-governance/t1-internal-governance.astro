@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LessonCard from '../../components/LessonCard.astro';
+import Callout from '../../components/Callout.astro';
+---
+<BaseLayout title="T1: Internal Cyber Governance — CS8833 Reference" currentPath="/m4-governance/t1-internal-governance">
+
+<section class="topic">
+  <div class="topic-header">
+    <div class="topic-num">T1</div>
+    <h3>Internal Cyber Governance</h3>
+  </div>
+
+  <LessonCard code="Mod 4 · Topic 1 · Lesson 1" title="Role and Form of Internal Governance" tags={[{label:"Principle"},{label:"Framework",type:"fw"}]} searchData="CyberGov internal governance committee CISO cross-functional leadership stakeholders strategic oversight socialization board preparation">
+    <div class="section-label">Why Internal Governance</div>
+    <p>One of the most important things a CISO can do early in their tenure is establish an <strong>internal governance committee</strong>. External governance (the board of directors) gets the headlines, but internal governance is where the real work happens.</p>
+    <p>Without an internal governance step, executives will arrive at board meetings scrambling to demonstrate cybersecurity involvement that doesn't actually exist. Internal governance solves this by giving cross-functional leaders genuine, ongoing engagement with the cybersecurity program before they're in front of the board.</p>
+
+    <div class="section-label">What Internal Governance Accomplishes</div>
+    <ul class="bullet">
+      <li><strong>Arms and educates cross-functional leadership:</strong> Executives from finance, legal, operations, HR, and technology get regular exposure to cybersecurity topics, building the knowledge they need for later board discussions.</li>
+      <li><strong>Resolves disagreements behind closed doors:</strong> Contentious topics — budget disputes, risk acceptance decisions, control deployment priorities — get worked out in CyberGov so the team presents a unified front to the board.</li>
+      <li><strong>Transforms the CISO's ideas into the company's ideas:</strong> When the CFO helps set threat objective impact scores, and the CTO agrees on remediation priorities, cybersecurity is no longer "the security team's thing" — it's a shared organizational commitment.</li>
+    </ul>
+    <Callout variant="green">Internal governance is your dress rehearsal for the boardroom. Every quarter you demonstrate professionalism, organizational skill, and the ability to communicate without jargon — building the credibility that eventually gets you invited into the board meeting directly.</Callout>
+  </LessonCard>
+
+  <LessonCard code="Mod 4 · Topic 1 · Lesson 2" title="Sample CyberGov Charter and Agenda" tags={[{label:"Framework",type:"fw"},{label:"Practical",type:"tip"},{label:"Applied"}]} searchData="CyberGov charter agenda committee members CEO CFO GC CTO CIO CRO CHRO DPO privacy meeting cadence quarterly duties resources authority amendment">
+    <div class="section-label">The CyberGov Charter</div>
+    <p>The first step in establishing internal governance is a <strong>charter</strong> — a document that defines the committee's mission, scope, membership, and ground rules. The charter serves dual purposes: it aligns internal participants on expectations, and it provides documentary proof to external reviewers (regulators, auditors, customers) that formal governance exists.</p>
+    <Callout variant="orange">Anything in the charter becomes auditable. Keep it high-level enough to offer latitude, but specific enough to ensure key topics are always covered. Use "no less than" for meeting frequency — you can always exceed it.</Callout>
+
+    <div class="section-label">Charter Components</div>
+    <ul class="bullet">
+      <li><strong>Purpose:</strong> Keep this lightweight — a soft statement that won't create audit exposure</li>
+      <li><strong>Membership:</strong> A superset of potential members: CEO (as observer, not required attendee — see below), CFO, General Counsel, CTO/CIO, COO, Chief Risk Officer, Chief Audit Executive, CHRO, Data Protection Officer. Most companies will use a subset of 4-5 people.</li>
+      <li><strong>Technology literacy requirement:</strong> Parallel to the "financial literacy" requirement in board committee charters — members should have a baseline of technical understanding</li>
+      <li><strong>Duties and responsibilities:</strong> Oversee threats, risks, incidents, compliance, and controls</li>
+      <li><strong>Meeting cadence:</strong> "No less than quarterly" — you can always meet more often</li>
+      <li><strong>Resources and authority:</strong> What the committee is empowered to do</li>
+      <li><strong>Amendment process:</strong> How the charter itself gets changed</li>
+    </ul>
+
+    <div class="section-label">Why Each Member Cares</div>
+    <p>Every executive on the CyberGov committee is already getting cybersecurity questions from external parties — the board, customers, regulators, investors, media, politicians. CyberGov arms them with the knowledge to answer intelligently:</p>
+    <ul class="bullet">
+      <li><strong>CEO:</strong> Questions from the board, media, key customers, regulators, politicians</li>
+      <li><strong>CFO:</strong> Questions from investors, ratings agencies, auditors</li>
+      <li><strong>General Counsel:</strong> Questions from regulators, enforcement inquiries</li>
+      <li><strong>CTO/CIO:</strong> Questions about technology controls, architecture decisions</li>
+      <li><strong>Chief Audit Executive:</strong> Questions from the board's audit committee</li>
+      <li><strong>CHRO:</strong> Questions from employees about data protection, plus works councils/unions in the EU</li>
+    </ul>
+
+    <div class="section-label">Why the CEO Is Not a Required Member</div>
+    <p>CEOs are notorious for missing meetings — they delegate well and trust their staff. Since minutes include attendance, listing the CEO as required and documenting repeated absences creates a negative record. Instead, make the CEO a <strong>welcome observer</strong> who can attend any session. When they do appear, record them as an observer.</p>
+
+    <div class="section-label">Sample CyberGov Agenda</div>
+    <ul class="bullet">
+      <li><strong>Administrative Matters:</strong> Prior meeting minutes approval, policy changes, strategy/mission updates, talent management</li>
+      <li><strong>Threats:</strong> Threat objective review and updates (covered in Lesson 3)</li>
+      <li><strong>Risks:</strong> Remediation agility, risk identification activity (Lesson 4)</li>
+      <li><strong>Incidents:</strong> Severity-based incident reporting (Lesson 5)</li>
+      <li><strong>Compliance:</strong> Attestations, TPRM activity (Lesson 6)</li>
+      <li><strong>Controls:</strong> Key control status, deployment progress (Lesson 7)</li>
+    </ul>
+  </LessonCard>
+
+  <LessonCard code="Mod 4 · Topic 1 · Lesson 3" title="Threats in CyberGov" tags={[{label:"Framework",type:"fw"},{label:"Practical",type:"tip"}]} searchData="threat objectives heatmap inherent risk residual risk likelihood impact x-axis y-axis CFO cross-functional governance single visual board preview">
+    <div class="section-label">The Threat Objective Visualization</div>
+    <p>The threat objective heatmap from Module 1 is the centerpiece of the threats discussion in CyberGov. It works exceptionally well for governance because it's a <strong>single visual that sustains extended discussion</strong> without slide changes — every time you flip to a new slide, the audience mentally disengages while processing the new visual.</p>
+
+    <div class="section-label">Setting Values Collaboratively</div>
+    <ul class="bullet">
+      <li><strong>X-axis (inherent likelihood):</strong> The CISO proposes values based on threat intelligence — how common is this type of attack in the wild?</li>
+      <li><strong>Y-axis (inherent impact):</strong> Cross-functional leadership sets these together. The CFO assesses financial impact of fraud, the General Counsel assesses regulatory exposure, the CTO assesses operational disruption. This is where CyberGov earns its value — these aren't the CISO's numbers, they're the company's numbers.</li>
+    </ul>
+    <Callout variant="green">When the CFO has personally set the impact value for a threat objective, they'll defend that number in the boardroom without prompting. That's the sign of healthy internal governance — the CISO doesn't have to fight alone.</Callout>
+
+    <div class="section-label">Residual Risk Updates</div>
+    <p>Each quarter, report any changes to residual risk: Did completed projects move residual values left (lower likelihood)? Did new testing reveal gaps that moved values right (higher likelihood)? Both are healthy governance conversations — the former validates investments, the latter identifies where more work is needed.</p>
+  </LessonCard>
+
+  <LessonCard code="Mod 4 · Topic 1 · Lesson 4" title="Risks in CyberGov" tags={[{label:"Practical",type:"tip"},{label:"Framework",type:"fw"}]} searchData="risk register remediation agility stacked chart identification activity tools trends themes GRC budget resources security debt">
+    <div class="section-label">Risk Discussion Components</div>
+    <ul class="bullet">
+      <li><strong>Risk identification activity overview:</strong> What tools and processes are generating risk findings? What changed since last quarter? Did you add a new scanner, launch a bug bounty program, or commission a red team engagement? If you have gaps — no AppSec tools, no ASM coverage — preview the plan and timeline for addressing them.</li>
+      <li><strong>Remediation Agility chart:</strong> The stacked graph of high/critical risks over time — green (within SLA) vs. red (overdue). This is the single most important risk visual for governance. It shows discovery pace, remediation capacity, and whether security debt is growing or shrinking.</li>
+      <li><strong>Trends and themes:</strong> What types of risks dominate? If most high-severity findings come from code issues, that supports investing in developer security education. Keep this anecdotal — the chart provides the quantitative foundation, your commentary provides the qualitative insight.</li>
+    </ul>
+    <p>CyberGov is the ideal venue for these discussions because the people who can <strong>solve</strong> remediation bottlenecks — the CTO who can allocate engineering time, the COO who can deprioritize competing demands — are in the room.</p>
+  </LessonCard>
+
+  <LessonCard code="Mod 4 · Topic 1 · Lesson 5" title="Incidents in CyberGov" tags={[{label:"Practical",type:"tip"}]} searchData="incidents CIRP severity threshold table volume trends themes false positive triage automation qualitative quarterly governance">
+    <div class="section-label">Incident Reporting in CyberGov</div>
+    <ul class="bullet">
+      <li><strong>CIRP updates:</strong> Summarize any changes to the Cyber Incident Response Procedure. CyberGov doesn't formally approve the CIRP (it's a management-level document), but members should have awareness and the opportunity to raise objections.</li>
+      <li><strong>Incident table (Severity 3+):</strong> A simple table of qualifying incidents with brief descriptions. Expect 3-10 per quarter at this threshold. Include key binary fields: Was there data disclosure? Did it generate a risk register entry? Over time, committee members will spot patterns on their own — recurring human errors, frequent data oversharing, etc.</li>
+      <li><strong>Volume by severity (trailing year):</strong> Show incident counts by severity level over the past 12 months. Shifts between severity levels often reflect process improvements — if Sev-4s dropped and Sev-5s rose, you may have implemented automation that better triages low-fidelity events into informational closures.</li>
+      <li><strong>Trends and themes:</strong> Even if the data doesn't scream a pattern, the CISO should proactively share observations about incident types, root causes, and recommended preventive measures.</li>
+    </ul>
+  </LessonCard>
+
+  <LessonCard code="Mod 4 · Topic 1 · Lesson 6" title="Compliance in CyberGov" tags={[{label:"Practical",type:"tip"},{label:"Process"}]} searchData="compliance attestation SOC2 audit regulatory exam TPRM third-party risk management inbound outbound vendor questionnaire workload revenue customer">
+    <div class="section-label">Attestations</div>
+    <p>Report on any third-party reviews of your program — SOC 2 audits, regulatory examinations, maturity assessments. CyberGov is the place to:</p>
+    <ul class="bullet">
+      <li><strong>Foreshadow:</strong> "We've engaged a consulting firm for our SOC 2 audit next month — they'll need time from some of your teams."</li>
+      <li><strong>Share results:</strong> How did you perform? What findings came back? Are they already in the risk register?</li>
+      <li><strong>Announce availability:</strong> "The report is complete and ready — if anyone gets external inquiries about our security posture, we can now provide this."</li>
+    </ul>
+
+    <div class="section-label">Inbound TPRM (Customer Inquiries)</div>
+    <p>Track and report the velocity of inbound security questionnaires from customers. This metric does double duty: it shows GRC team workload, and it demonstrates that <strong>cybersecurity ties directly to the revenue stream</strong>. When you can show that customer inquiries are increasing, budget and resource requests become much easier to justify.</p>
+
+    <div class="section-label">Outbound TPRM (Vendor Reviews)</div>
+    <p>Report on your vendor security screening program. If a vendor is failing security reviews and you're recommending against using them, CyberGov is the place to <strong>preview that decision diplomatically</strong>. When other business units are upset about not being able to use a tool they wanted, it helps enormously if the General Counsel or COO can explain the security rationale — rather than the CISO always being the bearer of bad news.</p>
+  </LessonCard>
+
+  <LessonCard code="Mod 4 · Topic 1 · Lesson 7" title="Controls in CyberGov" tags={[{label:"Practical",type:"tip"}]} searchData="controls key controls deployment security tools CIO CTO endpoint threat objective mitigation testing budget preview">
+    <div class="section-label">Why Discuss Controls Internally (Not at the Board)</div>
+    <p>Controls are more tactical than other agenda items and are best kept at the CyberGov level rather than promoted to the board. The discussion serves two purposes:</p>
+    <ul class="bullet">
+      <li><strong>Preview and coordination:</strong> Give the CIO/CTO advance notice of upcoming deployments — "We're almost done selecting an endpoint protection product; start planning for a major deployment in Q3." This avoids surprise resource demands.</li>
+      <li><strong>Unblocking:</strong> If security tool deployments aren't getting prioritized, CyberGov is where peers can collectively help — allocating engineering time, reducing competing demands, or adjusting timelines.</li>
+    </ul>
+
+    <div class="section-label">Key Controls</div>
+    <p>Identify controls that either <strong>directly mitigate a threat objective</strong> or <strong>partially mitigate three or more</strong>. These become <strong>key controls</strong> — they should be continuously tested (automated if possible via red team or monitoring) and their status reported in CyberGov. Focusing governance on key controls keeps the discussion digestible while covering the most impactful elements of the security program.</p>
+  </LessonCard>
+
+  <LessonCard code="Mod 4 · Topic 1 · Lesson 8" title="Tips on Minutes and Action Items" tags={[{label:"Practical",type:"tip"},{label:"Principle"}]} searchData="minutes action items subpoena court legal counsel roll call balance detail governance evidence proof audit">
+    <div class="section-label">The Minutes Balancing Act</div>
+    <p>Minutes create a tension: legal counsel wants minimal detail (everything is potential subpoena fodder), but you need enough substance to prove genuine governance activity to auditors and the board.</p>
+
+    <div class="section-label">Guidelines</div>
+    <ul class="bullet">
+      <li><strong>Rule of thumb:</strong> Write as if everything will be read aloud in court, completely out of context. Don't lie or omit facts — but don't include inflammatory color commentary either.</li>
+      <li><strong>Show engagement:</strong> "CFO inquired about remediation timeline for critical findings; CISO reported compensating controls are in place and remediation is on track for Q2." This proves executive participation without creating ammunition.</li>
+      <li><strong>Avoid name-calling and catastrophizing:</strong> Minutes aren't updated in real-time as problems get resolved. A statement like "the program is in terrible shape" written in Q1 minutes will be read in Q4 long after things improved — but without that context.</li>
+      <li><strong>Include roll call:</strong> Document who attended each meeting. This is essential proof of governance participation.</li>
+      <li><strong>Track action items:</strong> Decisions and follow-ups should be clear enough that accountability is preserved, but framed constructively.</li>
+    </ul>
+    <Callout variant="orange">"If you're explaining, you're losing" — especially in court. Write minutes that need no additional explanation to be understood as evidence of responsible governance.</Callout>
+  </LessonCard>
+
+</section>
+</BaseLayout>
